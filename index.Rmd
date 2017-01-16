@@ -12,6 +12,7 @@ output:
           before: null
           after: null
       edit: https://github.com/Tazinho/Tidyverse-Cookbook/edit/master/%s
+      search: yes
 documentclass: book
 bibliography: [packages.bib]
 biblio-style: apalike

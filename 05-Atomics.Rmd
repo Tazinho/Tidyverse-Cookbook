@@ -8,6 +8,6 @@
 
 ## Resources
 
-* [forcats 0.1 on RStudio blog](https://blog.rstudio.org/2016/08/31/forcats-0-1-0/)
 * [stringr vignette](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html)
+* [forcats 0.1 on RStudio blog](https://blog.rstudio.org/2016/08/31/forcats-0-1-0/)
 * [lubridate vignette](https://cran.r-project.org/web/packages/lubridate/vignettes/lubridate.html)

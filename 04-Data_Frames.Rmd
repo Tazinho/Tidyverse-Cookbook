@@ -1,4 +1,4 @@
-# Data frames
+# Data frames and tibbles
 
 ## Basic operations
 
@@ -23,3 +23,7 @@
 ## Joins
 
 ## Measures
+
+## Tibbles
+
+## Resources

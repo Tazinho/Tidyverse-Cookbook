@@ -1,5 +1,5 @@
 # Idioms
 
+## Resources
 
-### Resources
-[The tidy tools manifesto](https://cran.r-project.org/web/packages/tidyverse/vignettes/manifesto.html)
+* [The tidy tools manifesto](https://cran.r-project.org/web/packages/tidyverse/vignettes/manifesto.html)

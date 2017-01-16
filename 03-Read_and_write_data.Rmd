@@ -1,0 +1,11 @@
+# Read and Write data
+
+## Flatfiles
+
+## Internet/Urls
+
+## Database connections
+
+## Cubes
+
+## Distributed Systems

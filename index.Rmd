@@ -23,17 +23,32 @@ description: "Simple cookbook for functions and idioms within the scope of the t
 
 # Prerequisites {-}
 
-The basic idea of this book is to provide a documentation of the tidyverse written in a solution driven cookbook style. Note that you can search this book by clicking the second button on the left on top of each page.
+The basic idea of this book is to provide a documentation of the tidyverse written in a solution driven cookbook style. As an extra I would like to provide similar solutions based on base R functionality. Note that you can search this book by clicking the second button on the left on top of each page.
 
+## Motivation
+Some reasons to write this book:
+
+* Whenever I google for some specific tidyverse syntax, I have to search through different vignettes or blogposts spread across the internet.
+* Other documents are focussed on teaching the tidyverse, but it is hard to find a quick solution to a specific problem.
+* The tidyverse has grown a lot and most resources only touch the most common usecases.
+* Whenever I know a solution in base R and want to achieve the same within a tidyverse workflow it takes some time to find the equivalent functionname. I really like how this is solved in the [stringr package vignette](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html) and I would like to search for all tidyverse functions in this way.
+* Bookdown gives great opportunities to share work.
+* Bookdown provides great opportunities to structure documentations.
+* Writing a documentation is a great way to explore something, because you have to document everything just one time and can explore new stuff afterwards. This way I expect to find more cool functions like `case_when` or common idioms, like regex handling in stringr functions, that will boost my code :)
+* A nice longtime gain might be the possibility to learn R via fleshcards copied from this book into systems like [Anki](https://apps.ankiweb.net/) to become more fluent in the future.
+* It's a great way to get an overview of the tidyverse.
+
+## Contribution
 This work is just a side project and any help is very much appreciated. Therefore you can find the edit button on top of each page. This lets you add changes to this book directly on github. My hope is that this book will be authored by the community and most of my future work is maintenance and keeping a structure that provides a good overview and lets you find the solution of your problem as fast as possible. 
-
-Since the idea of shared idoms within the tidyverse was quickly picked up by the community and grammars, that share these idioms, for specific fields arise quite often these days, it can be expected that the influence of the tidyverse will keep on growing and also the need for new connection and utility functions to integrate already established frameworks into the scope of the tidyverse will lead to new ideas, structures and relations to new fields of the tidyverse. Therefore this book might be work in progress for very long time.
-
-One strength of the tidyverse is that it hides a lot of quirks that base R provides and inherits to many packages that rely on it. This allows to stick to a specific workflow from the point you enter the tidyverse until you leave it. This is why I highly recommend to head your data analysis as fast as possible into the tidyverse workflow whenever possible. However, there might be situations you need the functionality and concepts of the tidyverse, but you want to relay on base R functionality. In these cases it is easy to get lost in quick workarounds that seem handy at first but hide some pitfalls that let you lose the way of a systematic data analysis workflow ending up in a unique non maintainable solution. Therefore I try to provide "good practice" solutions within base R that achieve the same goal as its tidyverse counterparts. This idea is somehow inspired by the [stringr package vignette](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html). While tidyverse solutions will usually be written in non-standard evaluation and usually provide an escape hatch, I'll try to provide standard evaluation base R solutions.
 
 This book is not an introduction to the tidyverse. If you are new to it, I recommend [R for Data Science](http://r4ds.had.co.nz/) and if you are curious about good base R practices I would first look in [Advanced R](http://adv-r.had.co.nz/). However, if you feel that you picked up a great solution for some specific task, feel free to come back to this book and add a pull request editing the appropriate section of this book.
 
-A nice gain of this collaboration might be the possibility to learn R via fleshcards copied from this book into systems like [Anki](https://apps.ankiweb.net/) and become more fluent in the future.
+## Structure of this book
+Since the idea of shared idoms within the tidyverse was quickly picked up by the community and grammars, that share these idioms, for specific fields arise quite often these days, it can be expected that the influence of the tidyverse will keep on growing and also the need for new connection and utility functions to integrate already established frameworks into the scope of the tidyverse will lead to new ideas, structures and relations to new fields of the tidyverse. Therefore this book might be work in progress for very long time.
+
+## Motivation for base R solutions
+One strength of the tidyverse is that it hides a lot of quirks that base R provides and inherits to many packages that rely on it. This allows to stick to a specific workflow from the point you enter the tidyverse until you leave it. This is why I highly recommend to head your data analysis as fast as possible into the tidyverse workflow whenever possible. However, there might be situations you need the functionality and concepts of the tidyverse, but you want to relay on base R functionality. In these cases it is easy to get lost in quick workarounds that seem handy at first but hide some pitfalls that let you lose the way of a systematic data analysis workflow ending up in a unique non maintainable solution. Therefore I try to provide "good practice" solutions within base R that achieve the same goal as its tidyverse counterparts. This idea is somehow inspired by the [stringr package vignette](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html). While tidyverse solutions will usually be written in non-standard evaluation and usually provide an escape hatch, I'll try to provide standard evaluation base R solutions.
+
 
 **Contributors:**
 

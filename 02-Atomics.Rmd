@@ -1,0 +1,7 @@
+# Atomics
+
+## Strings
+
+## Factors
+
+## Dates and times

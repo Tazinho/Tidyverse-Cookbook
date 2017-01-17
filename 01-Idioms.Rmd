@@ -1,7 +1,22 @@
 # (PART) Idioms {-} 
 
+```{r}
+library(tidyverse)
+```
+
+
+
+iris %>% 
+  filter(row_number() %in% c(1:3, (n()-2):n()))
+
 
 # Idioms
+## Die ersten und letzten (3) Zeilen eines dataframes anzeigen lassen. (dplyr-Logik)
+```{r}
+iris %>% 
+  filter(row_number() %in% c(1:3, (n()-2):n()))
+```
+
 
 ## Resources
 

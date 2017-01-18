@@ -48,12 +48,25 @@ The basics of the tidyverse are some shared idoms. Those give a structure, which
 ## Conventions
 
 ### Tasks
-This book contains many reproducible example. These should show intended usecases by package authors as well as other (maybe creative) uses that don't have a simpler solution. All usecases are called "tasks" in this book.
+This book contains many reproducible example. These should show intended usecases by package authors as well as other (maybe creative) uses that don't have a simpler solution. All usecases are called "tasks" in this book. New tasks should be described by a sentence containing different verbs (some specific and some general), so that the tasks are easy to find.
 
 ### Solutions
 All tasks should have a solution. Since this is a tidyverse cookbook, there should be at least one "tidy" solution. Whenever possible I would like a solution which is based on the `base`, `methods` (note that this package might not be loaded in batch mode), `utils` or `stats` packages. If no (or no straightforward) solution seems available, a solution from other packages should be given. In the latter case the libraries must be contained in the solution. If one solution has a disadvantage, this should also be described.
 
+Some other easy rules should be applied:
+
+* The solutions should always be an example, which is as easy as possible and as complex as necessary.
+* The latter means that you should use easy datasets that don't need much space to print (there might be a section with datasets to be used in the future).
+* When you want to show something for one variable and the same concept also holds for more variables, then provide the example for a two variable case.
+* When providing new solutions please use Hadley`s [styleguide](http://adv-r.had.co.nz/Style.html).
+
 ### Example task
+
+**Task:** Filter/subset a data.frame.
+**TDVS:** `iris %>% filter(Species == "versicolor" & Sepal.Width < 3)`
+**BASE:** `iris[iris[, "Species"] == "versicolor" & iris[, "Sepal.Width"] < 3]`
+
+Note that I didn't use `drop = FALSE`, since I think it should be well known and I prefer to have a one-liner solution. I also used `[` instead of `$`, because the latter does partial matching. `iris[,"Species"]` also makes clear that we want to subset a data frame by an atomic vetor, so I didn't choose `[[` or `iris["Species"]`. In the tidyverse solution I used the pipe as I think it's general practice. For tasks about modification of atomics the solution might also be written within `mutate`.
 
 ## Contribution
 This work is just a side project and any help is very much appreciated. Therefore you can find the edit button on top of each page. This lets you add changes to this book directly on github. My hope is that this book will be authored by the community and most of my future work is maintenance and keeping a structure that provides a good overview and lets you find the solution of your problem as fast as possible. 

@@ -43,7 +43,7 @@ Some reasons to write this book:
 One strength of the tidyverse is that it hides a lot of quirks that base R provides and inherits to many packages that rely on it. This allows to stick to a specific workflow from the point you enter the tidyverse until you leave it. This is why I highly recommend to head your data analysis as fast as possible into the tidyverse workflow whenever possible. However, there might be situations you need the functionality and concepts of the tidyverse, but you want to relay on base R functionality. In these cases it is easy to get lost in quick workarounds that seem handy at first but hide some pitfalls that let you lose the way of a systematic data analysis workflow ending up in a unique non maintainable solution. Therefore I try to provide "good practice" solutions within base R that achieve the same goal as its tidyverse counterparts. This idea is somehow inspired by the [stringr package vignette](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html). While tidyverse solutions will usually be written in non-standard evaluation and usually provide an escape hatch, I'll try to provide standard evaluation base R solutions.
 
 ## Structure of this book
-The basics of the tidyverse are some shared idoms. Those give a structure, which makes it feasible that a lot of packages work so well together and enables to build up new functionality on top. The idea behind this was quickly understood by the community; grammars, that share these idioms, start to arise more often these days. It can be expected that the influence of the tidyverse will keep on growing and also the need for new connection and utility functions to integrate already established frameworks into the scope of the tidyverse will grow. This again could lead to new ideas, structures and relations to new fields of the tidyverse. Therefore this book might be work in progress for very long time.
+The basics of the tidyverse are some shared idoms. Those give a structure, which makes it feasible that a lot of packages work so well together and enables to build up new functionality on top. The idea behind this was quickly understood by the community; grammars, that share these idioms, start to arise more often these days. It can be expected that the influence of the tidyverse will keep on growing and also the need for new connection and utility functions to integrate already established frameworks into the scope of the tidyverse will grow. This again could lead to new ideas, structures and relations to new fields of the tidyverse. Therefore this book might be work in progress for very long time and a final structure is not in sight.
 
 ## Contribution
 This work is just a side project and any help is very much appreciated. Therefore you can find the edit button on top of each page. This lets you add changes to this book directly on github. My hope is that this book will be authored by the community and most of my future work is maintenance and keeping a structure that provides a good overview and lets you find the solution of your problem as fast as possible. 
@@ -56,7 +56,7 @@ This book is not an introduction to the tidyverse. If you are new to it, I recom
 This book contains many reproducible examples. These should show intended usecases by package authors as well as other (maybe creative) uses that don't have a simpler solution. All usecases are called "tasks" in this book. New tasks should be described by a sentence containing different verbs (some specific and some general), so that the tasks are easy to find.
 
 ### Solutions
-All tasks should have a solution. Since this is a tidyverse cookbook, there should be at least one "tidy" solution. Whenever possible I would like a solution which is based on the `base`, `methods` (note that this package might not be loaded in batch mode), `utils` or `stats` packages. If no (or no straightforward) solution seems available, a solution from other packages should be given. In the latter case the libraries must be contained in the solution. If one solution has a disadvantage, this should also be described.
+All tasks should have a solution. Since this is a tidyverse cookbook, there should be at least one "tidy" solution. Whenever possible I would like a solution which is based on the `base`, `methods` (note that this package might not be loaded in batch mode), `utils` or `stats` packages. If no (or no straightforward) solution seem available, a solution from other packages should be given. In the latter case the libraries must be contained in the solution. If one solution has a disadvantage, this should also be described.
 
 Some other easy rules should be applied:
 
@@ -69,10 +69,21 @@ Some other easy rules should be applied:
 ### Example task
 
 **Task:** Filter/subset a data.frame.
+
 **TDVS:** `iris %>% filter(Species == "versicolor" & Sepal.Width < 3)`
+
 **BASE:** `iris[iris[, "Species"] == "versicolor" & iris[, "Sepal.Width"] < 3]`
 
-Note that I didn't use `drop = FALSE`, since I think it should be well known and I prefer to have a one-liner solution. I also used `[` instead of `$`, because the first doesn't use partial matching. `iris[,"Species"]` also makes clear that we want to subset a data frame by an atomic vetor, so I didn't choose `[[` or `iris["Species"]`. I also didn't choose `subset()`, since the base R solutions should use standard evaluation when possible. In the tidyverse solution I used the pipe as I think it's general practice. For tasks about modification of atomics the solution might also be written within `mutate`. However, these are just details and the structure might change anyway, so when in doubt just push your edits and I`ll try to take care on the remain.
+Note the following considerations
+
+* I didn't use `drop = FALSE`, since I think it should be well known and I prefer to have a one-liner solution. 
+* I also used `[` instead of `$`, because the first doesn't use partial matching.
+* `iris[,"Species"]` also makes clear that we want to subset a data frame by an atomic vetor, so I didn't choose `[[` or `iris["Species"]`. 
+* I also didn't choose `subset()`, since the base R solutions should use standard evaluation when possible.
+* In the tidyverse solution I used the pipe as I think it's general practice. 
+* For tasks about modification of atomics the solution might also be written within `mutate`. 
+
+However, these are just details and the structure might change anyway, so when in doubt just push your edits and I`ll try to take care on the remain.
 
 **Contributors:**
 

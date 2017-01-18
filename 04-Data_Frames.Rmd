@@ -2,29 +2,41 @@
 
 # Data frames and tibbles
 
-## Basic operations
+## Formatting
 
-**TASK:** Select columns from a data.frame
+**Task:** Change column names to lower case.
 
-**TASK:** Filter/Subset a data.frame
+**Task:** Change column names from camelCase or CamelCase to snake_case and reversed.
 
-**TASK:** Arrange/order a data.frame
+## Basic operations and related stuff
 
-**TASK:** Mutate/transform/calculate new columns of a data.frame
+**Task:** Select columns from a data.frame.
 
-**TASK:** Arrange/order a data.frame
+**Task:** Filter/Subset a data.frame.
 
-**TASK:** Group and summarise a data.frame
+**Task:** Arrange/order a data.frame.
+
+**Task:** Mutate/transform/calculate new columns of a data.frame.
+
+**Task:** Split a column into one or more new coumns.
+
+**Task:** Combine/unite one or more columns into one.
+
+**Task:** Arrange/order a data.frame.
+
+**Task:** Group and summarise a data.frame.
 
 ## Wide and Long data
 
-**Task:** Gather/Melt from wide into long format
+**Task:** Gather/Melt from wide into long format.
 
-**Task:** Reshape/Spread from long into wide format
+**Task:** Reshape/Spread from long into wide format.
 
 ## Joins
 
 ## Measures
+
+**Task:** Summarise grouped data by a statistic that returns more than one value.
 
 ## Tibbles
 

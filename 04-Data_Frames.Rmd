@@ -12,17 +12,23 @@
 
 **Task:** Select columns from a data.frame.
 
+**TDVS:** `iris %>% select(Sepal.Width, Species)`
+
+**BASE:** `iris[, c("Sepal.Width", "Species")]`
+
 **Task:** Filter/Subset a data.frame.
 
-**Task:** Arrange/order a data.frame.
+**TDVS:** `iris %>% filter(Species == "versicolor" & Sepal.Width < 3)`
+
+**BASE:** `iris[iris[, "Species"] == "versicolor" & iris[, "Sepal.Width"] < 3]`
 
 **Task:** Mutate/transform/calculate new columns of a data.frame.
 
-**Task:** Split a column into one or more new coumns.
+**Task:** Arrange/order a data.frame.
+
+**Task:** Split a column into one or more new columns.
 
 **Task:** Combine/unite one or more columns into one.
-
-**Task:** Arrange/order a data.frame.
 
 **Task:** Group and summarise a data.frame.
 

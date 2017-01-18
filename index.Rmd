@@ -64,6 +64,7 @@ Some other easy rules should be applied:
 * The latter means that you should use easy datasets that don't need much space to print (there might be a section with datasets to be used in the future).
 * When you want to show something for one variable and the same concept also holds for more variables, then provide the example for a two variable case.
 * When providing new solutions please use Hadley`s [styleguide](http://adv-r.had.co.nz/Style.html).
+* Data and libraries should be included on top of each chapter, so that the code in the solutions is short and readable. In case of conflicts relating to two functions with the same name, but from different packages, then use the syntax `packagename::functionname`.
 * When there seems to be two different base R or tidyverse approaches to a problem, just suffix these solutions with integers, eg. **TDVS1**, **TDVS2**,... .
 
 ### Example task

@@ -36,7 +36,7 @@ Some reasons to write this book:
 * Bookdown gives great opportunities to share work.
 * Bookdown also provides a fantastic structure for documentations.
 * Writing a documentation is a good way to explore something, because you have to document everything just one time and can explore new stuff afterwards. This way I expect to find more cool functions like `case_when` or common idioms, like regex handling in stringr functions, that will boost my code :)
-* A nice longtime gain might be the possibility to learn R via fleshcards copied from this book into systems like [Anki](https://apps.ankiweb.net/) to become more fluent in the future.
+* A nice longtime gain might be the possibility to learn R via flashcards copied from this book into systems like [Anki](https://apps.ankiweb.net/) to become more fluent in the future.
 * It is a great way to get an overview of the tidyverse.
 
 ## Motivation for base R solutions

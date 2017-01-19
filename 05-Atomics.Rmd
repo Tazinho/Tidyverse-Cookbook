@@ -18,6 +18,10 @@
 
 ## Dates and times
 
+**Task:** Convert a string into a factor.
+
+**Task:** Add days (as an integer) to a date.
+
 ## Resources
 
 * [stringr vignette](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html)

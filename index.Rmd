@@ -73,16 +73,16 @@ Some other easy rules should be applied:
 
 **TDVS:** `iris %>% filter(Species == "versicolor" & Sepal.Width < 3)`
 
-**BASE:** `iris[iris[, "Species"] == "versicolor" & iris[, "Sepal.Width"] < 3]`
+**BASE:** `iris[iris[, "Species"] == "versicolor" & iris[, "Sepal.Width"] < 3, ]`
 
 Note the following considerations
 
-* I didn't use `drop = FALSE`, since I think it should be well known and I prefer to have a one-liner solution. 
-* I also used `[` instead of `$`, because the first doesn't use partial matching.
+* I didn't use `drop = FALSE` (in the end), since I think it should be well known and I prefer to have a one-liner solution. 
+* I also used `[` instead of `$`, because the first doesn't use partial matching. The solution via brackets makes it also really easy to turn the code into a function like `function(dat, var){dat[var, ]}`
 * `iris[,"Species"]` also makes clear that we want to subset a data frame by an atomic vetor, so I didn't choose `[[` or `iris["Species"]`. 
 * I also didn't choose `subset()`, since the base R solutions should use standard evaluation when possible.
 * In the tidyverse solution I used the pipe as I think it's general practice. 
-* For tasks about modification of atomics the solution might also be written within `mutate`. 
+* Not included in this example, but for tasks about modification of atomics the solution might also be written within `mutate`. 
 
 However, these are just details and the structure might change anyway, so when in doubt just push your edits and I`ll try to take care on the remain.
 

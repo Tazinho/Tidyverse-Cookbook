@@ -32,6 +32,12 @@
 
 **Task:** Group and summarise a data.frame.
 
+## Common use cases
+
+**Task:** Mutate/Change columns depending on the row number (for example the last row).
+
+**TDVS:** `mutate(if_else(row_number() == n(), 1, 0))`
+
 ## Wide and Long data
 
 **Task:** Gather/Melt from wide into long format.

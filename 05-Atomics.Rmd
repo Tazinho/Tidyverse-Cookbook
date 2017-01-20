@@ -18,7 +18,7 @@
 
 ## Dates and times
 
-**Task:** Convert a string into a factor.
+**Task:** Convert a string into a date.
 
 **Task:** Add days (as an integer) to a date.
 

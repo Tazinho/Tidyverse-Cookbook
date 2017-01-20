@@ -97,7 +97,8 @@ Code:
 
 Formatting: 
 
-* Every solution should start in it's own line. 4 spaces intended.
+* Every task gets a number.
+* Every solution should start on its own line, 4 spaces intended.
 * To emphasize the solutions, use blue for __<span style="color:blue">TDVS</span>__ and green for __<span style="color:green">BASE</span>__.
 * Above I wrote that several solutions should be highlighted via __<span style="color:blue">TDVS1</span>__, __<span style="color:blue">TDVS2</span>__, ... . In this cases I think it is convenient to write everything in one solution, since they only show different possibilities of `filter()`'s syntax without any further big differences. The first version might be a little bit more compact, easier to program with and also minimal faster, that is why it is shown first.
 

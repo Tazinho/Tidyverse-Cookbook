@@ -1,8 +1,3 @@
-```{r}
-library(tidyverse)
-```
-
-
 # (PART) Acting on common data structures {-} 
 
 # Data frames and tibbles
@@ -35,14 +30,14 @@ rm(iris2)
 
 **Task:** Mutate/transform/calculate new columns of a data.frame.
 
-**Task:** Arrange/order a data.frame.
-**TDVS:**
+### Arrange/order a data.frame.
+#### TDVS
 ```{r}
 iris %>%
   arrange(desc(Sepal.Length))
 ```
 
-**BASE:**
+#### BASE
 ```{r}
 iris[order(iris$Sepal.Length, decreasing = TRUE), ]
 ```

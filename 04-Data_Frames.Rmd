@@ -2,6 +2,10 @@
 
 # Data frames and tibbles
 
+```{r}
+iris
+```
+
 ## Formatting
 
 **Task:** Change column names to lower case.

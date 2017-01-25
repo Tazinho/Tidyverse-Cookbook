@@ -1,3 +1,10 @@
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  cache = TRUE
+)
+```
 --- 
 title: "Tidyverse Cookbook"
 author: "Malte Grosser"
@@ -24,7 +31,7 @@ description: "Simple cookbook for functions and idioms within the scope of the t
 
 # Prerequisites {-}
 
-The basic idea of this book is to provide a documentation of the tidyverse written in a solution driven cookbook style. As an extra I would like to provide similar solutions based on base R functionality. Note that you can search this book by clicking the second button on the left on top of each page.
+The basic idea of this book is to provide a documentation of the tidyverse written in a solution driven cookbook style. As an extra I would like to provide similar solutions based on base R functionality.
 
 ## Motivation
 Some reasons to write this book:
@@ -32,7 +39,7 @@ Some reasons to write this book:
 * Whenever I google for some specific tidyverse syntax, I have to search through different vignettes or blogposts spread across the internet.
 * Other documents are focussed on teaching the tidyverse, but it is hard to find a quick solution to a specific problem.
 * The tidyverse has grown a lot and most resources only touch the most common usecases.
-* Whenever I know a solution in base R and want to achieve the same within a tidyverse workflow it takes some time to find the equivalent functionname. I really like how this is solved in the [stringr package vignette](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html) and I would like to have the opportunity to search for all tidyverse functions in this way (see also below).
+* Whenever I know a solution in base R and want to achieve the same within a tidyverse workflow it takes some time to find the equivalent functionname. (Sometimes similar problems occur into the opposite direction.) I really like how this is solved in the [stringr package vignette](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html) and I would like to have the opportunity to search for all tidyverse functions in this way (see also below).
 * Bookdown gives great opportunities to share work.
 * Bookdown also provides a fantastic structure for documentations.
 * Writing a documentation is a good way to explore something, because you have to document everything just one time and can explore new stuff afterwards. This way I expect to find more cool functions like `case_when()` or common idioms, like regex handling in stringr functions, that will boost my code :)
@@ -48,15 +55,15 @@ The basics of the tidyverse are some shared idoms. Those give a structure, which
 ## Contribution
 This work is just a side project and any help is very much appreciated. Therefore you can find the edit button on top of each page. This lets you add changes to this book directly on github. My hope is that this book will be authored by the community and most of my future work is maintenance and keeping a structure that provides a good overview and lets you find the solution of your problem as fast as possible. 
 
-This book is not an introduction to the tidyverse. If you are new to it, I recommend [R for Data Science](http://r4ds.had.co.nz/) and if you are curious about good base R practices I would first look in [Advanced R](http://adv-r.had.co.nz/). However, if you feel that you picked up a great solution for some specific task, feel free to come back to this book and add a pull request editing the appropriate section of this book. If you do, please regard the following conventions.
+This book is not an introduction to the tidyverse. If you are new to it, I recommend [R for Data Science](http://r4ds.had.co.nz/) and if you are curious about good base R practices I would first look in [Advanced R](http://adv-r.had.co.nz/). However, if you feel that you picked up a great solution for some specific task, feel free to come back to this book and add a pull request editing the appropriate section. If you do, please regard the following conventions.
 
 ## Conventions
 
 ### Tasks
-This book contains many reproducible examples. These should show intended usecases by package authors as well as other (maybe creative) uses that don't have a simpler solution. All usecases are called "tasks" in this book. New tasks should be described by a sentence containing different verbs (some specific and some general), so that the tasks are easy to find.
+This book contains many reproducible examples. These should show intended usecases by package authors as well as other (maybe creative) uses that don't have a simpler solution. All usecases are called "tasks" in this book and printed in bold. New tasks should be described by a sentence containing different verbs (some specific and some general), so that the tasks are easy to find.
 
 ### Solutions
-All tasks should have a solution. Since this is a tidyverse cookbook, there should be at least one "tidy" solution. Whenever possible I would like an extra solution which is based on the `base`, `methods` (note that this package might not be loaded in batch mode), `utils` or `stats` packages. If no (or no straightforward) solution seems available, a solution from other packages should be given. In the latter case the libraries must be contained in the solution. If one solution has a disadvantage, this should also be described `# by a comment at the top of the codepart`.
+All tasks should have a solution. Since this is a tidyverse cookbook, there should be at least one "tidy" solution. Whenever possible I would like an extra solution which is based on the `base`, `methods` (note that this package might not be loaded in batch mode), `utils` or `stats` packages. If no (or no straightforward) solution seems available, a solution from other packages should be given. In the latter case the libraries must be contained in the solution. If one solution has a disadvantage, this should also be described `# by a comment at the top of the codepart`. 
 
 Some other easy rules should be applied:
 
@@ -100,11 +107,11 @@ Formatting:
 * Every task gets a number.
 * Every solution should start on its own line, 4 spaces intended.
 * To emphasize the solutions, use blue for __<span style="color:blue">TDVS</span>__ and green for __<span style="color:green">BASE</span>__.
-* Above I wrote that several solutions should be highlighted via __<span style="color:blue">TDVS1</span>__, __<span style="color:blue">TDVS2</span>__, ... . In this cases I think it is convenient to write everything in one solution, since they only show different possibilities of `filter()`'s syntax without any further big differences. The first version might be a little bit more compact, easier to program with and also minimal faster, that is why it is shown first.
+* Above I wrote that different solutions should be highlighted via __<span style="color:blue">TDVS1</span>__, __<span style="color:blue">TDVS2</span>__, ... . In this cases I think it is convenient to write everything in one solution, since they only show different possibilities of `filter()`'s syntax without any further big differences. The first version might be a little bit more compact, easier to program with and also minimal faster, that is why it is shown first.
 
 However, most of the above are just details and the structure might change anyway, so when in doubt just push your edits and I`ll try to take care on the remain.
 
-**Contributors:**
+**Contributors:** 
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages

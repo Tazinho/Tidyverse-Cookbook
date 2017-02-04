@@ -32,6 +32,18 @@ Most important commands:
 * `packrat::init()`, initializes an isolated package library for the current project.
 * `packrat::snapshot()` saves all changes within the packrat project library since the last snapshot.
 * `packrat::restore()` deletes all changes within the packrat project library since the last snapshot.
+* `packrat::bundle()` creates a tarball of the project, the packages and its dependencies.
+* `packrat::unbundle(bundle = "path//to//the//bundle", where = ".")`, unbundles (restores) a project within a subdirectory of another (conveniently empty) project.
+* `packrat::off()`, to temporarily step out of "packrat mode", which means, that you will now use your global user library instead of the packrat project library.
+* `packrat::on()`, to go back into "packrat mode".
+
+Collaboration:
+
+* Initialise a packrat project on github, let everyone clone it and let them then call `packrat::restore()`.
+
+Updated R Version:
+
+* When you unbundle a project, which was created under an older (or newer) R version, then installed, packrat will warn you and install the older (or newer) R version when calling `packrat::snapshot()`. This is one among other reasons, why it is easier to work with packrat, while having access to the internet.
 
 ## Addins
 

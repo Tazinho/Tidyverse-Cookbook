@@ -64,7 +64,7 @@ Some other easy rules should be applied:
 * The latter means that you should use easy datasets that don't need much space to print (there might be a section with datasets to be used in the future).
 * When you want to show something for one variable and the same concept also holds for more variables, then provide the example for a two variable case.
 * When providing new solutions please use Hadley`s [styleguide](http://adv-r.had.co.nz/Style.html).
-* Data and libraries should be included on top of each chapter, so that the code in the solutions is short and readable. In case of conflicts relating to two functions with the same name, but from different packages, then use the syntax `packagename::functionname`.
+* General data and libraries should be included on top of each chapter, so that the code in the solutions is short and readable. In case of conflicts relating to two functions with the same name, but from different packages (or unique names, but from unpopular packages), then use the syntax `packagename::functionname`.
 * When there seems to be two different base R or tidyverse approaches to a problem, just suffix these solutions with integers, eg. __<span style="color:blue">TDVS1</span>__, __<span style="color:blue">TDVS2</span>__, ... .
 
 ### Example task
@@ -100,7 +100,7 @@ Formatting:
 * Every task gets a number.
 * Every solution should start on its own line, 4 spaces intended.
 * To emphasize the solutions, use blue for __<span style="color:blue">TDVS</span>__ and green for __<span style="color:green">BASE</span>__.
-* Above I wrote that different solutions should be highlighted via __<span style="color:blue">TDVS1</span>__, __<span style="color:blue">TDVS2</span>__, ... . In this cases I think it is convenient to write everything in one solution, since they only show different possibilities of `filter()`'s syntax without any further big differences. The first version might be a little bit more compact, easier to program with and also minimal faster, that is why it is shown first.
+* Above I wrote that different solutions should be highlighted via __<span style="color:blue">TDVS1</span>__, __<span style="color:blue">TDVS2</span>__, ... . In these cases I think it is convenient to write everything in one solution, since they only show different possibilities of `filter()`'s syntax without any further big differences. The first version might be a little bit more compact, easier to program with and also minimal faster, that is why it is shown first.
 
 However, most of the above are just details and the structure might change anyway, so when in doubt just push your edits and I`ll try to take care on the remain.
 

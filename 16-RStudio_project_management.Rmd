@@ -16,9 +16,18 @@ knitr::opts_chunk$set(
 
 ## Project types
 
+Empty project, package or shiny web applications
+
 ## Project options
 
+
+
 ## Version control
+
+* copy the link from a remote repository, when creating a new package
+* git add .
+* git add -m "some commit message"
+* push to remote
 
 ## Packrat and package dependencies
 
@@ -33,9 +42,9 @@ Most important commands:
 * `packrat::snapshot()` saves all changes within the packrat project library since the last snapshot.
 * `packrat::restore()` deletes all changes within the packrat project library since the last snapshot.
 * `packrat::bundle()` creates a tarball of the project, the packages and its dependencies.
-* `packrat::unbundle(bundle = "path//to//the//bundle", where = ".")`, unbundles (restores) a project within a subdirectory of another (conveniently empty) project.
-* `packrat::off()`, to temporarily step out of "packrat mode", which means, that you will now use your global user library instead of the packrat project library.
-* `packrat::on()`, to go back into "packrat mode".
+* `packrat::unbundle(bundle = "path//to//the//bundle", where = ".")` unbundles (restores) a project within a subdirectory of another (conveniently empty) project.
+* `packrat::off()` lets you temporarily step out of "packrat mode", which means, that you will now use your global user library instead of the packrat project library.
+* `packrat::on()` lets you go back into "packrat mode".
 
 Collaboration:
 

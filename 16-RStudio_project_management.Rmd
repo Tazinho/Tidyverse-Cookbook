@@ -12,6 +12,13 @@ knitr::opts_chunk$set(
   cache = TRUE
 )
 ```
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  cache = TRUE
+)
+```
 # RStudio project management
 
 ## Project types
@@ -68,3 +75,71 @@ Updated R Version:
     strcode::insert_l3_break() # or strg + c + 1
     ### .. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
     ```
+
+## Miscellaneous
+
+1. **Task:** Build a website with rmarkdown.
+
+    __<span style="color:grey">General:</span>__
+    
+    1. Create a github repository with the name \<yourusername\>.github.io
+    
+    1. Create an empty RStudio project synchronized with the github repository
+    
+    1. Create a textfile _site.yml and two rmarkdown files index.Rmd and about.Rmd (also include an empty textfile called .nojekyll [this tells GitHub Pages to not process your site with the Jekyll engine])
+    
+    **\_site.yml**
+    
+    
+    ```
+    name: "my-website"
+    navbar:
+    title: "My Website"
+      left:
+        - text: "Home"
+          href: index.html
+        - text: "About"
+          href: about.html
+    output:
+      html_document:
+        theme: cosmo
+        highlight: textmate
+    output_dir: "."
+    ```
+    output_dir "." is set to achive that the output htmls are created on the top level of the repository and not within the site folder.
+    
+    **index.Rmd**
+    
+    ```
+    ---
+    title: "My Website"
+    ---
+
+    Hello, Website!
+    ```
+    
+    **about.Rmd**
+    
+    ```
+    ---
+    title: "About This Website"
+    ---
+
+    More about this website.
+    ```
+    
+    1. Save the files above and call rmarkdown::render_site() or close and reopen RStudio and lock for a build pane within RStudio, which lets you build the side. You should see the output now in the viewer pane
+    
+    1. Open the shell and call git add .
+    
+    1. Then call commit -m "first build"
+    
+    1. Then call git push
+    
+    1. You should see the output within the browser under \<yourusername\>.github.io
+    
+    * Resources: 
+        
+        * [RMarkdown Website instructions](http://rmarkdown.rstudio.com/rmarkdown_websites.html)
+        * [Almost the same tutorial as above](https://github.com/privefl/rmarkdown-website-template#make-your-website-with-r-markdown-in-minutes)
+        * [video](https://www.youtube.com/watch?v=0GjUWgl03vA)

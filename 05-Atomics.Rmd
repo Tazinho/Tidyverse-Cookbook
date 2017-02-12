@@ -23,6 +23,8 @@ knitr::opts_chunk$set(
 
 ## Strings
 
+### Basic string operations
+
 1. **Task:** Paste/concatenate strings.
 
     __<span style="color:blue">TDVS:</span>__
@@ -104,7 +106,116 @@ knitr::opts_chunk$set(
              )
       )
     ```
+
+### Pattern matching
+
+1. **Task:** Does a string contain a specific sequence of characters? 
+
+    __<span style="color:blue">TDVS:</span>__
+    ```{r, eval = TRUE}
+    stringr::str_detect(c("my number is 110", "call 911"), "\\d{3}")
+    ```
+
+    __<span style="color:green">BASE:</span>__
+    ```{r, eval = TRUE}
+    grepl("\\d{3}", c("my number is 110", "call 911"))
+    ```
    
+1. **Task:** Return every string that contains a specific sequence of characters? 
+
+    __<span style="color:blue">TDVS:</span>__
+    ```{r, eval = TRUE}
+    stringr::str_subset(c("my number is 110", "call 911"), "\\d{3}")
+    ```
+
+    __<span style="color:green">BASE:</span>__
+    ```{r, eval = TRUE}
+    grep("\\d{3}", c("my number is 110", "call 911"), value = TRUE)
+    ```
+
+1. **Task:** Return the (first) start and end index of substrings within a string? 
+
+    __<span style="color:blue">TDVS:</span>__
+    ```{r, eval = TRUE}
+    # use stringr::str_locate_all to get a matrix of all start and end indexes
+    stringr::str_locate(c("my 112 number is 110", "call 911"), c("\\d{3}"))
+    ```
+
+    __<span style="color:green">BASE:</span>__
+    ```{r, eval = TRUE}
+    # Use gregexpr to construct something similar to str_locate_all
+    
+    matches <- regexpr("\\d{3}", c("my 112 number is 110", "call 911"))
+    
+    # formatting
+    match_lengths <- attr(matches, "match.length")
+    attributes(matches) <- NULL
+    match_indices <- matrix(c(matches, matches + match_lengths - 1), ncol = 2)
+    colnames(match_indices) <- c("start", "end")
+    
+    # output
+    match_indices
+    ```
+
+1. **Task:** Return the (first) matched substring within a string? 
+
+    __<span style="color:blue">TDVS:</span>__
+    ```{r, eval = TRUE}
+    # use stringr::str_extract_all to get a matrix of all matched substrings
+    stringr::str_extract(c("my 112 number is 110", "call 911"), c("\\d{3}"))
+    ```
+
+    __<span style="color:green">BASE:</span>__
+    ```{r, eval = TRUE}
+    # combine `substr()` with match_indices from above
+    ```
+
+1. **Task:** Return the matching strings and matched capture groups. 
+
+    __<span style="color:blue">TDVS:</span>__
+    ```{r, eval = TRUE}
+    # the example from the stringr vignette
+    strings <- c(
+      "apple",
+      "219 733 8965", 
+      "329-293-8753", 
+      "Work: 579-499-7527; Home: 543.355.3679"
+      )
+    phone <- "([2-9][0-9]{2})[- .]([0-9]{3})[- .]([0-9]{4})"
+    
+    stringr::str_match(strings, phone)
+    # Use stringr::str_match_all for list return
+    ```
+
+    __<span style="color:green">BASE:</span>__
+    ```{r, eval = TRUE}
+    # `regmatches()`
+    ```
+    
+1. **Task:** Replace/substitute the first matching subtstring within a string.
+
+    __<span style="color:blue">TDVS:</span>__
+    ```{r, eval = TRUE}
+    stringr::str_replace(c("my 112 number is 110", "call 911"), c("\\d{1}(\\d{2})"), "\\1\\1")
+    ```
+
+    __<span style="color:green">BASE:</span>__
+    ```{r, eval = TRUE}
+    sub(c("\\d{1}(\\d{2})"), "\\1\\1", c("my 112 number is 110", "call 911"))
+    ```
+    
+1. **Task:** Replace/substitute all matching subtstrings within a string.
+
+    __<span style="color:blue">TDVS:</span>__
+    ```{r, eval = TRUE}
+    stringr::str_replace_all(c("my 112 number is 110", "call 911"), c("\\d{1}(\\d{2})"), "\\1\\1")
+    ```
+
+    __<span style="color:green">BASE:</span>__
+    ```{r, eval = TRUE}
+    gsub(c("\\d{1}(\\d{2})"), "\\1\\1", c("my 112 number is 110", "call 911"))
+    ```    
+    
 ## Factors
 
 **Task:** Reorder the levels of a factor by another variable.

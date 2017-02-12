@@ -19,84 +19,80 @@ knitr::opts_chunk$set(
   cache = TRUE
 )
 ```
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  cache = TRUE
+)
+```
 # Atomics
 
 ## Strings
 
 ### Basic string operations
 
-1. **Task:** Paste/concatenate strings.
-
-    __<span style="color:blue">TDVS:</span>__
+1. **Paste/concatenate strings.**
     
     ```{r, eval = TRUE}
+#   TDVS
     stringr::str_c("a", "b", NA, NaN, NULL, factor("lalala"), character(0))
-    ```
-
-    __<span style="color:green">BASE:</span>__
-    ```{r, eval = TRUE}
+#   ____________________________________________________________________________
+#   BASE
     paste("a", "b", NA, NaN, NULL, factor("lalala"), character(0), sep = "")
     ```
     
-1. **Task:** Count the number of letters in a string.
+1. **Count the number of letters in a string.**
 
-    __<span style="color:blue">TDVS:</span>__
     ```{r, eval = TRUE}
+#   TDVS
     stringr::str_length(c("four", NA, NaN, NULL, factor("lalala")))
-    ```
-
-    __<span style="color:green">BASE:</span>__
-    ```{r, eval = TRUE}
+#   ____________________________________________________________________________
+#   BASE
     nchar(c("four", NA, NaN, NULL, factor("lalala")))
     ```
 
-1. **Task:** Return the last letter of a string, subset a string.
+1. **Return the last letter of a string, subset a string.**
 
-    __<span style="color:blue">TDVS:</span>__
     ```{r, eval = TRUE}
+#   TDVS
     stringr::str_sub(c("five", "six"), -1)
-    ```
-
-    __<span style="color:green">BASE:</span>__
-    ```{r, eval = TRUE}
-    substr(c("five", "six"), start = nchar(c("five", "six")), stop = nchar(c("five", "six")))
+#   ____________________________________________________________________________
+#   BASE
+    substr(c("five", "six"), 
+           start = nchar(c("five", "six")), 
+           stop = nchar(c("five", "six")))
     ```
     
-1. **Task:** Repeat/duplicate a string several times.
+1. **Repeat/duplicate a string several times.**
 
-    __<span style="color:blue">TDVS:</span>__
     ```{r, eval = TRUE}
+#   TDVS
     stringr::str_dup("_a_", 5)
-    ```
-
-    __<span style="color:green">BASE:</span>__
-    ```{r, eval = TRUE}
+#   ____________________________________________________________________________
+#   BASE
     paste(rep("_a_", 5), collapse = "")
     ```
     
-1. **Task:** Remove/trim spaces at the beginning (leading) and/or end (trailing) of a string.
+1. **Remove/trim spaces at the beginning (leading) and/or end (trailing) of a string.**
 
-    __<span style="color:blue">TDVS:</span>__
     ```{r, eval = TRUE}
+#   TDVS
     stringr::str_trim(c("  2left_1right ", "   "), side = c("left"))
-    ```
-
-    __<span style="color:green">BASE:</span>__
-    ```{r, eval = TRUE}
+#   ____________________________________________________________________________
+#   BASE
     # ^\\s+|\\s+$ is the regex for one or more spaces in the beginning
     # or one or more spaces at the end
     gsub("^\\s+", "", c("  2left_1right ", "   "))
     ```
     
-1. **Task:** Fill/pad spaces (or other characters) before and/or after a string. 
+1. **Fill/pad spaces (or other characters) before and/or after a string.**
 
-    __<span style="color:blue">TDVS:</span>__
     ```{r, eval = TRUE}
+#   TDVS
     stringr::str_pad(c("lalala", ""), width = 7)
-    ```
-
-    __<span style="color:green">BASE:</span>__
-    ```{r, eval = TRUE}
+#   ____________________________________________________________________________
+#   BASE
     unname(
       vapply(c("lalala", ""), 
              function(x) if(nchar(x) < 7) {
@@ -109,42 +105,35 @@ knitr::opts_chunk$set(
 
 ### Pattern matching
 
-1. **Task:** Does a string contain a specific sequence of characters? 
+1. **Does a string contain a specific sequence of characters?**
 
-    __<span style="color:blue">TDVS:</span>__
     ```{r, eval = TRUE}
+#   TDVS
     stringr::str_detect(c("my number is 110", "call 911"), "\\d{3}")
-    ```
-
-    __<span style="color:green">BASE:</span>__
-    ```{r, eval = TRUE}
+#   ____________________________________________________________________________
+#   BASE
     grepl("\\d{3}", c("my number is 110", "call 911"))
     ```
    
-1. **Task:** Return every string that contains a specific sequence of characters? 
+1. **Return every string that contains a specific sequence of characters?**
 
-    __<span style="color:blue">TDVS:</span>__
     ```{r, eval = TRUE}
+#   TDVS
     stringr::str_subset(c("my number is 110", "call 911"), "\\d{3}")
-    ```
-
-    __<span style="color:green">BASE:</span>__
-    ```{r, eval = TRUE}
+#   ____________________________________________________________________________
+#   BASE
     grep("\\d{3}", c("my number is 110", "call 911"), value = TRUE)
     ```
 
-1. **Task:** Return the (first) start and end index of substrings within a string? 
+1. **Return the (first) start and end index of substrings within a string?**
 
-    __<span style="color:blue">TDVS:</span>__
     ```{r, eval = TRUE}
+#   TDVS
     # use stringr::str_locate_all to get a matrix of all start and end indexes
     stringr::str_locate(c("my 112 number is 110", "call 911"), c("\\d{3}"))
-    ```
-
-    __<span style="color:green">BASE:</span>__
-    ```{r, eval = TRUE}
+#   ____________________________________________________________________________
+#   BASE
     # Use gregexpr to construct something similar to str_locate_all
-    
     matches <- regexpr("\\d{3}", c("my 112 number is 110", "call 911"))
     
     # formatting
@@ -157,23 +146,21 @@ knitr::opts_chunk$set(
     match_indices
     ```
 
-1. **Task:** Return the (first) matched substring within a string? 
+1. **Return the (first) matched substring within a string?**
 
-    __<span style="color:blue">TDVS:</span>__
     ```{r, eval = TRUE}
+#   TDVS
     # use stringr::str_extract_all to get a matrix of all matched substrings
     stringr::str_extract(c("my 112 number is 110", "call 911"), c("\\d{3}"))
-    ```
-
-    __<span style="color:green">BASE:</span>__
-    ```{r, eval = TRUE}
+#   ____________________________________________________________________________
+#   BASE
     # combine `substr()` with match_indices from above
     ```
 
-1. **Task:** Return the matching strings and matched capture groups. 
+1. **Return the matching strings and matched capture groups.**
 
-    __<span style="color:blue">TDVS:</span>__
     ```{r, eval = TRUE}
+#   TDVS
     # the example from the stringr vignette
     strings <- c(
       "apple",
@@ -185,37 +172,72 @@ knitr::opts_chunk$set(
     
     stringr::str_match(strings, phone)
     # Use stringr::str_match_all for list return
-    ```
-
-    __<span style="color:green">BASE:</span>__
-    ```{r, eval = TRUE}
+#   ____________________________________________________________________________
+#   BASE
     # `regmatches()`
     ```
     
-1. **Task:** Replace/substitute the first matching subtstring within a string.
+1. **Replace/substitute the first matching subtstring within a string.**
 
-    __<span style="color:blue">TDVS:</span>__
     ```{r, eval = TRUE}
-    stringr::str_replace(c("my 112 number is 110", "call 911"), c("\\d{1}(\\d{2})"), "\\1\\1")
-    ```
-
-    __<span style="color:green">BASE:</span>__
-    ```{r, eval = TRUE}
+#   TDVS
+    stringr::str_replace(c("my 112 number is 110", "call 911"),
+                         c("\\d{1}(\\d{2})"), "\\1\\1")
+#   ____________________________________________________________________________
+#   BASE
     sub(c("\\d{1}(\\d{2})"), "\\1\\1", c("my 112 number is 110", "call 911"))
     ```
     
-1. **Task:** Replace/substitute all matching subtstrings within a string.
+1. **Replace/substitute all matching subtstrings within a string.**
 
-    __<span style="color:blue">TDVS:</span>__
     ```{r, eval = TRUE}
-    stringr::str_replace_all(c("my 112 number is 110", "call 911"), c("\\d{1}(\\d{2})"), "\\1\\1")
-    ```
-
-    __<span style="color:green">BASE:</span>__
-    ```{r, eval = TRUE}
+#   TDVS
+    stringr::str_replace_all(c("my 112 number is 110", "call 911"),
+                             c("\\d{1}(\\d{2})"), "\\1\\1")
+#   ____________________________________________________________________________
+#   BASE
     gsub(c("\\d{1}(\\d{2})"), "\\1\\1", c("my 112 number is 110", "call 911"))
     ```    
     
+1. **Replace/substitute all matching subtstrings within a string.**
+
+    ```{r, eval = TRUE}
+#   TDVS
+    # returns a matrix and padds with empty strings, when n is greater than the
+    # number of pieces
+    stringr::str_split_fixed(c("lalala lala la",
+                               "blabla lala la"),
+                             c(" ", "b"), 5)
+    # returns a list
+    stringr::str_split(c("lalala lala la",
+                         "blabla lala la"),
+                       c(" ", "b"), 5)
+#   ____________________________________________________________________________
+#   BASE
+    # returns a list, but does not have an n argument (however, it shouldn't be
+    # too hard to create one).
+    strsplit(c("lalala lala la",
+               "blabla lala la"),
+             c(" ", "b"))
+    ```
+
+#### Regular expressions
+
+1. **Where can I learn about regular expressions?**
+
+  *  `?stringr::modifiers` for special regular expression functionality of the stringr package.
+  *  [reference sheet](http://www.regular-expressions.info/reference.html)
+  *  [interactively test](http://regexr.com/)
+  *  [Build a regular expressin](http://www.txt2re.com/)
+
+1. **How to test regular expressions?**
+
+  > When writing regular expressions, I strongly recommend generating a list of positive (pattern should match) and negative (pattern shouldn’t match) test cases to ensure that you are matching the correct components.
+  
+### List output
+
+1. **How to work with string functions, that return lists?**
+
 ## Factors
 
 **Task:** Reorder the levels of a factor by another variable.

@@ -1,38 +1,4 @@
-```{r include=FALSE, cache=FALSE}
-knitr::opts_chunk$set(
-  comment = "#>",
-  collapse = TRUE,
-  cache = TRUE
-)
-```
-```{r include=FALSE, cache=FALSE}
-knitr::opts_chunk$set(
-  comment = "#>",
-  collapse = TRUE,
-  cache = TRUE
-)
-```
-```{r include=FALSE, cache=FALSE}
-knitr::opts_chunk$set(
-  comment = "#>",
-  collapse = TRUE,
-  cache = TRUE
-)
-```
-```{r include=FALSE, cache=FALSE}
-knitr::opts_chunk$set(
-  comment = "#>",
-  collapse = TRUE,
-  cache = TRUE
-)
-```
-```{r include=FALSE, cache=FALSE}
-knitr::opts_chunk$set(
-  comment = "#>",
-  collapse = TRUE,
-  cache = TRUE
-)
-```
+
 # Atomics
 
 ## Strings
@@ -144,7 +110,7 @@ knitr::opts_chunk$set(
     #   ____________________________________________________________________________
     ```
     
-1. Format a string (change width, indentaion, ...).
+1. **Format a string (change width, indentaion, ...).**
 
     ```{r, eval = TRUE}
     cat(stringr::str_wrap("Hello, how are you?", width = 10, indent = 0, exdent = 2))

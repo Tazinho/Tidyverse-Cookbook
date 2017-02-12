@@ -1,3 +1,10 @@
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  cache = TRUE
+)
+```
 # (PART) Acting on common data structures {-} 
 
 # Data frames and tibbles

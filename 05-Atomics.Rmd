@@ -1,7 +1,110 @@
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  cache = TRUE
+)
+```
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  cache = TRUE
+)
+```
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  cache = TRUE
+)
+```
 # Atomics
 
 ## Strings
 
+1. **Task:** Paste/concatenate strings.
+
+    __<span style="color:blue">TDVS:</span>__
+    
+    ```{r, eval = TRUE}
+    stringr::str_c("a", "b", NA, NaN, NULL, factor("lalala"), character(0))
+    ```
+
+    __<span style="color:green">BASE:</span>__
+    ```{r, eval = TRUE}
+    paste("a", "b", NA, NaN, NULL, factor("lalala"), character(0), sep = "")
+    ```
+    
+1. **Task:** Count the number of letters in a string.
+
+    __<span style="color:blue">TDVS:</span>__
+    ```{r, eval = TRUE}
+    stringr::str_length(c("four", NA, NaN, NULL, factor("lalala")))
+    ```
+
+    __<span style="color:green">BASE:</span>__
+    ```{r, eval = TRUE}
+    nchar(c("four", NA, NaN, NULL, factor("lalala")))
+    ```
+
+1. **Task:** Return the last letter of a string, subset a string.
+
+    __<span style="color:blue">TDVS:</span>__
+    ```{r, eval = TRUE}
+    stringr::str_sub(c("five", "six"), -1)
+    ```
+
+    __<span style="color:green">BASE:</span>__
+    ```{r, eval = TRUE}
+    substr(c("five", "six"), start = nchar(c("five", "six")), stop = nchar(c("five", "six")))
+    ```
+    
+1. **Task:** Repeat/duplicate a string several times.
+
+    __<span style="color:blue">TDVS:</span>__
+    ```{r, eval = TRUE}
+    stringr::str_dup("_a_", 5)
+    ```
+
+    __<span style="color:green">BASE:</span>__
+    ```{r, eval = TRUE}
+    paste(rep("_a_", 5), collapse = "")
+    ```
+    
+1. **Task:** Remove/trim spaces at the beginning (leading) and/or end (trailing) of a string.
+
+    __<span style="color:blue">TDVS:</span>__
+    ```{r, eval = TRUE}
+    stringr::str_trim(c("  2left_1right ", "   "), side = c("left"))
+    ```
+
+    __<span style="color:green">BASE:</span>__
+    ```{r, eval = TRUE}
+    # ^\\s+|\\s+$ is the regex for one or more spaces in the beginning
+    # or one or more spaces at the end
+    gsub("^\\s+", "", c("  2left_1right ", "   "))
+    ```
+    
+1. **Task:** Fill/pad spaces (or other characters) before and/or after a string. 
+
+    __<span style="color:blue">TDVS:</span>__
+    ```{r, eval = TRUE}
+    stringr::str_pad(c("lalala", ""), width = 7)
+    ```
+
+    __<span style="color:green">BASE:</span>__
+    ```{r, eval = TRUE}
+    unname(
+      vapply(c("lalala", ""), 
+             function(x) if(nchar(x) < 7) {
+               paste0(rep(" ", 7 - nchar(x)), x, collapse = "")
+               } else {x},
+             character(1)
+             )
+      )
+    ```
+   
 ## Factors
 
 **Task:** Reorder the levels of a factor by another variable.

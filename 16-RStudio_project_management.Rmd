@@ -140,6 +140,7 @@ Updated R Version:
     
     * Resources: 
         
-        * [RMarkdown Website instructions](http://rmarkdown.rstudio.com/rmarkdown_websites.html)
-        * [Almost the same tutorial as above](https://github.com/privefl/rmarkdown-website-template#make-your-website-with-r-markdown-in-minutes)
+        * [rmarkdown website instructions](http://rmarkdown.rstudio.com/rmarkdown_websites.html)
+        * [almost the same tutorial as above](https://github.com/privefl/rmarkdown-website-template#make-your-website-with-r-markdown-in-minutes)
         * [video](https://www.youtube.com/watch?v=0GjUWgl03vA)
+        * [detailed tutorial](http://nickstrayer.me/RMarkdown_Sites_tutorial/)

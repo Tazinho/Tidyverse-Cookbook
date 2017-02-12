@@ -26,6 +26,13 @@ knitr::opts_chunk$set(
   cache = TRUE
 )
 ```
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  cache = TRUE
+)
+```
 # Atomics
 
 ## Strings
@@ -35,52 +42,52 @@ knitr::opts_chunk$set(
 1. **Paste/concatenate strings.**
     
     ```{r, eval = TRUE}
-#   TDVS
     stringr::str_c("a", "b", NA, NaN, NULL, factor("lalala"), character(0))
-#   ____________________________________________________________________________
-#   BASE
+    #   ____________________________________________________________________________
     paste("a", "b", NA, NaN, NULL, factor("lalala"), character(0), sep = "")
     ```
+
+1. **Treat `NA`'s as strings (`"NA"`).**
     
+    ```{r, eval = TRUE}
+    stringr::str_replace_na(c(NA, NaN, factor("lalala"), character(0)))
+    # note that the `c` function coerces the factor to its integer representation
+    #   ____________________________________________________________________________
+    base_replace_na <- function(x) {ifelse(is.na(x), "NA", x)}
+    base_replace_na(c(NA, NaN, factor("lalala"), character(0)))
+    ```
+
 1. **Count the number of letters in a string.**
 
     ```{r, eval = TRUE}
-#   TDVS
     stringr::str_length(c("four", NA, NaN, NULL, factor("lalala")))
-#   ____________________________________________________________________________
-#   BASE
+    #   ____________________________________________________________________________
     nchar(c("four", NA, NaN, NULL, factor("lalala")))
     ```
 
 1. **Return the last letter of a string, subset a string.**
 
     ```{r, eval = TRUE}
-#   TDVS
     stringr::str_sub(c("five", "six"), -1)
-#   ____________________________________________________________________________
-#   BASE
+    #   ____________________________________________________________________________
     substr(c("five", "six"), 
            start = nchar(c("five", "six")), 
            stop = nchar(c("five", "six")))
     ```
     
-1. **Repeat/duplicate a string several times.**
+1. **Repeat/replicate/duplicate a string several times.**
 
     ```{r, eval = TRUE}
-#   TDVS
     stringr::str_dup("_a_", 5)
-#   ____________________________________________________________________________
-#   BASE
+    #   ____________________________________________________________________________
     paste(rep("_a_", 5), collapse = "")
     ```
     
 1. **Remove/trim spaces at the beginning (leading) and/or end (trailing) of a string.**
 
     ```{r, eval = TRUE}
-#   TDVS
     stringr::str_trim(c("  2left_1right ", "   "), side = c("left"))
-#   ____________________________________________________________________________
-#   BASE
+    #   ____________________________________________________________________________
     # ^\\s+|\\s+$ is the regex for one or more spaces in the beginning
     # or one or more spaces at the end
     gsub("^\\s+", "", c("  2left_1right ", "   "))
@@ -89,10 +96,8 @@ knitr::opts_chunk$set(
 1. **Fill/pad spaces (or other characters) before and/or after a string.**
 
     ```{r, eval = TRUE}
-#   TDVS
     stringr::str_pad(c("lalala", ""), width = 7)
-#   ____________________________________________________________________________
-#   BASE
+    #   ____________________________________________________________________________
     unname(
       vapply(c("lalala", ""), 
              function(x) if(nchar(x) < 7) {
@@ -102,37 +107,74 @@ knitr::opts_chunk$set(
              )
       )
     ```
+    
+1. **Sort strings for example, by a different local alphabetic order.**
+
+    ```{r, eval = TRUE}
+    # The vowels come before the consonants in Hawaiian
+    stringr::str_sort(letters[1:10], locale = "haw")
+    #   ____________________________________________________________________________
+    # one can use `sort()`, but one has to know the specific locale
+    ```
+    
+1. **Return the order of stringelements within a specific alphabet**
+
+    ```{r, eval = TRUE}
+    # The vowels come before the consonants in Hawaiian
+    stringr::str_order(letters[1:10], locale = "haw")
+    #   ____________________________________________________________________________
+    # one can use `sort()`, but one has to know the specific locale
+    ```
+    
+1. **Change the encoding of a string**
+
+    ```{r, eval = TRUE}
+    # Example from encoding?stringi::stringi
+    x <- rawToChar(as.raw(177))
+    x
+    stringr::str_conv(x, "ISO-8859-2") # Polish "a with ogonek", (run this line in RStudio)
+    stringr::str_conv(x, "ISO-8859-1") # Plus-minus
+    #   ____________________________________________________________________________
+    ```
+    
+1. **Return the first two words of a string**
+
+    ```{r, eval = TRUE}
+    stringr::word("Hello, how are you?", 1, 2)
+    #   ____________________________________________________________________________
+    ```
+    
+1. Format a string (change width, indentaion, ...).
+
+    ```{r, eval = TRUE}
+    cat(stringr::str_wrap("Hello, how are you?", width = 10, indent = 0, exdent = 2))
+    #   ____________________________________________________________________________
+    ```
 
 ### Pattern matching
 
 1. **Does a string contain a specific sequence of characters?**
 
     ```{r, eval = TRUE}
-#   TDVS
     stringr::str_detect(c("my number is 110", "call 911"), "\\d{3}")
-#   ____________________________________________________________________________
-#   BASE
+    #   ____________________________________________________________________________
     grepl("\\d{3}", c("my number is 110", "call 911"))
     ```
    
 1. **Return every string that contains a specific sequence of characters?**
 
     ```{r, eval = TRUE}
-#   TDVS
     stringr::str_subset(c("my number is 110", "call 911"), "\\d{3}")
-#   ____________________________________________________________________________
-#   BASE
+    #   ____________________________________________________________________________
     grep("\\d{3}", c("my number is 110", "call 911"), value = TRUE)
     ```
 
 1. **Return the (first) start and end index of substrings within a string?**
 
     ```{r, eval = TRUE}
-#   TDVS
     # use stringr::str_locate_all to get a matrix of all start and end indexes
     stringr::str_locate(c("my 112 number is 110", "call 911"), c("\\d{3}"))
-#   ____________________________________________________________________________
-#   BASE
+    #   ____________________________________________________________________________
     # Use gregexpr to construct something similar to str_locate_all
     matches <- regexpr("\\d{3}", c("my 112 number is 110", "call 911"))
     
@@ -149,18 +191,15 @@ knitr::opts_chunk$set(
 1. **Return the (first) matched substring within a string?**
 
     ```{r, eval = TRUE}
-#   TDVS
     # use stringr::str_extract_all to get a matrix of all matched substrings
     stringr::str_extract(c("my 112 number is 110", "call 911"), c("\\d{3}"))
-#   ____________________________________________________________________________
-#   BASE
+    #   ____________________________________________________________________________
     # combine `substr()` with match_indices from above
     ```
 
 1. **Return the matching strings and matched capture groups.**
 
     ```{r, eval = TRUE}
-#   TDVS
     # the example from the stringr vignette
     strings <- c(
       "apple",
@@ -172,37 +211,31 @@ knitr::opts_chunk$set(
     
     stringr::str_match(strings, phone)
     # Use stringr::str_match_all for list return
-#   ____________________________________________________________________________
-#   BASE
+    #   ____________________________________________________________________________
     # `regmatches()`
     ```
     
 1. **Replace/substitute the first matching subtstring within a string.**
 
     ```{r, eval = TRUE}
-#   TDVS
     stringr::str_replace(c("my 112 number is 110", "call 911"),
                          c("\\d{1}(\\d{2})"), "\\1\\1")
-#   ____________________________________________________________________________
-#   BASE
+    #   ____________________________________________________________________________
     sub(c("\\d{1}(\\d{2})"), "\\1\\1", c("my 112 number is 110", "call 911"))
     ```
     
 1. **Replace/substitute all matching subtstrings within a string.**
 
     ```{r, eval = TRUE}
-#   TDVS
     stringr::str_replace_all(c("my 112 number is 110", "call 911"),
                              c("\\d{1}(\\d{2})"), "\\1\\1")
-#   ____________________________________________________________________________
-#   BASE
+    #   ____________________________________________________________________________
     gsub(c("\\d{1}(\\d{2})"), "\\1\\1", c("my 112 number is 110", "call 911"))
     ```    
     
-1. **Replace/substitute all matching subtstrings within a string.**
+1. **Split strings by any pattern into different (optionally n) pieces.**
 
     ```{r, eval = TRUE}
-#   TDVS
     # returns a matrix and padds with empty strings, when n is greater than the
     # number of pieces
     stringr::str_split_fixed(c("lalala lala la",
@@ -212,14 +245,30 @@ knitr::opts_chunk$set(
     stringr::str_split(c("lalala lala la",
                          "blabla lala la"),
                        c(" ", "b"), 5)
-#   ____________________________________________________________________________
-#   BASE
+    #   ____________________________________________________________________________
     # returns a list, but does not have an n argument (however, it shouldn't be
     # too hard to create one).
     strsplit(c("lalala lala la",
                "blabla lala la"),
              c(" ", "b"))
     ```
+
+1. **Set all characters to lower/upper case.**
+
+    ```{r, eval = TRUE}
+    stringr::str_to_lower("aBcDe")
+    stringr::str_to_upper("aBcDe")
+    #   ____________________________________________________________________________
+    tolower("aBcDe")
+    toupper("aBcDe")
+    ```  
+
+1. **Truncate a string.**
+
+    ```{r, eval = TRUE}
+    stringr::str_trunc("123456789", width = 7, side = "right", ellipsis = "")
+    #   ____________________________________________________________________________
+    ```  
 
 #### Regular expressions
 
@@ -229,11 +278,50 @@ knitr::opts_chunk$set(
   *  [reference sheet](http://www.regular-expressions.info/reference.html)
   *  [interactively test](http://regexr.com/)
   *  [Build a regular expressin](http://www.txt2re.com/)
+  *  Try the `str_view()` function to see, which substring a regex matches
+  
+    ```{r, eval = TRUE}
+    stringr::str_view(c("abc", "a.c_blabla", "bef"), "a\\.c")
+    ```
 
 1. **How to test regular expressions?**
 
   > When writing regular expressions, I strongly recommend generating a list of positive (pattern should match) and negative (pattern shouldn’t match) test cases to ensure that you are matching the correct components.
   
+#### Modifiers
+
+1.  **Count the number of words within a string.**
+
+    ```{r, eval = TRUE}
+    words <- c("These are some words. 
+               Some more words.")
+    stringr::str_count(words, stringr::boundary("word"))
+    #   ____________________________________________________________________________
+    ```
+    
+1.  **Count the number of lines within a string.**
+
+    ```{r, eval = TRUE}
+    stringr::str_count(words, stringr::boundary("line_break")) -
+    stringr::str_count(words, stringr::boundary("word"))
+    #   ____________________________________________________________________________
+    ```
+
+1.  **Count the number of sentences within a string.**
+
+    ```{r, eval = TRUE}
+    stringr::str_count(words, stringr::boundary("sentence"))
+    #   ____________________________________________________________________________
+    ```
+
+1.  **Split a string by characters.**
+
+    ```{r, eval = TRUE}
+    stringr::str_split(words, stringr::boundary("character"))
+    #   ____________________________________________________________________________
+    strsplit(words, "")
+    ```
+
 ### List output
 
 1. **How to work with string functions, that return lists?**

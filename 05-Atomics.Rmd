@@ -296,21 +296,76 @@
 
 **Task:** Reorder the levels of a factor by another variable.
 
+```{r}
+data(iris)
+
+levels(iris$Species)
+
+library(dplyr)
+iris %>%
+  group_by(Species) %>% 
+  summarize(mean_Sepal_Length = mean(Sepal.Length)) %>% 
+  arrange(desc(mean_Sepal_Length)) -> d
+
+levels(iris$Species) <- d$Species
+levels(iris$Species)
+#   ____________________________________________________________________________
+
+
+  
+```
+
+
 **Task:** Reverse the order of factor levels.
+```{r}
+
+#   ____________________________________________________________________________
+levels(iris$Species) <- rev(levels(iris$Species))
+```
+
 
 **Task:** Change specific levels of a factor by name, while preserving the order.
+```{r}
+
+#   ____________________________________________________________________________
+levels(iris$Species)[2] <- "Flower B"
+```
 
 **Task:** Move specific factor levels in front of all others.
 
+```{r}
+#   ____________________________________________________________________________
+data(iris)
+levels(iris$Species) <- c(levels(iris$Species)[2], levels(iris$Species)[-2])
+```
+
+
 **Task:** Join/bind/combine/compose/unite rare factor levels into one.
+```{r}
+# forcats!
+#   ____________________________________________________________________________
+
+```
+
 
 **Task:** Join/bind/combine/compose/unite common factor levels into one.
 
 ## Dates and times
 
 **Task:** Convert a string into a date.
+```{r}
+
+#   ____________________________________________________________________________
+as.Date("2017/02/20")
+```
+
 
 **Task:** Add days (as an integer) to a date.
+```{r}
+
+#   ____________________________________________________________________________
+as.Date("2017/02/20") + 5
+```
 
 **Task:** Generate a (dense) sequence of days/years/months.
 

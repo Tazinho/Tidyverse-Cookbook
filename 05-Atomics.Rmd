@@ -354,15 +354,15 @@ levels(iris$Species) <- c(levels(iris$Species)[2], levels(iris$Species)[-2])
 
 **Task:** Convert a string into a date.
 ```{r}
-
+lubridate::ymd("2017/02/20")
 #   ____________________________________________________________________________
 as.Date("2017/02/20")
+as.Date(c("2017/02/20", "2017/02/21"))  # also works for vectors
 ```
-
 
 **Task:** Add days (as an integer) to a date.
 ```{r}
-
+lubridate::ymd("2017/02/20") + 5
 #   ____________________________________________________________________________
 as.Date("2017/02/20") + 5
 ```

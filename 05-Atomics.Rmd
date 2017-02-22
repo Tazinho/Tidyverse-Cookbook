@@ -263,6 +263,9 @@
                Some more words.")
     stringr::str_count(words, stringr::boundary("word"))
     #   ____________________________________________________________________________
+    sapply(gregexpr("\\W+", words), length) + 1
+    length(unlist(strsplit(words, " ")))  # doesn't really work
+    sapply(strsplit(words, " "), length)
     ```
     
 1.  **Count the number of lines within a string.**

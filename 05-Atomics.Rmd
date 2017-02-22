@@ -298,7 +298,6 @@
 ## Factors
 
 **Task:** Reorder the levels of a factor by another variable.
-
 ```{r}
 data(iris)
 
@@ -315,7 +314,6 @@ levels(iris$Species)
 #   ____________________________________________________________________________
 
 
-  
 ```
 
 
@@ -345,16 +343,29 @@ levels(iris$Species) <- c(levels(iris$Species)[2], levels(iris$Species)[-2])
 
 **Task:** Join/bind/combine/compose/unite rare factor levels into one.
 ```{r}
-# forcats!
+mtcars$cyl %>% 
+  factor() %>% 
+  forcats::fct_lump(n = 1)  # better example needed
+
+mtcars$cyl %>% 
+  factor() %>%
+  forcats::fct_collapse(Other = c("4", "6"))
+
 #   ____________________________________________________________________________
 
 ```
 
 
 **Task:** Join/bind/combine/compose/unite common factor levels into one.
+```{r}
+
+#   ____________________________________________________________________________
+
+
+```
+
 
 ## Dates and times
-
 **Task:** Convert a string into a date.
 ```{r}
 lubridate::ymd("2017/02/20")
@@ -373,7 +384,6 @@ as.Date("2017/02/20") + 5
 **Task:** Generate a (dense) sequence of days/years/months.
 
 ## Resources
-
 * [stringr vignette](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html)
 * [forcats 0.1 on RStudio blog](https://blog.rstudio.org/2016/08/31/forcats-0-1-0/)
 * [lubridate vignette](https://cran.r-project.org/web/packages/lubridate/vignettes/lubridate.html)

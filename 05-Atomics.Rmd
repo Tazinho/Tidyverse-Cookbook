@@ -1,3 +1,6 @@
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
+```
 
 # Atomics
 
@@ -372,16 +375,44 @@ lubridate::ymd("2017/02/20")
 #   ____________________________________________________________________________
 as.Date("2017/02/20")
 as.Date(c("2017/02/20", "2017/02/21"))  # also works for vectors
+
+format(Sys.Date(), "%a %b %d")
+
+format(Sys.Date(), "%a, den %d %B %c")
+# compare ?strptime
+
+#strptime()
+
 ```
 
-**Task:** Add days (as an integer) to a date.
-```{r}
+#### **Task**: Add days (as an integer) to a date.
+```{r collapse = TRUE}
 lubridate::ymd("2017/02/20") + 5
 #   ____________________________________________________________________________
 as.Date("2017/02/20") + 5
+as.numeric(as.Date("2017/02/20"))
+as.Date("2017/02/20") - as.numeric(as.Date("2017/02/20"))
+
+as.Date(50, origin="2017-01-01")
+
+
+dates <- c("02/27/92", "02/27/92", "01/14/92", "02/28/92", "02/01/92")
+as.Date(dates, "%m/%d/%y") + 7
 ```
 
 **Task:** Generate a (dense) sequence of days/years/months.
+```{r}
+lubridate::ymd("2015-01-01")+ months(0:23)
+
+#   ____________________________________________________________________________
+seq(as.Date("2015-01-01"), length=24, by="1 day")
+seq(as.Date("2015-01-01"), length=24, by="1 month")
+seq(as.Date("2015-01-01"), length=24, by="1 year")
+
+# Alternative 1
+zoo::as.yearmon("2010-01-01") + 0:2/12  # ist nicht wirklich base, ich weiß.
+```
+
 
 ## Resources
 * [stringr vignette](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html)

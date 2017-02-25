@@ -1,3 +1,10 @@
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  cache = TRUE
+)
+```
 --- 
 title: "Tidyverse Cookbook"
 author: "Malte Grosser"
@@ -40,7 +47,7 @@ Some reasons to write this book:
 * It is a great way to get an overview of the tidyverse.
 
 ## Motivation for base R solutions
-One strength of the tidyverse is that it hides a lot of quirks that base R provides and inherits to many packages that rely on it. This allows to stick to a specific workflow from the point you enter the tidyverse until you leave it. This is why I highly recommend to head your data analysis as fast as possible into the tidyverse workflow whenever possible. However, there might be situations where you need the functionality and concepts of the tidyverse, but you want to relay on base R functionality. In these cases it is easy to get lost in quick workarounds that seem handy at first but hide some pitfalls that let you lose the way of a systematic data analysis workflow ending up in a unique non maintainable solution. Therefore I try to provide "good practice" solutions within base R that achieve the same goal as its tidyverse counterparts. This idea is somehow inspired by the [stringr package vignette](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html). While tidyverse solutions will usually be written in non-standard evaluation and usually provide an escape hatch, I'll try to provide standard evaluation base R solutions.
+One strength of the tidyverse is that it hides a lot of quirks that base R provides and inherits to many packages that rely on it. This allows to stick to a specific workflow from the point you enter the tidyverse until you leave it. This is why I highly recommend to head your data analysis as fast as possible into the tidyverse workflow whenever possible. However, there might be situations where you need the functionality and concepts of the tidyverse, but you want to relay on base R. In these cases it is easy to get lost in quick workarounds that seem handy at first but hide some pitfalls that let you lose the way of a systematic data analysis workflow ending up in a unique non maintainable solution. Therefore I try to provide "good practice" solutions within base R that achieve the same goal as its tidyverse counterparts. This idea is somehow inspired by the [stringr package vignette](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html). While tidyverse solutions will usually be written in non-standard evaluation and usually provide an escape hatch, I'll try to provide standard evaluation base R solutions.
 
 ## Structure of this book
 The basics of the tidyverse are some shared idoms. Those give a structure, which makes it feasible that a lot of packages work so well together and enables to build up new functionality on top. The idea behind this was quickly understood by the community; grammars, that share these idioms, start to arise more often these days. It can be expected that the influence of the tidyverse will keep on growing and also the need for new connection and utility functions to integrate already established frameworks into the scope of the tidyverse will grow. This again could lead to new ideas, structures and relations to new fields of the tidyverse. Therefore this book might be work in progress for very long time and a final structure is not in sight.

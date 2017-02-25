@@ -14,8 +14,14 @@ iris
 ```
 
 ## Formatting
-
 **Task:** Change column names to lower case.
+
+**BASE:**
+```{r}
+iris2 <- iris
+(names(iris2) <- tolower(names(iris2)));
+rm(iris2)
+```
 
 **Task:** Change column names from camelCase or CamelCase to snake_case and reversed.
 
@@ -35,7 +41,18 @@ iris
 
 **Task:** Mutate/transform/calculate new columns of a data.frame.
 
-**Task:** Arrange/order a data.frame.
+### Arrange/order a data.frame.
+#### TDVS
+```{r}
+iris %>%
+  arrange(desc(Sepal.Length))
+```
+
+#### BASE
+```{r}
+iris[order(iris$Sepal.Length, decreasing = TRUE), ]
+```
+
 
 **Task:** Split a column into one or more new columns.
 

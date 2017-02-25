@@ -1,3 +1,4 @@
 # Time series
 
 ## Resources
+* [Forecasting: principles and practice](https://www.otexts.org/fpp)

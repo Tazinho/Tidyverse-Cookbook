@@ -1,3 +1,6 @@
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
+```
 
 # Atomics
 
@@ -263,6 +266,9 @@
                Some more words.")
     stringr::str_count(words, stringr::boundary("word"))
     #   ____________________________________________________________________________
+    sapply(gregexpr("\\W+", words), length) + 1
+    length(unlist(strsplit(words, " ")))  # doesn't really work
+    sapply(strsplit(words, " "), length)
     ```
     
 1.  **Count the number of lines within a string.**
@@ -295,27 +301,120 @@
 ## Factors
 
 **Task:** Reorder the levels of a factor by another variable.
+```{r}
+data(iris)
+
+levels(iris$Species)
+
+library(dplyr)
+iris %>%
+  group_by(Species) %>% 
+  summarize(mean_Sepal_Length = mean(Sepal.Length)) %>% 
+  arrange(desc(mean_Sepal_Length)) -> d
+
+levels(iris$Species) <- d$Species
+levels(iris$Species)
+#   ____________________________________________________________________________
+
+
+```
+
 
 **Task:** Reverse the order of factor levels.
+```{r}
+
+#   ____________________________________________________________________________
+levels(iris$Species) <- rev(levels(iris$Species))
+```
+
 
 **Task:** Change specific levels of a factor by name, while preserving the order.
+```{r}
+
+#   ____________________________________________________________________________
+levels(iris$Species)[2] <- "Flower B"
+```
 
 **Task:** Move specific factor levels in front of all others.
 
+```{r}
+#   ____________________________________________________________________________
+data(iris)
+levels(iris$Species) <- c(levels(iris$Species)[2], levels(iris$Species)[-2])
+```
+
+
 **Task:** Join/bind/combine/compose/unite rare factor levels into one.
+```{r}
+mtcars$cyl %>% 
+  factor() %>% 
+  forcats::fct_lump(n = 1)  # better example needed
+
+mtcars$cyl %>% 
+  factor() %>%
+  forcats::fct_collapse(Other = c("4", "6"))
+
+#   ____________________________________________________________________________
+
+```
+
 
 **Task:** Join/bind/combine/compose/unite common factor levels into one.
+```{r}
+
+#   ____________________________________________________________________________
+
+
+```
+
 
 ## Dates and times
-
 **Task:** Convert a string into a date.
+```{r}
+lubridate::ymd("2017/02/20")
+#   ____________________________________________________________________________
+as.Date("2017/02/20")
+as.Date(c("2017/02/20", "2017/02/21"))  # also works for vectors
 
-**Task:** Add days (as an integer) to a date.
+format(Sys.Date(), "%a %b %d")
+
+format(Sys.Date(), "%a, den %d %B %c")
+# compare ?strptime
+
+#strptime()
+
+```
+
+#### **Task**: Add days (as an integer) to a date.
+```{r collapse = TRUE}
+lubridate::ymd("2017/02/20") + 5
+#   ____________________________________________________________________________
+as.Date("2017/02/20") + 5
+as.numeric(as.Date("2017/02/20"))
+as.Date("2017/02/20") - as.numeric(as.Date("2017/02/20"))
+
+as.Date(50, origin="2017-01-01")
+
+
+dates <- c("02/27/92", "02/27/92", "01/14/92", "02/28/92", "02/01/92")
+as.Date(dates, "%m/%d/%y") + 7
+```
 
 **Task:** Generate a (dense) sequence of days/years/months.
+```{r}
+lubridate::ymd("2015-01-01")+ months(0:23)
+
+#   ____________________________________________________________________________
+seq(as.Date("2015-01-01"), length=24, by="1 day")
+seq(as.Date("2015-01-01"), length=24, by="1 month")
+seq(as.Date("2015-01-01"), length=24, by="1 year")
+
+# Alternative 1
+zoo::as.yearmon("2010-01-01") + 0:2/12  # ist nicht wirklich base, ich weiß.
+```
+
 
 ## Resources
-
 * [stringr vignette](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html)
 * [forcats 0.1 on RStudio blog](https://blog.rstudio.org/2016/08/31/forcats-0-1-0/)
 * [lubridate vignette](https://cran.r-project.org/web/packages/lubridate/vignettes/lubridate.html)

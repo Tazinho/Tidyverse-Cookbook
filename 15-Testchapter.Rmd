@@ -24,3 +24,33 @@ If you would like two contribute, please include your new tasks and/or solutions
     ```{r, eval = FALSE}
     # some code
     ```
+
+## Idea: Use Todo-inProgress-Done-Flags or similar
+I think, it would be nice, to have some kind of flag for work, that is in progress. I sometimes work on different machines and have a little bit of a nonlinear workflow anyway, so it would be practical for me to be able to commit work, that is clearly not done and just a little step forward (hopefully).
+
+I will see how, I can best mark these "raw" code chunks clearly.
+
+## Using output-agnostic (html or pdf) font color mark up
+What about adapting http://stackoverflow.com/questions/29067541/rmarkdown-how-to-change-the-font-color?
+```{r}
+#Color Format
+colFmt = function(x,color){
+  outputFormat = opts_knit$get("rmarkdown.pandoc.to")
+  if(outputFormat == 'latex')
+    paste("\\textcolor{",color,"}{",x,"}",sep="")
+  else if(outputFormat == 'html')
+    paste("<font color='",color,"'>",x,"</font>",sep="")
+  else
+    x
+}
+```
+
+## Using Markdown-headings instead instead of **Tasks:**
+I like the output of "**Task:** Do this...", but I don't think, it's very readable in the rmarkdown-source. If we went with (possibly 4th level) headings from markdown, the tasks would be highlighted in the editor and in the outline as well. It would be easier to scan the document and distinguish the Tasks from explanations or other prosaic text. Maybe it is even possible to modify the markup of e.g. 4th level headings in markdown to our liking. Though I didn't find much about this right away. (Maybe like this: http://stackoverflow.com/questions/30446905/rmarkdown-font-size-and-header)
+
+    #### **Task**: Do this...
+
+What do you think?
+
+## Using collapse=TRUE for codechunks
+This makes the (html-) output much more readable, I think.

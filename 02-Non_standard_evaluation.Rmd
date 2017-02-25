@@ -9,4 +9,4 @@ knitr::opts_chunk$set(
 
 ## Resources
 
-* [non standard evalutaion vignette from dplyr](* [forcats 0.1 on RStudio blog](https://blog.rstudio.org/2016/08/31/forcats-0-1-0/))
+* [non standard evalutaion vignette from dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/nse.html)

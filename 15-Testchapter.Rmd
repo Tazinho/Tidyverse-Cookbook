@@ -1,10 +1,3 @@
-```{r include=FALSE, cache=FALSE}
-knitr::opts_chunk$set(
-  comment = "#>",
-  collapse = TRUE,
-  cache = TRUE
-)
-```
 # Testchapter
 
 If you would like to contribute, please include your new tasks and/or solutions via editing this file.

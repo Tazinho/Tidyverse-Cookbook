@@ -1,11 +1,4 @@
-```{r include=FALSE, cache=FALSE}
-knitr::opts_chunk$set(
-  comment = "#>",
-  collapse = TRUE,
-  cache = TRUE
-)
-```
---- 
+---
 title: "Tidyverse Cookbook"
 author: "Malte Grosser"
 date: "`r Sys.Date()`"

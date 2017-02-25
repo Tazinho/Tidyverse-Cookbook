@@ -1,8 +1,8 @@
-# Atomics
+# (PART) Atomics {-} 
 
-## Strings
+# Strings
 
-### Basic string operations
+## Basic string operations
 
 1. **Paste/concatenate strings.**
     
@@ -116,7 +116,7 @@
     #   ____________________________________________________________________________
     ```
 
-### Pattern matching
+## Pattern matching
 
 1. **Does a string contain a specific sequence of characters?**
 
@@ -235,7 +235,7 @@
     #   ____________________________________________________________________________
     ```  
 
-#### Regular expressions
+### Regular expressions
 
 1. **Where can I learn about regular expressions?**
 
@@ -253,7 +253,7 @@
 
   > When writing regular expressions, I strongly recommend generating a list of positive (pattern should match) and negative (pattern shouldn’t match) test cases to ensure that you are matching the correct components.
   
-#### Modifiers
+### Modifiers
 
 1.  **Count the number of words within a string.**
 
@@ -287,35 +287,11 @@
     strsplit(words, "")
     ```
 
-### List output
+## List output
 
 1. **How to work with string functions, that return lists?**
 
-## Factors
-
-**Task:** Reorder the levels of a factor by another variable.
-
-**Task:** Reverse the order of factor levels.
-
-**Task:** Change specific levels of a factor by name, while preserving the order.
-
-**Task:** Move specific factor levels in front of all others.
-
-**Task:** Join/bind/combine/compose/unite rare factor levels into one.
-
-**Task:** Join/bind/combine/compose/unite common factor levels into one.
-
-## Dates and times
-
-**Task:** Convert a string into a date.
-
-**Task:** Add days (as an integer) to a date.
-
-**Task:** Generate a (dense) sequence of days/years/months.
-
-## Resources
+# Resources
 
 * [stringr vignette](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html)
-* [forcats 0.1 on RStudio blog](https://blog.rstudio.org/2016/08/31/forcats-0-1-0/)
-* [lubridate vignette](https://cran.r-project.org/web/packages/lubridate/vignettes/lubridate.html)
 * [Regular Expressions in R - Cheatsheet]https://www.rstudio.com/wp-content/uploads/2016/09/RegExCheatsheet.pdf

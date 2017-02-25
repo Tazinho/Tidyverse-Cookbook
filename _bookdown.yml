@@ -1,0 +1,26 @@
+new_session: yes
+
+rmd_files: [
+  "index.Rmd",
+  "01-Idioms.Rmd",                         
+  "02-Non_standard_evaluation.Rmd",        
+  "03-Read_and_write_data.Rmd",            
+  "04-Data_Frames.Rmd",                    
+  "05-Strings.Rmd",
+  "06-Strings.Rmd",
+  "07-Strings.Rmd",
+  "08-Lists.Rmd",                          
+  "09-List_columns_within_data_frames.Rmd",
+  "10-Tidy_data_structures.Rmd",           
+  "11-Modells.Rmd",                        
+  "12-Statistics.Rmd",                     
+  "13-Text_mining.Rmd",                    
+  "14-Timeseries.Rmd",                     
+  "15-Web_scraping.Rmd",                   
+  "16-Utilities.Rmd",
+  "17-Testchapter.Rmd",
+  "18-RStudio_project_management.Rmd"
+  ]
+
+before_chapter_script: "before_chapter_script_1.R"  
+

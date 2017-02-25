@@ -1,0 +1,11 @@
+## Dates and times
+
+**Task:** Convert a string into a date.
+
+**Task:** Add days (as an integer) to a date.
+
+**Task:** Generate a (dense) sequence of days/years/months.
+
+## Resources
+
+* [lubridate vignette](https://cran.r-project.org/web/packages/lubridate/vignettes/lubridate.html)

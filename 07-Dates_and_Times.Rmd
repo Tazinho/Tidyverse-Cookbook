@@ -1,11 +1,209 @@
-## Dates and times
+# Dates and times
+
+## Dates
 
 **Task:** Convert a string into a date.
 
+```{r, eval = TRUE, out.width=80}
+lubridate::ymd("2016-01-01") # also "2016/01/01", "20160101" and "2016:01:01" will work
+#   ____________________________________________________________________________
+as.Date.character("2016-01-01") # also "2016/01/01" will work
+```
+
 **Task:** Add days (as an integer) to a date.
 
-**Task:** Generate a (dense) sequence of days/years/months.
+```{r, eval = TRUE}
+lubridate::ymd("2016-01-01") + 5
+#   ____________________________________________________________________________
+as.Date.character("2016-01-01") + 5
+```
+
+**Task:** Generate a (dense) sequence of days/weeks/months/years.
+
+```{r, eval = TRUE}
+lubridate::ymd("2016-01-01") + lubridate::days(0:3)
+lubridate::ymd("2016-01-01") + lubridate::weeks(0:3)
+lubridate::ymd("2016-01-01") + lubridate::month(0:3)
+lubridate::ymd("2016-01-01") + lubridate::years(0:3)
+lubridate::ymd("2012-01-01") + lubridate::dyears(1) # adds 365 days also for leap years
+```
+
+**Task:** Get the day of a week as an integer or as its name.
+
+```{r, eval = TRUE}
+lubridate::wday("2016-01-01")
+lubridate::wday("2016-01-01", label = TRUE)
+#   ____________________________________________________________________________
+```
+
+**Task:** Get the day/month/year from a date.
+
+```{r, eval = TRUE}
+lubridate::day("2016-01-01")
+lubridate::week("2016-01-01")
+lubridate::month("2016-01-01")
+lubridate::month("2016-01-01", label = TRUE)
+lubridate::year("2016-01-01")
+#   ____________________________________________________________________________
+```
+
+**Task:** What happens if dates are not valid?
+
+```{r, eval = TRUE}
+lubridate::ymd("20160142")
+jan31 <- ymd("2013-01-31")
+jan31 + months(0:11)
+floor_date(jan31, "month") + months(0:11) + days(31)
+lubridate::`%m+%`(jan31, months(0:11))
+```
+
+**Task:** Get the last day of a month
+
+```{r, eval = TRUE}
+last_day <- function(date) {
+  lubridate::ceiling_date(date, "month") - lubridate::days(1)
+  }
+last_day(lubridate::ymd("2016-01-01"))
+```
+
+**Task:** Check if a year is a leap/non regular year:
+
+```{r, eval = TRUE}
+lubridate::leap_year(2011)
+#   ____________________________________________________________________________
+```
+
+## Dates and Times
+
+**Task:** Convert to date-time (and set a specific timezone).
+
+```{r, eval = TRUE}
+lubridate::ymd_hms("2011-06-04 12:00:00", tz = "Pacific/Auckland")
+```
+
+**Task:** Get the second/minute/hour from a date.
+
+```{r, eval = TRUE}
+lubridate::second(lubridate::ymd_hms("2011-06-04 12:00:00", tz = "Pacific/Auckland"))
+lubridate::minute(lubridate::ymd_hms("2011-06-04 12:00:00", tz = "Pacific/Auckland"))
+lubridate::hour(lubridate::ymd_hms("2011-06-04 12:00:00", tz = "Pacific/Auckland"))
+#   ____________________________________________________________________________
+```
+
+**Task:** Change the time depending on a timezone.
+
+```{r, eval = TRUE}
+meeting <- lubridate::ymd_hms("2011-07-01 09:00:00", tz = "Pacific/Auckland")
+lubridate::with_tz(meeting, "America/Chicago")
+#   ____________________________________________________________________________
+```
+
+## Intervals
+
+**Task:** Create an interval.
+
+```{r, eval = TRUE}
+int1 <- lubridate::interval(lubridate::ymd_hms("2011-06-04 12:00:00"),
+                            lubridate::ymd_hms("2011-08-10 14:00:00")) 
+# or
+int2 <- lubridate::`%--%`(lubridate::ymd("2011-07-20"),
+                          lubridate::ymd("2011-08-31"))
+#   ____________________________________________________________________________
+```
+
+**Task:** Check if two intervals overlap.
+
+```{r, eval = TRUE}
+lubridate::int_overlaps(int1, int2)
+#   ____________________________________________________________________________
+```
+
+**Task:** What is the intersection of two intervals?
+
+```{r, eval = TRUE}
+lubridate::intersect(int1, int2)
+#   ____________________________________________________________________________
+```
+
+**Task:** What is the setdiff of two intervals (one interval without the other)?
+
+```{r, eval = TRUE}
+setdiff(int1, int2)
+#   ____________________________________________________________________________
+```
+
+**Task:** What is the begin/end of the interval?
+
+```{r, eval = TRUE}
+lubridate::int_start(int1)
+lubridate::int_end(int1)
+#   ____________________________________________________________________________
+```
+
+**Task:** How to reverse the start and end of an interval?
+
+```{r, eval = TRUE}
+lubridate::int_flip(int1)
+#   ____________________________________________________________________________
+```
+
+**Task:** Add/substract an amount of time to an interval.
+
+```{r, eval = TRUE}
+lubridate::int_shift(int1, by = seconds(102))
+#   ____________________________________________________________________________
+```
+
+**Task:** Check if two intervals are starting or ending at the same time.
+
+```{r, eval = TRUE}
+lubridate::int_aligns(int1, int2)
+#   ____________________________________________________________________________
+```
+
+**Task:** Unite two intevals into one.
+
+```{r, eval = TRUE}
+lubridate::union(int1, int2)
+#   ____________________________________________________________________________
+```
+
+**Task** Check if a date-time lies within an interval.
+
+```{r, eval = TRUE}
+lubridate::`%within%`(lubridate::ymd_hms("2011-06-06 12:12:12"), int1)
+#   ____________________________________________________________________________
+```
+
+**Task:** What are general time intervals available and what are their differences?
+
+```{r, eval = TRUE}
+# Intervals are specific time spans (because they are tied to specific dates)
+
+# Durations will always supply mathematically precise results, for example
+# duration year will always equal 365 days.
+
+# Periods fluctuate the same way the timeline does to give intuitive results.
+# This makes them useful for modeling clock times.
+
+lubridate::minutes(2) ## period
+lubridate::dminutes(2) ## duration
+```
+
+**Task:** Perform calculations with intervals:
+
+```{r, eval = TRUE}
+int1 / lubridate::ddays(2)
+int1 / lubridate::dminutes(1)
+int1 %/% months(1)
+lubridate::as.period(int1)
+lubridate::as.period(int1 %% months(1))
+#   ____________________________________________________________________________
+```
 
 ## Resources
 
+* [original lubridate paper](https://www.jstatsoft.org/article/view/v040i03)
+* lubridate google group
+* [development page on github](https://github.com/hadley/lubridate)
 * [lubridate vignette](https://cran.r-project.org/web/packages/lubridate/vignettes/lubridate.html)

@@ -291,7 +291,7 @@
 
 1. **How to work with string functions, that return lists?**
 
-# Resources
+## Resources
 
 * [stringr vignette](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html)
 * [Regular Expressions in R - Cheatsheet]https://www.rstudio.com/wp-content/uploads/2016/09/RegExCheatsheet.pdf

@@ -1,4 +1,69 @@
-## Factors
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  cache = TRUE
+)
+
+Sys.setenv(LANGUAGE = "en") 
+```
+# Factors
+
+**Task:** Create a factor.
+
+```{r, eval = TRUE}
+#   ____________________________________________________________________________
+factor(letters)
+```
+
+**Task:** Check if an atomic vector is a factor.
+
+```{r, eval = TRUE}
+#   ____________________________________________________________________________
+is.factor(factor(letters))
+```
+
+**Task:** Create an ordered factor.
+
+```{r, eval = TRUE}
+#   ____________________________________________________________________________
+factor(letters, ordered = TRUE)
+```
+
+**Task:** Check if a factor is ordered.
+
+```{r, eval = TRUE}
+#   ____________________________________________________________________________
+is.ordered(factor(letters))
+```
+
+**Task:** Add a factor level.
+
+```{r, eval = TRUE}
+#   ____________________________________________________________________________
+levels(a) <- c(levels(a), "new_level")
+a
+```
+
+**Task:** Add a value (that is not a level of the factor).
+
+```{r, eval = TRUE}
+#   ____________________________________________________________________________
+a <- factor(letters[1:5])
+a <- factor(c(as.character(a), "new_level"))
+a
+```
+
+**Task:** Combine two factors.
+
+```{r, eval = TRUE}
+#   ____________________________________________________________________________
+a <- factor(letters[1:5])
+b <- factor(letters[3:7])
+factor(c(as.character(a), as.character(b)))
+```
+
+**Task:** Sort the levels of a factor by another variable.
 
 **Task:** Reorder the levels of a factor by another variable.
 

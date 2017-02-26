@@ -26,6 +26,74 @@ description: "Simple cookbook for functions and idioms within the scope of the t
 
 The basic idea of this book is to provide a documentation of the tidyverse written in a solution driven cookbook style. As an extra I would like to provide similar solutions based on base R functionality.
 
+## This is work in progress
+
+```{r, echo = FALSE, message=FALSE, fig.width=8}
+chapters <- c(
+  "01-Idioms",                         
+  "02-Non_standard_evaluation",        
+  "03-Read_and_write_data",            
+  "04-Data_Frames",                    
+  "05-Strings",
+  "06-Factors",
+  "07-Dates_and_times",
+  "08-Lists",                          
+  "09-List_columns_within_data_frames",
+  "10-Tidy_data_structures",           
+  "11-Modells",                        
+  "12-Statistics",                     
+  "13-Text_mining",                    
+  "14-Timeseries",                     
+  "15-Web_scraping",                   
+  "16-Utilities",
+  "17-Testchapter",
+  "18-RStudio_project_management")
+#   ____________________________________________________________________________
+#   define data frame
+df <- data.frame(chapters = chapters, base = 0, tdvs = 0,
+                 stringsAsFactors = FALSE)
+df <- tidyr::gather(df, key = type, value = percentage, base, tdvs)
+#   ____________________________________________________________________________
+#   write replacement function as a shortcut to supply percentage values
+`df_set<-` <- function(x, chapter, type, value) {
+  x[x[, "chapters"] == chapter & df[, "type"] == type, "percentage"] <- value
+  x
+}
+df_set(df, "05-Strings", "tdvs") <- 0.80
+df_set(df, "05-Strings", "base") <- 0.60
+df_set(df, "06-Factors", "tdvs") <- 0.10
+df_set(df, "06-Factors", "base") <- 0.50
+df_set(df, "07-Dates_and_times", "tdvs") <- 0.90
+df_set(df, "07-Dates_and_times", "base") <- 0.05
+#   ____________________________________________________________________________
+#   plot the progress
+library(dplyr)
+library(ggplot2)
+
+df <- tidyr::separate(df, chapters, c("nr", "chapter"), sep = "-", convert = TRUE)
+
+p1 <- ggplot(df) +
+  geom_bar(aes(x = reorder(chapter, -nr), y = percentage, fill = type), 
+           stat = "identity",
+           position = position_dodge()) +
+  coord_flip() + scale_fill_brewer(palette = 9) +
+  theme_light() + 
+  scale_y_continuous(expand = c(0,0), limits = c(0, 1.00), labels = scales::percent) +
+  scale_x_discrete(expand = c(0,0)) +
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.major.y = element_line(color='grey60', linetype='dashed'),
+        legend.position = "none"
+  ) + 
+  geom_vline(xintercept = seq_along(chapters) - 0.5) + 
+  xlab(NULL) +
+  ylab(NULL) +
+  ggtitle("Estimated progress") 
+
+
+p1
+```
+
 ## Motivation
 Some reasons to write this book:
 

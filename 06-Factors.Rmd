@@ -63,6 +63,13 @@ factor(c(as.character(a), as.character(b)))
 
 **Task:** Change specific levels of a factor by name, while preserving the order.
 
+```{r, eval = TRUE}
+a <- factor(letters[1:5])
+forcats::fct_recode(a, g= "a", h = "b")
+# Note that the folowing will not work, since f is also the argument name of the 
+# data: forcats::fct_recode(a, f= "a", g = "b")
+```
+
 **Task:** Move specific factor levels in front of all others.
 
 **Task:** Join/bind/combine/compose/unite rare factor levels into one.

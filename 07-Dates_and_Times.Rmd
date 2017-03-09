@@ -28,6 +28,15 @@ lubridate::ymd("2016-01-01") + lubridate::years(0:3)
 lubridate::ymd("2012-01-01") + lubridate::dyears(1) # adds 365 days also for leap years
 ```
 
+**TASK:** Get the exact difference between two dates in days or other units:
+
+```{r}
+as.double(difftime(lubridate::ymd_hms("2016-01-01 08:04:20"),
+                   lubridate::ymd_hms("2016-04-01 12:03:00"),
+                   units = "days"))
+#   ____________________________________________________________________________
+```
+
 **Task:** Get the day of a week as an integer or as its name.
 
 ```{r, eval = TRUE}
@@ -74,6 +83,8 @@ lubridate::leap_year(2011)
 ```
 
 ## Dates and Times
+
+**Task:** Subtract dates/date-times.
 
 **Task:** Convert to date-time (and set a specific timezone).
 

@@ -1,0 +1,59 @@
+# (PART) Acting on common data structures {-} 
+
+# Data frames and tibbles
+
+```{r}
+iris
+```
+
+## Formatting
+
+**Task:** Change column names to lower case.
+
+**Task:** Change column names from camelCase or CamelCase to snake_case and reversed.
+
+## Basic operations and related stuff
+
+**Task:** Select columns from a data.frame.
+
+**TDVS:** `iris %>% select(Sepal.Width, Species)`
+
+**BASE:** `iris[, c("Sepal.Width", "Species")]`
+
+**Task:** Filter/Subset a data.frame.
+
+**TDVS:** `iris %>% filter(Species == "versicolor" & Sepal.Width < 3)`
+
+**BASE:** `iris[iris[, "Species"] == "versicolor" & iris[, "Sepal.Width"] < 3]`
+
+**Task:** Mutate/transform/calculate new columns of a data.frame.
+
+**Task:** Arrange/order a data.frame.
+
+**Task:** Split a column into one or more new columns.
+
+**Task:** Combine/unite one or more columns into one.
+
+**Task:** Group and summarise a data.frame.
+
+## Common use cases
+
+**Task:** Mutate/Change columns depending on the row number (for example the last row).
+
+**TDVS:** `mutate(if_else(row_number() == n(), 1, 0))`
+
+## Wide and Long data
+
+**Task:** Gather/Melt from wide into long format.
+
+**Task:** Reshape/Spread from long into wide format.
+
+## Joins
+
+## Measures
+
+**Task:** Summarise grouped data by a statistic that returns more than one value.
+
+## Tibbles
+
+## Resources

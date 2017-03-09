@@ -3,7 +3,6 @@
 # Data frames and tibbles
 
 
-
 ## Formatting
 **Task:** Change column names to lower case.
 
@@ -54,13 +53,19 @@ iris[order(iris["Sepal.Length", ], decreasing = TRUE), ]
 
 **TDVS:** `mutate(if_else(row_number() == n(), 1, 0))`
 
+**Task** Work on more than two tables (`Reduce()`)
+
+**Task** Convert rownames of a data frame into first column.
+
 ## Wide and Long data
 
-**Task:** Gather/Melt from wide into long format.
+**Task:** Gather/Melt from wide into long format (two columns).
 
-**Task:** Reshape/Spread from long into wide format.
+**Task:** Reshape/Spread from long into wide format (two columns).
 
 ## Joins
+
+**Task:** Join on two columns.
 
 ## Measures
 

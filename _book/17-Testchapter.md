@@ -1,0 +1,27 @@
+
+# Testchapter
+
+If you would like to contribute, please include your new tasks and/or solutions via editing this file.
+
+## New contributions
+
+1. **Task:** `<Description of the task>`
+
+    __<span style="color:blue">TDVS:</span>__ `<some optional description>`
+    
+    
+    ```r
+    # some code
+    ```
+
+    __<span style="color:green">BASE:</span>__ `<some optional description>`
+    
+    
+    ```r
+    # some code
+    ```
+
+
+## Proposal for Description
+Vorschlag für die github-repository-description: "A tidyverse-oriented cookbook for common tasks in R"
+Tags: r, tidyverse, cookbook

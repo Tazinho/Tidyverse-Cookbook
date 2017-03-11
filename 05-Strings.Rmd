@@ -1,8 +1,26 @@
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  cache = TRUE
+)
+
+Sys.setenv(LANGUAGE = "en") 
+```
 # (PART) Atomics {-} 
 
 # Strings
 
 ## Basic string operations
+
+1. **How to use regular expressions?**
+
+```{r}
+    stringr::str_detect("1", "\\d")
+    # is the same as
+    stringr::str_detect("1", stringr::regex("\\d"))
+    #   ____________________________________________________________________________
+```
 
 1. **Paste/concatenate strings.**
     
@@ -117,6 +135,12 @@
     ```
 
 ## Pattern matching
+
+1. **How to disable case sensitivity in regex pattern?**
+
+    ```{r}
+    stringr::str_detect(c("a", "b", "c"), stringr::regex("b|A|D", ignore_case = TRUE))
+    ```
 
 1. **Does a string contain a specific sequence of characters?**
 

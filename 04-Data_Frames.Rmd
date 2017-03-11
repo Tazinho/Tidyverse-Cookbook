@@ -65,11 +65,12 @@ iris %>% dplyr::group_by(Species) %>%
                    dists = n_distinct(Sepal.Width, Sepal.Length),
                    blub = (function(x) mean(x))(Sepal.Width),
                    m = mean(Sepal.Length))
+#   ____________________________________________________________________________
 ```
 
-## Wide and Long data
+## Reshaping wide and long data
 
-**Task:** Gather/Melt from wide into long format (two columns).
+**Task:** Gather/melt/unpivot/fold from wide into long format (two columns).
 
 ```{r}
 data.frame(abc = sample(letters[1:3], 6, replace = TRUE), 
@@ -81,7 +82,7 @@ data.frame(abc = sample(letters[1:3], 6, replace = TRUE),
 #   ____________________________________________________________________________
 ```
 
-**Task:** Reshape/Spread from long into wide format (two columns).
+**Task:** Spread/cast/pivot/unfold from long into wide format (two columns).
 
 ```{r}
 data.frame(abc = rep(letters[1:4], times = 2),
@@ -97,9 +98,9 @@ data.frame(abc = rep(letters[1:4], times = 2),
 
 ### Split and paste
 
-**Task:** Split a column (number) into one or more new columns.
+**Task:** Split/separate a column into one or more new columns.
 
-```{r, eval = FALSE}
+```{r}
 iris %>% dplyr::transmute(Sepal.Length = as.character(Sepal.Length)) %>%
   tidyr::separate(col = Sepal.Length, 
                   into = c("Sep1", "Sep2"),
@@ -117,7 +118,7 @@ iris[1,] %>% dplyr::mutate(new_col = stringr::str_c(Sepal.Width, Species))
 
 ### Conditionals
 
-**Task:** Mutate columns depending/conditional on other colums.
+**Task:** Mutate columns depending/conditionally on other colums.
 
 ```{r}
 # use dplyr::case_when() or dplyr::if_else()

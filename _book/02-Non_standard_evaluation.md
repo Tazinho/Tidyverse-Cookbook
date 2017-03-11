@@ -2,6 +2,8 @@
 
 # Non-standard evaluation
 
+## Formulas
+
 ## Resources
 
 * [non standard evalutaion vignette from dplyr](* [forcats 0.1 on RStudio blog](https://blog.rstudio.org/2016/08/31/forcats-0-1-0/))

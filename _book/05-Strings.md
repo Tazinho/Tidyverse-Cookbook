@@ -1,9 +1,22 @@
 
+
 # (PART) Atomics {-} 
 
 # Strings
 
 ## Basic string operations
+
+1. **How to use regular expressions?**
+
+
+```r
+    stringr::str_detect("1", "\\d")
+#> [1] TRUE
+    # is the same as
+    stringr::str_detect("1", stringr::regex("\\d"))
+#> [1] TRUE
+    #   ____________________________________________________________________________
+```
 
 1. **Paste/concatenate strings.**
     
@@ -152,6 +165,14 @@
     ```
 
 ## Pattern matching
+
+1. **How to disable case sensitivity in regex pattern?**
+
+    
+    ```r
+    stringr::str_detect(c("a", "b", "c"), stringr::regex("b|A|D", ignore_case = TRUE))
+    #> [1]  TRUE  TRUE FALSE
+    ```
 
 1. **Does a string contain a specific sequence of characters?**
 
@@ -333,8 +354,8 @@
     stringr::str_view(c("abc", "a.c_blabla", "bef"), "a\\.c")
     ```
     
-    <!--html_preserve--><div id="htmlwidget-bf0be613e310b474aaa0" style="width:960px;height:auto;" class="str_view html-widget"></div>
-    <script type="application/json" data-for="htmlwidget-bf0be613e310b474aaa0">{"x":{"html":"<ul>\n  <li>abc\u003c/li>\n  <li><span class='match'>a.c\u003c/span>_blabla\u003c/li>\n  <li>bef\u003c/li>\n\u003c/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+    <!--html_preserve--><div id="htmlwidget-ee3fa3e2f4cb7541729a" style="width:960px;height:auto;" class="str_view html-widget"></div>
+    <script type="application/json" data-for="htmlwidget-ee3fa3e2f4cb7541729a">{"x":{"html":"<ul>\n  <li>abc\u003c/li>\n  <li><span class='match'>a.c\u003c/span>_blabla\u003c/li>\n  <li>bef\u003c/li>\n\u003c/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
 
 1. **How to test regular expressions?**
 

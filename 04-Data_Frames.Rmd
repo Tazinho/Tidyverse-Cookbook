@@ -2,35 +2,14 @@
 
 # Data frames and tibbles
 
-
-## Formatting
-**Task:** Change column names to lower case.
-
-```{r}
-stringr::str_to_lower(names(iris))
-#   ____________________________________________________________________________
-tolower(names(iris))
-```
-
-**Task:** Change column names to snake_case.
-
-```{r}
-library(magrittr)
-c("Var 1", "Var-2", "Var.3", "Var4") %>%
-  stringr::str_replace_all("\\s|-|\\.", "_") %>% 
-  stringr::str_to_lower()
-```
-
-**Task:** Change column names from camelCase or CamelCase to snake_case and reversed.
-
 ## Basic operations and related stuff
 
 **Task:** Select a column and return it as vector (not data.frame).
 
-```{r}
-iris[1,] %>% .$Species
+```{r, eval = FALSE}
+iris %>% .$Species
 #   ____________________________________________________________________________
-iris[1,][["Species"]]
+iris[["Species"]]
 ```
 
 **Task:** Select columns from (and return) data.frame.
@@ -78,21 +57,45 @@ iris %>%
 # Use names() or setNames()
 ```
 
-**Task:** Use some helpers to select columns based on naming patterns
+**Task:** Group and summarise a data.frame (#annonymous function).
 
 ```{r}
-iris[1,] %>%
-  dplyr::select(dplyr::starts_with("S",
-                                   ignore.case = TRUE,
-                                   vars = dplyr::current_vars()))
-iris[1,] %>% dplyr::select(dplyr::ends_with("h"))
-iris[1,] %>% dplyr::select(dplyr::contains("."))
-iris[1,] %>% dplyr::select(dplyr::matches("."))
-purrr::set_names(iris[1,], paste0("a", 1:5)) %>%
-  dplyr::select(dplyr::num_range(prefix = "a", range = 2:4, width = 1))
-iris[1, ] %>% dplyr::select(dplyr::one_of("Sepal.Width", "Species"))
+iris %>% dplyr::group_by(Species) %>% 
+  dplyr::summarise(n_rows = n(),
+                   dists = n_distinct(Sepal.Width, Sepal.Length),
+                   blub = (function(x) mean(x))(Sepal.Width),
+                   m = mean(Sepal.Length))
+```
+
+## Wide and Long data
+
+**Task:** Gather/Melt from wide into long format (two columns).
+
+```{r}
+data.frame(abc = sample(letters[1:3], 6, replace = TRUE), 
+           r1 = rnorm(6),
+           r2 = rnorm(6),
+           stringsAsFactors = FALSE) %>% 
+  tidyr::gather(key = r, value = random, r1, r2) %>% 
+  head(4)
 #   ____________________________________________________________________________
 ```
+
+**Task:** Reshape/Spread from long into wide format (two columns).
+
+```{r}
+data.frame(abc = rep(letters[1:4], times = 2),
+           r = rep(c("r1", "r2"), each = 4),
+           random = rnorm(8),
+           stringsAsFactors = FALSE) %>% 
+  tidyr::spread(key = abc, value = random) %>% 
+  head(1)
+#   ____________________________________________________________________________
+```
+
+## Typical mutate statements
+
+### Split and paste
 
 **Task:** Split a column (number) into one or more new columns.
 
@@ -105,37 +108,14 @@ iris %>% dplyr::transmute(Sepal.Length = as.character(Sepal.Length)) %>%
   head(1)
 ```
 
-**Task:** Combine/unite one or more columns into one.
+**Task:** Combine/unite/paste one or more columns into one.
 ```{r}
 iris[1,] %>% tidyr::unite(new_col, Sepal.Width, Species, sep = "", remove = FALSE)
 iris[1,] %>% dplyr::mutate(new_col = stringr::str_c(Sepal.Width, Species))
 #   ____________________________________________________________________________
 ```
 
-
-**Task:** Group and summarise a data.frame (#annonymous function).
-
-```{r}
-iris %>% dplyr::group_by(Species) %>% 
-  dplyr::summarise(n_rows = n(),
-                   dists = n_distinct(Sepal.Width, Sepal.Length),
-                   blub = (function(x) mean(x))(Sepal.Width),
-                   m = mean(Sepal.Length))
-```
-
-**Task:** Summarise grouped data by a statistic that returns more than one value.
-
-**Task:** Add summary data directly to the summarised data frame.
-
-## Common use cases
-
-**Task:** Mutate/Change/reorder columns depending on the row number (for example the last row).
-
-```{r}
-iris %>% head(1) %>% dplyr::select(Species, dplyr::everything())
-#   ____________________________________________________________________________
-setNames(iris[1, ], c("Species", setdiff(names(iris), "Species")))
-```
+### Conditionals
 
 **Task:** Mutate columns depending/conditional on other colums.
 
@@ -144,6 +124,8 @@ setNames(iris[1, ], c("Species", setdiff(names(iris), "Species")))
 #   ____________________________________________________________________________
 # use ifelse
 ```
+
+### IDs
 
 **Task** Add an id column.
 
@@ -175,35 +157,96 @@ iris %>% dplyr::mutate(id = iris %>%
 #   ____________________________________________________________________________
 ```
 
+### Other stuff
+
+**Task:** Use some helpers to select columns based on naming patterns
+
+```{r}
+iris[1,] %>%
+  dplyr::select(dplyr::starts_with("S",
+                                   ignore.case = TRUE,
+                                   vars = dplyr::current_vars()))
+iris[1,] %>% dplyr::select(dplyr::ends_with("h"))
+iris[1,] %>% dplyr::select(dplyr::contains("."))
+iris[1,] %>% dplyr::select(dplyr::matches("."))
+purrr::set_names(iris[1,], paste0("a", 1:5)) %>%
+  dplyr::select(dplyr::num_range(prefix = "a", range = 2:4, width = 1))
+iris[1, ] %>% dplyr::select(dplyr::one_of("Sepal.Width", "Species"))
+#   ____________________________________________________________________________
+```
+
+**Task:** Summarise grouped data by a statistic that returns more than one value.
+
+**Task:** Add summary data directly to the summarised data frame.
+
+
+## Formatting
+**Task:** Change column names to lower case.
+
+```{r}
+stringr::str_to_lower(names(iris))
+#   ____________________________________________________________________________
+tolower(names(iris))
+```
+
+**Task:** Change column names to snake_case.
+
+```{r}
+library(magrittr)
+c("Var 1", "Var-2", "Var.3", "Var4") %>%
+  stringr::str_replace_all("\\s|-|\\.", "_") %>% 
+  stringr::str_to_lower()
+```
+
+**Task:** Change column names from camelCase to snake_case.
+
+```{r}
+camelCases <- c("smallCamelCase", "BigCamelCase", "mixed_Case", "snake_case")
+
+to_snake_case <- function(camelcases){
+  # get to know, if a string starts with a small letter
+  small_start <- !is.na(stringr::str_extract(camelCases, "^[a-z]"))
+  # get all capital letters from a string
+  capitals <- stringr::str_extract_all(camelCases, "[A-Z]")
+  # Setting an underscore before capital and first letters
+  starts <- purrr::pmap(list(camelCases,
+                             small_start,
+                             capitals),
+                        function(x,y,z)
+                          if (length(z) == 0) {"_"} else {
+                            c("_", paste0("_", z))
+                            }
+                        )
+  # split the strings by their capital letters.
+  rests <- stringr::str_split(camelCases, "[A-Z]")
+  # setting all peaces together:
+  # - pasting first and capital letters with the rest of the string
+  # - applying tolower, remove more than one "_" and starting "_"
+  corrected <- purrr::map2_chr(starts, rests, stringr::str_c, collapse = "") %>% 
+    purrr::map_chr(stringr::str_to_lower) %>% 
+    purrr::map_chr(~ stringr::str_replace_all(.x, "_+", "_")) %>% 
+    purrr::map_chr(~ stringr::str_replace(.x, "^_", ""))
+  corrected
+}
+
+to_snake_case(camelCases)
+```
+
+**Task::** Change column names from snake_case to camelCase.
+
+**Task:** Mutate/Change/reorder columns depending on the row number (for example the last row).
+
+```{r}
+iris %>% head(1) %>% dplyr::select(Species, dplyr::everything())
+#   ____________________________________________________________________________
+setNames(iris[1, ], c("Species", setdiff(names(iris), "Species")))
+```
+
+
 **Task** Work on more than two tables (`Reduce()`)
 
 **Task** Convert rownames of a data frame into first column.
 
-## Wide and Long data
-
-**Task:** Gather/Melt from wide into long format (two columns).
-
-```{r}
-data.frame(abc = sample(letters[1:3], 6, replace = TRUE), 
-           r1 = rnorm(6),
-           r2 = rnorm(6),
-           stringsAsFactors = FALSE) %>% 
-  tidyr::gather(key = r, value = random, r1, r2) %>% 
-  head(4)
-#   ____________________________________________________________________________
-```
-
-**Task:** Reshape/Spread from long into wide format (two columns).
-
-```{r}
-data.frame(abc = rep(letters[1:4], times = 2),
-           r = rep(c("r1", "r2"), each = 4),
-           random = rnorm(8),
-           stringsAsFactors = FALSE) %>% 
-  tidyr::spread(key = abc, value = random) %>% 
-  head(1)
-#   ____________________________________________________________________________
-```
 
 ## Joins
 

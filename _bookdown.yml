@@ -16,7 +16,7 @@ rmd_files: [
   "12-Statistics.Rmd",                     
   "13-Text_mining.Rmd",                    
   "14-Timeseries.Rmd",                     
-  "15-Web_scraping.Rmd",                   
+  "15-Web_scraping.Rmd",
   "16-Utilities.Rmd",
   "17-Testchapter.Rmd",
   "18-RStudio_project_management.Rmd"

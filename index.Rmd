@@ -1,3 +1,12 @@
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  cache = TRUE
+)
+
+Sys.setenv(LANGUAGE = "en") 
+```
 ---
 title: "Tidyverse Cookbook"
 author: "Malte Grosser"
@@ -59,12 +68,17 @@ df <- tidyr::gather(df, key = type, value = percentage, base, tdvs)
   x[x[, "chapters"] == chapter & df[, "type"] == type, "percentage"] <- value
   x
 }
+
+df_set(df, "04-Data_Frames", "tdvs") <- 0.4
+df_set(df, "04-Data_Frames", "base") <- 0.4
 df_set(df, "05-Strings", "tdvs") <- 0.80
 df_set(df, "05-Strings", "base") <- 0.60
 df_set(df, "06-Factors", "tdvs") <- 0.10
 df_set(df, "06-Factors", "base") <- 0.50
 df_set(df, "07-Dates_and_times", "tdvs") <- 0.90
 df_set(df, "07-Dates_and_times", "base") <- 0.05
+df_set(df, "11-Modells", "tdvs") <- 0.15
+df_set(df, "11-Modells", "base") <- 0.0
 #   ____________________________________________________________________________
 #   plot the progress
 library(dplyr)

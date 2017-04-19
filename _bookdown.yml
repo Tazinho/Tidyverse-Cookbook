@@ -19,7 +19,8 @@ rmd_files: [
   "15-Web_scraping.Rmd",
   "16-Utilities.Rmd",
   "17-Testchapter.Rmd",
-  "18-RStudio_project_management.Rmd"
+  "18-RStudio_project_management.Rmd",
+  "19-Labelled_data.Rmd"
   ]
 
 before_chapter_script: "before_chapter_script_1.R"  

@@ -7,7 +7,7 @@ output:
   bookdown::gitbook:
     config:
       toc:
-          collapse: section
+          collapse: section 
           scroll_highlight: yes
           before: null
           after: null
@@ -47,7 +47,9 @@ chapters <- c(
   "15-Web_scraping",                   
   "16-Utilities",
   "17-Testchapter",
-  "18-RStudio_project_management")
+  "18-RStudio_project_management",
+  "19-Labelled_data",
+  "20-Spatial_data")
 #   ____________________________________________________________________________
 #   define data frame
 df <- data.frame(chapters = chapters, base = 0, tdvs = 0,
@@ -70,6 +72,8 @@ df_set(df, "07-Dates_and_times", "tdvs") <- 0.90
 df_set(df, "07-Dates_and_times", "base") <- 0.05
 df_set(df, "11-Modells", "tdvs") <- 0.15
 df_set(df, "11-Modells", "base") <- 0.0
+df_set(df, "20_Spatial_data", "tdvs") <- 0.4
+df_set(df, "20_spatial_data", "base") <- 0.0
 #   ____________________________________________________________________________
 #   plot the progress
 library(dplyr)

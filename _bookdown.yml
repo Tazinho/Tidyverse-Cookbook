@@ -20,7 +20,8 @@ rmd_files: [
   "16-Utilities.Rmd",
   "17-Testchapter.Rmd",
   "18-RStudio_project_management.Rmd",
-  "19-Labelled_data.Rmd"
+  "19-Labelled_data.Rmd",
+  "20-Spatial_data.Rmd"
   ]
 
 before_chapter_script: "before_chapter_script_1.R"  

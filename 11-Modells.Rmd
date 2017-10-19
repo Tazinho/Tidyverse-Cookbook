@@ -18,7 +18,7 @@ Sys.setenv(LANGUAGE = "en")
 ```
 # (PART) Applications {-} 
 
-# Modells
+# Models
 
 **Task:** Extract coefficients from a model.
 

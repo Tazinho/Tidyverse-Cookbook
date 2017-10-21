@@ -8,6 +8,10 @@
 
 ```{r, eval = FALSE}
 iris %>% .$Species
+
+# or
+
+iris %>% dplyr::pull(Species)
 #   ____________________________________________________________________________
 iris[["Species"]]
 ```

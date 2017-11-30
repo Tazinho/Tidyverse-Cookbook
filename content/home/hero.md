@@ -24,6 +24,6 @@ weight = 3
 #  label = '<i class="fa fa-download"></i> Install Now'
 +++
 
-My personal website and blog with content regarding data science and its applications in business and medicine.
+Welcome to my personal website and blog with content regarding data science and its applications in business and medicine.
 
 <div style="margin-bottom: 12em; overflow: auto; height:12px;"></div> 

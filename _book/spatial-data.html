@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Tidyverse Cookbook</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Simple cookbook for functions and idioms within the scope of the tidyverse.">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Tidyverse Cookbook" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Simple cookbook for functions and idioms within the scope of the tidyverse." />
+  <meta name="github-repo" content="Tazinho/Tidyverse-Cookbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Tidyverse Cookbook" />
+  
+  <meta name="twitter:description" content="Simple cookbook for functions and idioms within the scope of the tidyverse." />
+  
+
+<meta name="author" content="Malte Grosser">
+
+
+<meta name="date" content="2017-10-19">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="labelled-data.html">
+
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-0.8/htmlwidgets.js"></script>
+<link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
+<script src="libs/str_view-binding-1.1.0/str_view.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prerequisites</a><ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#this-is-work-in-progress"><i class="fa fa-check"></i><b>0.1</b> This is work in progress</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#motivation"><i class="fa fa-check"></i><b>0.2</b> Motivation</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#motivation-for-base-r-solutions"><i class="fa fa-check"></i><b>0.3</b> Motivation for base R solutions</a></li>
+<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#structure-of-this-book"><i class="fa fa-check"></i><b>0.4</b> Structure of this book</a></li>
+<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#contribution"><i class="fa fa-check"></i><b>0.5</b> Contribution</a></li>
+<li class="chapter" data-level="0.6" data-path="index.html"><a href="index.html#conventions"><i class="fa fa-check"></i><b>0.6</b> Conventions</a><ul>
+<li class="chapter" data-level="0.6.1" data-path="index.html"><a href="index.html#tasks"><i class="fa fa-check"></i><b>0.6.1</b> Tasks</a></li>
+<li class="chapter" data-level="0.6.2" data-path="index.html"><a href="index.html#solutions"><i class="fa fa-check"></i><b>0.6.2</b> Solutions</a></li>
+<li class="chapter" data-level="0.6.3" data-path="index.html"><a href="index.html#example-task"><i class="fa fa-check"></i><b>0.6.3</b> Example task</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>I Idioms</b></span></li>
+<li class="chapter" data-level="1" data-path="idioms.html"><a href="idioms.html"><i class="fa fa-check"></i><b>1</b> Idioms</a><ul>
+<li class="chapter" data-level="1.1" data-path="idioms.html"><a href="idioms.html#the-four-basic-principles-to-a-tidy-api"><i class="fa fa-check"></i><b>1.1</b> The four basic principles to a tidy API</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="idioms.html"><a href="idioms.html#reuse-existing-data-structures."><i class="fa fa-check"></i><b>1.1.1</b> Reuse existing data structures.</a></li>
+<li class="chapter" data-level="1.1.2" data-path="idioms.html"><a href="idioms.html#compose-simple-functions-with-the-pipe."><i class="fa fa-check"></i><b>1.1.2</b> Compose simple functions with the pipe.</a></li>
+<li class="chapter" data-level="1.1.3" data-path="idioms.html"><a href="idioms.html#embrace-functional-programming."><i class="fa fa-check"></i><b>1.1.3</b> Embrace functional programming.</a></li>
+<li class="chapter" data-level="1.1.4" data-path="idioms.html"><a href="idioms.html#design-for-humans."><i class="fa fa-check"></i><b>1.1.4</b> Design for humans.</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="idioms.html"><a href="idioms.html#resources"><i class="fa fa-check"></i><b>1.2</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="non-standard-evaluation.html"><a href="non-standard-evaluation.html"><i class="fa fa-check"></i><b>2</b> Non-standard evaluation</a><ul>
+<li class="chapter" data-level="2.1" data-path="non-standard-evaluation.html"><a href="non-standard-evaluation.html#formulas"><i class="fa fa-check"></i><b>2.1</b> Formulas</a></li>
+<li class="chapter" data-level="2.2" data-path="non-standard-evaluation.html"><a href="non-standard-evaluation.html#resources-1"><i class="fa fa-check"></i><b>2.2</b> Resources</a></li>
+</ul></li>
+<li class="part"><span><b>II Data access</b></span></li>
+<li class="chapter" data-level="3" data-path="read-and-write-data.html"><a href="read-and-write-data.html"><i class="fa fa-check"></i><b>3</b> Read and write data</a><ul>
+<li class="chapter" data-level="3.1" data-path="read-and-write-data.html"><a href="read-and-write-data.html#flatfiles"><i class="fa fa-check"></i><b>3.1</b> Flatfiles</a></li>
+<li class="chapter" data-level="3.2" data-path="read-and-write-data.html"><a href="read-and-write-data.html#interneturls"><i class="fa fa-check"></i><b>3.2</b> Internet/Urls</a></li>
+<li class="chapter" data-level="3.3" data-path="read-and-write-data.html"><a href="read-and-write-data.html#database-connections"><i class="fa fa-check"></i><b>3.3</b> Database connections</a></li>
+<li class="chapter" data-level="3.4" data-path="read-and-write-data.html"><a href="read-and-write-data.html#cubes"><i class="fa fa-check"></i><b>3.4</b> Cubes</a></li>
+<li class="chapter" data-level="3.5" data-path="read-and-write-data.html"><a href="read-and-write-data.html#distributed-systems"><i class="fa fa-check"></i><b>3.5</b> Distributed Systems</a></li>
+<li class="chapter" data-level="3.6" data-path="read-and-write-data.html"><a href="read-and-write-data.html#resources-2"><i class="fa fa-check"></i><b>3.6</b> Resources</a></li>
+</ul></li>
+<li class="part"><span><b>III Acting on common data structures</b></span></li>
+<li class="chapter" data-level="4" data-path="data-frames-and-tibbles.html"><a href="data-frames-and-tibbles.html"><i class="fa fa-check"></i><b>4</b> Data frames and tibbles</a><ul>
+<li class="chapter" data-level="4.1" data-path="data-frames-and-tibbles.html"><a href="data-frames-and-tibbles.html#basic-operations-and-related-stuff"><i class="fa fa-check"></i><b>4.1</b> Basic operations and related stuff</a></li>
+<li class="chapter" data-level="4.2" data-path="data-frames-and-tibbles.html"><a href="data-frames-and-tibbles.html#reshaping-wide-and-long-data"><i class="fa fa-check"></i><b>4.2</b> Reshaping wide and long data</a></li>
+<li class="chapter" data-level="4.3" data-path="data-frames-and-tibbles.html"><a href="data-frames-and-tibbles.html#typical-mutate-statements"><i class="fa fa-check"></i><b>4.3</b> Typical mutate statements</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="data-frames-and-tibbles.html"><a href="data-frames-and-tibbles.html#split-and-paste"><i class="fa fa-check"></i><b>4.3.1</b> Split and paste</a></li>
+<li class="chapter" data-level="4.3.2" data-path="data-frames-and-tibbles.html"><a href="data-frames-and-tibbles.html#conditionals"><i class="fa fa-check"></i><b>4.3.2</b> Conditionals</a></li>
+<li class="chapter" data-level="4.3.3" data-path="data-frames-and-tibbles.html"><a href="data-frames-and-tibbles.html#ids"><i class="fa fa-check"></i><b>4.3.3</b> IDs</a></li>
+<li class="chapter" data-level="4.3.4" data-path="data-frames-and-tibbles.html"><a href="data-frames-and-tibbles.html#other-stuff"><i class="fa fa-check"></i><b>4.3.4</b> Other stuff</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="data-frames-and-tibbles.html"><a href="data-frames-and-tibbles.html#formatting"><i class="fa fa-check"></i><b>4.4</b> Formatting</a></li>
+<li class="chapter" data-level="4.5" data-path="data-frames-and-tibbles.html"><a href="data-frames-and-tibbles.html#joins"><i class="fa fa-check"></i><b>4.5</b> Joins</a></li>
+<li class="chapter" data-level="4.6" data-path="data-frames-and-tibbles.html"><a href="data-frames-and-tibbles.html#tibbles"><i class="fa fa-check"></i><b>4.6</b> Tibbles</a></li>
+<li class="chapter" data-level="4.7" data-path="data-frames-and-tibbles.html"><a href="data-frames-and-tibbles.html#resources-3"><i class="fa fa-check"></i><b>4.7</b> Resources</a></li>
+</ul></li>
+<li class="part"><span><b>IV Atomics</b></span></li>
+<li class="chapter" data-level="5" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>5</b> Strings</a><ul>
+<li class="chapter" data-level="5.1" data-path="strings.html"><a href="strings.html#basic-string-operations"><i class="fa fa-check"></i><b>5.1</b> Basic string operations</a></li>
+<li class="chapter" data-level="5.2" data-path="strings.html"><a href="strings.html#pattern-matching"><i class="fa fa-check"></i><b>5.2</b> Pattern matching</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="strings.html"><a href="strings.html#regular-expressions"><i class="fa fa-check"></i><b>5.2.1</b> Regular expressions</a></li>
+<li class="chapter" data-level="5.2.2" data-path="strings.html"><a href="strings.html#modifiers"><i class="fa fa-check"></i><b>5.2.2</b> Modifiers</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="strings.html"><a href="strings.html#list-output"><i class="fa fa-check"></i><b>5.3</b> List output</a></li>
+<li class="chapter" data-level="5.4" data-path="strings.html"><a href="strings.html#resources-4"><i class="fa fa-check"></i><b>5.4</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="factors.html"><a href="factors.html"><i class="fa fa-check"></i><b>6</b> Factors</a><ul>
+<li class="chapter" data-level="6.1" data-path="factors.html"><a href="factors.html#resources-5"><i class="fa fa-check"></i><b>6.1</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="dates-and-times.html"><a href="dates-and-times.html"><i class="fa fa-check"></i><b>7</b> Dates and times</a><ul>
+<li class="chapter" data-level="7.1" data-path="dates-and-times.html"><a href="dates-and-times.html#dates"><i class="fa fa-check"></i><b>7.1</b> Dates</a></li>
+<li class="chapter" data-level="7.2" data-path="dates-and-times.html"><a href="dates-and-times.html#dates-and-times-1"><i class="fa fa-check"></i><b>7.2</b> Dates and Times</a></li>
+<li class="chapter" data-level="7.3" data-path="dates-and-times.html"><a href="dates-and-times.html#intervals"><i class="fa fa-check"></i><b>7.3</b> Intervals</a></li>
+<li class="chapter" data-level="7.4" data-path="dates-and-times.html"><a href="dates-and-times.html#resources-6"><i class="fa fa-check"></i><b>7.4</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>8</b> Lists</a></li>
+<li class="chapter" data-level="9" data-path="list-columns-within-data-frames.html"><a href="list-columns-within-data-frames.html"><i class="fa fa-check"></i><b>9</b> List columns within data frames</a></li>
+<li class="chapter" data-level="10" data-path="tidy-data-structures.html"><a href="tidy-data-structures.html"><i class="fa fa-check"></i><b>10</b> Tidy data structures</a></li>
+<li class="part"><span><b>V Applications</b></span></li>
+<li class="chapter" data-level="11" data-path="models.html"><a href="models.html"><i class="fa fa-check"></i><b>11</b> Models</a><ul>
+<li class="chapter" data-level="11.1" data-path="models.html"><a href="models.html#resources-7"><i class="fa fa-check"></i><b>11.1</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="statistics.html"><a href="statistics.html"><i class="fa fa-check"></i><b>12</b> Statistics</a><ul>
+<li class="chapter" data-level="12.1" data-path="statistics.html"><a href="statistics.html#resources-8"><i class="fa fa-check"></i><b>12.1</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="text-mining.html"><a href="text-mining.html"><i class="fa fa-check"></i><b>13</b> Text mining</a><ul>
+<li class="chapter" data-level="13.1" data-path="text-mining.html"><a href="text-mining.html#resources-9"><i class="fa fa-check"></i><b>13.1</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>14</b> Time series</a><ul>
+<li class="chapter" data-level="14.1" data-path="time-series.html"><a href="time-series.html#resources-10"><i class="fa fa-check"></i><b>14.1</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="web-scraping.html"><a href="web-scraping.html"><i class="fa fa-check"></i><b>15</b> Web scraping</a><ul>
+<li class="chapter" data-level="15.1" data-path="web-scraping.html"><a href="web-scraping.html#resources-11"><i class="fa fa-check"></i><b>15.1</b> Resources</a></li>
+</ul></li>
+<li class="part"><span><b>VI Ohter stuff</b></span></li>
+<li class="chapter" data-level="16" data-path="utilities.html"><a href="utilities.html"><i class="fa fa-check"></i><b>16</b> Utilities</a><ul>
+<li class="chapter" data-level="16.1" data-path="utilities.html"><a href="utilities.html#control-structures"><i class="fa fa-check"></i><b>16.1</b> Control structures</a></li>
+<li class="chapter" data-level="16.2" data-path="utilities.html"><a href="utilities.html#pipes"><i class="fa fa-check"></i><b>16.2</b> Pipes</a></li>
+<li class="chapter" data-level="16.3" data-path="utilities.html"><a href="utilities.html#resources-12"><i class="fa fa-check"></i><b>16.3</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="testchapter.html"><a href="testchapter.html"><i class="fa fa-check"></i><b>17</b> Testchapter</a><ul>
+<li class="chapter" data-level="17.1" data-path="testchapter.html"><a href="testchapter.html#new-contributions"><i class="fa fa-check"></i><b>17.1</b> New contributions</a></li>
+<li class="chapter" data-level="17.2" data-path="testchapter.html"><a href="testchapter.html#proposal-for-description"><i class="fa fa-check"></i><b>17.2</b> Proposal for Description</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="rstudio-project-management.html"><a href="rstudio-project-management.html"><i class="fa fa-check"></i><b>18</b> RStudio project management</a><ul>
+<li class="chapter" data-level="18.1" data-path="rstudio-project-management.html"><a href="rstudio-project-management.html#project-types"><i class="fa fa-check"></i><b>18.1</b> Project types</a></li>
+<li class="chapter" data-level="18.2" data-path="rstudio-project-management.html"><a href="rstudio-project-management.html#project-options"><i class="fa fa-check"></i><b>18.2</b> Project options</a></li>
+<li class="chapter" data-level="18.3" data-path="rstudio-project-management.html"><a href="rstudio-project-management.html#version-control"><i class="fa fa-check"></i><b>18.3</b> Version control</a></li>
+<li class="chapter" data-level="18.4" data-path="rstudio-project-management.html"><a href="rstudio-project-management.html#packrat-and-package-dependencies"><i class="fa fa-check"></i><b>18.4</b> Packrat and package dependencies</a></li>
+<li class="chapter" data-level="18.5" data-path="rstudio-project-management.html"><a href="rstudio-project-management.html#addins"><i class="fa fa-check"></i><b>18.5</b> Addins</a></li>
+<li class="chapter" data-level="18.6" data-path="rstudio-project-management.html"><a href="rstudio-project-management.html#miscellaneous"><i class="fa fa-check"></i><b>18.6</b> Miscellaneous</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="labelled-data.html"><a href="labelled-data.html"><i class="fa fa-check"></i><b>19</b> Labelled data</a><ul>
+<li class="chapter" data-level="19.1" data-path="labelled-data.html"><a href="labelled-data.html#basic-operations"><i class="fa fa-check"></i><b>19.1</b> Basic operations</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="spatial-data.html"><a href="spatial-data.html"><i class="fa fa-check"></i><b>20</b> Spatial data</a><ul>
+<li class="chapter" data-level="20.1" data-path="spatial-data.html"><a href="spatial-data.html#io"><i class="fa fa-check"></i><b>20.1</b> IO</a></li>
+<li class="chapter" data-level="20.2" data-path="spatial-data.html"><a href="spatial-data.html#objects"><i class="fa fa-check"></i><b>20.2</b> Objects</a></li>
+<li class="chapter" data-level="20.3" data-path="spatial-data.html"><a href="spatial-data.html#arithmetics"><i class="fa fa-check"></i><b>20.3</b> Arithmetics</a></li>
+<li class="chapter" data-level="20.4" data-path="spatial-data.html"><a href="spatial-data.html#plots"><i class="fa fa-check"></i><b>20.4</b> Plots</a></li>
+<li class="chapter" data-level="20.5" data-path="spatial-data.html"><a href="spatial-data.html#resources-13"><i class="fa fa-check"></i><b>20.5</b> Resources</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Tidyverse Cookbook</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="spatial-data" class="section level1">
+<h1><span class="header-section-number">20</span> Spatial data</h1>
+<div id="io" class="section level2">
+<h2><span class="header-section-number">20.1</span> IO</h2>
+<ol style="list-style-type: decimal">
+<li><strong>How to load/read and save/write spatial data?</strong></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sf)
+## Linking to GEOS 3.5.1, GDAL 2.1.3, proj.4 4.9.2, lwgeom 2.3.2 r15302
+nc &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="kw">system.file</span>(<span class="st">&quot;shape/nc.shp&quot;</span>, <span class="dt">package=</span><span class="st">&quot;sf&quot;</span>), <span class="dt">quiet =</span> <span class="ot">TRUE</span>)
+<span class="co"># st_write(nc, &quot;nc.shp&quot;)</span>
+<span class="co"># see st_read_db() and st_write_db() for spatial databases</span>
+<span class="co"># look carefully through all of the arguments (especially layers,</span>
+<span class="co"># stringsAsFactors, geometry_column, type, quiet)</span>
+<span class="co"># in case of specific problems see:</span>
+<span class="co"># https://edzer.github.io/sfr/articles/sf2.html</span>
+<span class="co">#   ____________________________________________________________________________</span></code></pre></div>
+</div>
+<div id="objects" class="section level2">
+<h2><span class="header-section-number">20.2</span> Objects</h2>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>What are the classes of sf-objects?</strong></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># the data.frame</span>
+<span class="kw">class</span>(nc)
+<span class="co">#&gt; [1] &quot;sf&quot;         &quot;data.frame&quot;</span>
+
+<span class="co"># the geometry list-column</span>
+<span class="kw">class</span>(<span class="kw">st_geometry</span>(nc))
+<span class="co">#&gt; [1] &quot;sfc_MULTIPOLYGON&quot; &quot;sfc&quot;</span>
+
+<span class="co"># the individual feature geometries</span>
+<span class="kw">lapply</span>(<span class="kw">st_geometry</span>(dplyr<span class="op">::</span><span class="kw">slice</span>(nc, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)), class)
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] &quot;XY&quot;           &quot;MULTIPOLYGON&quot; &quot;sfg&quot;         </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1] &quot;XY&quot;           &quot;MULTIPOLYGON&quot; &quot;sfg&quot;</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Which methods are avaliable for sf-objects</strong>?</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">methods</span>(<span class="dt">class =</span> <span class="st">&quot;sf&quot;</span>)
+<span class="co">#&gt;  [1] $&lt;-               [                 [[&lt;-             </span>
+<span class="co">#&gt;  [4] aggregate         anti_join         arrange_         </span>
+<span class="co">#&gt;  [7] cbind             distinct_         filter_          </span>
+<span class="co">#&gt; [10] full_join         group_by_         inner_join       </span>
+<span class="co">#&gt; [13] left_join         merge             mutate_          </span>
+<span class="co">#&gt; [16] plot              print             rbind            </span>
+<span class="co">#&gt; [19] rename_           right_join        sample_frac      </span>
+<span class="co">#&gt; [22] sample_n          select_           semi_join        </span>
+<span class="co">#&gt; [25] slice_            st_agr            st_agr&lt;-         </span>
+<span class="co">#&gt; [28] st_as_sf          st_bbox           st_boundary      </span>
+<span class="co">#&gt; [31] st_buffer         st_cast           st_centroid      </span>
+<span class="co">#&gt; [34] st_convex_hull    st_coordinates    st_crs           </span>
+<span class="co">#&gt; [37] st_crs&lt;-          st_difference     st_geometry      </span>
+<span class="co">#&gt; [40] st_geometry&lt;-     st_intersection   st_is            </span>
+<span class="co">#&gt; [43] st_line_merge     st_make_valid     st_polygonize    </span>
+<span class="co">#&gt; [46] st_precision      st_segmentize     st_set_precision </span>
+<span class="co">#&gt; [49] st_simplify       st_sym_difference st_transform     </span>
+<span class="co">#&gt; [52] st_triangulate    st_union          st_voronoi       </span>
+<span class="co">#&gt; [55] st_zm             summarise_        transmute_       </span>
+<span class="co">#&gt; see &#39;?methods&#39; for accessing help and source code</span>
+
+<span class="kw">methods</span>(<span class="dt">class =</span> <span class="st">&#39;sfc&#39;</span>)
+<span class="co">#&gt;  [1] [                 c                 format           </span>
+<span class="co">#&gt;  [4] print             st_as_binary      st_as_text       </span>
+<span class="co">#&gt;  [7] st_bbox           st_boundary       st_buffer        </span>
+<span class="co">#&gt; [10] st_cast           st_centroid       st_convex_hull   </span>
+<span class="co">#&gt; [13] st_coordinates    st_crs            st_crs&lt;-         </span>
+<span class="co">#&gt; [16] st_difference     st_geometry       st_intersection  </span>
+<span class="co">#&gt; [19] st_is             st_line_merge     st_make_valid    </span>
+<span class="co">#&gt; [22] st_polygonize     st_precision      st_segmentize    </span>
+<span class="co">#&gt; [25] st_set_precision  st_simplify       st_sym_difference</span>
+<span class="co">#&gt; [28] st_transform      st_triangulate    st_union         </span>
+<span class="co">#&gt; [31] st_voronoi        st_zm             str              </span>
+<span class="co">#&gt; [34] summary           type_sum         </span>
+<span class="co">#&gt; see &#39;?methods&#39; for accessing help and source code</span>
+
+<span class="kw">methods</span>(<span class="dt">class =</span> <span class="st">&#39;sfg&#39;</span>)
+<span class="co">#&gt;  [1] as.matrix         c                 format           </span>
+<span class="co">#&gt;  [4] head              plot              print            </span>
+<span class="co">#&gt;  [7] st_as_binary      st_as_text        st_boundary      </span>
+<span class="co">#&gt; [10] st_buffer         st_centroid       st_convex_hull   </span>
+<span class="co">#&gt; [13] st_coordinates    st_difference     st_geometry      </span>
+<span class="co">#&gt; [16] st_intersection   st_is             st_line_merge    </span>
+<span class="co">#&gt; [19] st_make_valid     st_polygonize     st_segmentize    </span>
+<span class="co">#&gt; [22] st_simplify       st_sym_difference st_transform     </span>
+<span class="co">#&gt; [25] st_triangulate    st_union          st_voronoi       </span>
+<span class="co">#&gt; [28] st_zm            </span>
+<span class="co">#&gt; see &#39;?methods&#39; for accessing help and source code</span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li><strong>What sf-geometry types are available, how do you initialize them and what types are the internally?</strong></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># internal types:</span>
+<span class="co"># - point (atomic)</span>
+<span class="co"># - linestring (matrix)</span>
+<span class="co"># - everything else (list)</span>
+
+## common geometries
+<span class="co"># point</span>
+<span class="kw">st_point</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
+<span class="co"># linestring</span>
+<span class="kw">st_linestring</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="fl">0.2</span>,<span class="dv">3</span>), <span class="kw">c</span>(<span class="fl">0.2</span>,<span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">1</span>,<span class="fl">4.8</span>), <span class="kw">c</span>(<span class="dv">2</span>,<span class="fl">4.8</span>)))
+<span class="co"># polygon</span>
+<span class="kw">st_polygon</span>(<span class="kw">list</span>(
+  <span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>), <span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)),
+  <span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))))
+<span class="co"># multipoint</span>
+<span class="kw">st_multipoint</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="fl">3.2</span>,<span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">3</span>,<span class="fl">4.6</span>), <span class="kw">c</span>(<span class="fl">3.8</span>,<span class="fl">4.4</span>), <span class="kw">c</span>(<span class="fl">3.5</span>,<span class="fl">3.8</span>), <span class="kw">c</span>(<span class="fl">3.4</span>,<span class="fl">3.6</span>)))
+<span class="co"># multilinestring</span>
+<span class="kw">st_multilinestring</span>(<span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="fl">0.2</span>,<span class="dv">3</span>), <span class="kw">c</span>(<span class="fl">0.2</span>,<span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">1</span>,<span class="fl">4.8</span>), <span class="kw">c</span>(<span class="dv">2</span>,<span class="fl">4.8</span>)),
+                        <span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">4.4</span>), <span class="kw">c</span>(<span class="fl">0.6</span>,<span class="dv">5</span>))))
+<span class="co"># multipolygon</span>
+<span class="kw">st_multipolygon</span>(<span class="kw">list</span>(
+  <span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>), <span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)),
+       <span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))),
+  <span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">0</span>), <span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">0</span>), <span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">0</span>)),
+       <span class="kw">rbind</span>(<span class="kw">c</span>(<span class="fl">3.3</span>,<span class="fl">0.3</span>), <span class="kw">c</span>(<span class="fl">3.8</span>,<span class="fl">0.3</span>), <span class="kw">c</span>(<span class="fl">3.8</span>,<span class="fl">0.8</span>), <span class="kw">c</span>(<span class="fl">3.3</span>,<span class="fl">0.8</span>), <span class="kw">c</span>(<span class="fl">3.3</span>,<span class="fl">0.3</span>))[<span class="dv">5</span><span class="op">:</span><span class="dv">1</span>,]),
+  <span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">3</span>)))))
+
+<span class="co"># geometrycollection</span>
+<span class="kw">st_sfc</span>(<span class="kw">st_geometrycollection</span>(<span class="kw">list</span>(<span class="kw">st_point</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>))), 
+       <span class="kw">st_geometrycollection</span>(<span class="kw">list</span>(<span class="kw">st_linestring</span>(<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,<span class="dv">2</span>)))))
+<span class="co"># geometry</span>
+<span class="kw">st_sfc</span>(<span class="kw">st_point</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>), <span class="kw">st_linestring</span>(<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,<span class="dv">2</span>))) <span class="co"># like the latter, but as a &quot;superclass&quot;</span>
+
+## rare geometries
+<span class="co"># circularstring</span>
+<span class="co"># compoundcurve</span>
+<span class="co"># curvepolygon</span>
+<span class="co"># multicurve</span>
+<span class="co"># multisurface</span>
+<span class="co"># curve</span>
+<span class="co"># surface</span>
+<span class="co"># polyhedral surface</span>
+<span class="co"># tin</span>
+<span class="co"># triangle</span></code></pre></div>
+<ol start="5" style="list-style-type: decimal">
+<li><strong>What are the dimensions of those objects?</strong></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x =<span class="st"> </span><span class="kw">st_sfc</span>(
+  <span class="kw">st_point</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">1</span>), 
+  <span class="kw">st_linestring</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))), 
+  <span class="kw">st_polygon</span>(<span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>),<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)))),
+  <span class="kw">st_multipoint</span>(),
+  <span class="kw">st_linestring</span>(),
+  <span class="kw">st_geometrycollection</span>())
+<span class="kw">st_dimension</span>(x, <span class="dt">NA_if_empty =</span> <span class="ot">FALSE</span>)
+<span class="co">#&gt; [1] 0 1 2 0 1 0</span></code></pre></div>
+<ol start="5" style="list-style-type: decimal">
+<li><strong>How to initialize these objects from well known text?</strong></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">st_as_sfc</span>(<span class="st">&quot;POINT(0 1)&quot;</span>)
+<span class="co">#&gt; Geometry set for 1 feature </span>
+<span class="co">#&gt; geometry type:  POINT</span>
+<span class="co">#&gt; dimension:      XY</span>
+<span class="co">#&gt; bbox:           xmin: 0 ymin: 1 xmax: 0 ymax: 1</span>
+<span class="co">#&gt; epsg (SRID):    NA</span>
+<span class="co">#&gt; proj4string:    NA</span>
+<span class="co">#&gt; POINT(0 1)</span></code></pre></div>
+<ol start="5" style="list-style-type: decimal">
+<li><strong>How to initialize an sf-object and bring it into coordinate reference systems (crs)?</strong></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># attributes of sfc obejects to store a crs: epsg, proj4string</span>
+<span class="co"># theses must be the same for all elements of an sfc-object, but can also be NA.</span>
+<span class="co"># -proj4string is a generic, string-based description of crs</span>
+<span class="co"># - epsg integer values refer to particular well known crs, that might also</span>
+<span class="co"># improve over time</span>
+
+<span class="kw">st_sf</span>(<span class="dt">points =</span> <span class="kw">st_sfc</span>(<span class="kw">st_point</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)),
+                      <span class="kw">st_point</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)),
+                      <span class="dt">crs =</span> <span class="dv">4326</span>))
+<span class="co">#&gt; Simple feature collection with 2 features and 0 fields</span>
+<span class="co">#&gt; geometry type:  POINT</span>
+<span class="co">#&gt; dimension:      XY</span>
+<span class="co">#&gt; bbox:           xmin: 0 ymin: 0 xmax: 0 ymax: 1</span>
+<span class="co">#&gt; epsg (SRID):    4326</span>
+<span class="co">#&gt; proj4string:    +proj=longlat +datum=WGS84 +no_defs</span>
+<span class="co">#&gt;       points</span>
+<span class="co">#&gt; 1 POINT(0 0)</span>
+<span class="co">#&gt; 2 POINT(0 1)</span>
+<span class="co"># also use:</span>
+<span class="co"># use st_crs() and st_transform()</span></code></pre></div>
+<ol start="6" style="list-style-type: decimal">
+<li><strong>How to coerce data.frames to sf?</strong></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># use st_as_sf</span></code></pre></div>
+<ol start="6" style="list-style-type: decimal">
+<li><strong>How to create and identify empty geometries?</strong></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">st_geometrycollection</span>()
+<span class="co">#&gt; GEOMETRYCOLLECTION()</span>
+<span class="kw">length</span>(<span class="kw">st_geometrycollection</span>())
+<span class="co">#&gt; [1] 0</span></code></pre></div>
+<ol start="7" style="list-style-type: decimal">
+<li><strong>How to identify unconnected parts of geometries?</strong></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">which</span>(<span class="kw">sapply</span>(<span class="kw">st_geometry</span>(nc), length) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>)
+<span class="co">#&gt; [1]  4 56 57 87 91 95</span></code></pre></div>
+<ol start="8" style="list-style-type: decimal">
+<li><strong>How to switch between well-known text and well-known binary encoding?</strong></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">st_linestring</span>(<span class="kw">matrix</span>(<span class="dv">10</span><span class="op">:</span><span class="dv">1</span>,<span class="dv">5</span>))
+<span class="kw">st_as_text</span>(x)
+<span class="co">#&gt; [1] &quot;LINESTRING(10 5, 9 4, 8 3, 7 2, 6 1)&quot;</span>
+<span class="kw">st_as_binary</span>(x)
+<span class="co">#&gt;  [1] 01 02 00 00 00 05 00 00 00 00 00 00 00 00 00 24 40 00 00 00 00 00 00</span>
+<span class="co">#&gt; [24] 14 40 00 00 00 00 00 00 22 40 00 00 00 00 00 00 10 40 00 00 00 00 00</span>
+<span class="co">#&gt; [47] 00 20 40 00 00 00 00 00 00 08 40 00 00 00 00 00 00 1c 40 00 00 00 00</span>
+<span class="co">#&gt; [70] 00 00 00 40 00 00 00 00 00 00 18 40 00 00 00 00 00 00 f0 3f</span></code></pre></div>
+<ol start="9" style="list-style-type: decimal">
+<li><strong>How to control geometries for simplicity and validity?</strong></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">st_is_valid</span>(<span class="kw">st_as_sfc</span>(<span class="st">&quot;POLYGON((0 0, 0 10, 10 0, 10 10, 0 0))&quot;</span>))
+<span class="co">#&gt; Warning in eval(substitute(expr), envir, enclos): Self-intersection at or</span>
+<span class="co">#&gt; near point 5 5</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="kw">st_is_simple</span>(<span class="kw">st_as_sfc</span>(<span class="st">&quot;POLYGON((0 0, 0 10, 10 0, 10 10, 0 0))&quot;</span>))
+<span class="co">#&gt; [1] TRUE</span>
+<span class="kw">plot</span>(<span class="kw">st_as_sfc</span>(<span class="st">&quot;POLYGON((0 0, 0 10, 10 0, 10 10, 0 0))&quot;</span>))</code></pre></div>
+<p><img src="20-Spatial_data_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<ol start="9" style="list-style-type: decimal">
+<li><strong>How to create a grid manually?</strong></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+lat &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>, <span class="dt">to =</span> <span class="dv">50</span>, <span class="dt">length.out =</span> <span class="dv">100</span>)
+long &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>, <span class="dt">to =</span> <span class="dv">50</span>, <span class="dt">length.out =</span> <span class="dv">100</span>)
+grid &lt;-<span class="st"> </span>tidyr<span class="op">::</span><span class="kw">expand</span>(<span class="kw">tibble</span>(<span class="dt">lat =</span> lat, <span class="dt">long =</span> long), lat, long)
+grid &lt;-<span class="st"> </span>grid <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">points =</span> purrr<span class="op">::</span><span class="kw">map2</span>(lat, long,
+                              <span class="op">~</span><span class="kw">st_geometrycollection</span>(<span class="kw">list</span>(<span class="kw">st_point</span>(<span class="kw">c</span>(.x,.y))))))
+grid &lt;-<span class="st"> </span>grid <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">points =</span> <span class="kw">st_sfc</span>(points))
+grid &lt;-<span class="st"> </span><span class="kw">st_sf</span>(grid, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>,
+              <span class="dt">sf_column_name =</span> <span class="st">&quot;points&quot;</span>)
+<span class="kw">plot</span>(grid <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(points))</code></pre></div>
+<p><img src="20-Spatial_data_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><strong>How to set aggregations?</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># while initializing</span>
+nc &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="kw">system.file</span>(<span class="st">&quot;shape/nc.shp&quot;</span>, <span class="dt">package=</span><span class="st">&quot;sf&quot;</span>),
+    <span class="dt">agr =</span> <span class="kw">c</span>(<span class="dt">AREA =</span> <span class="st">&quot;aggregate&quot;</span>, <span class="dt">PERIMETER =</span> <span class="st">&quot;aggregate&quot;</span>, <span class="dt">CNTY_ =</span> <span class="st">&quot;identity&quot;</span>,
+        <span class="dt">CNTY_ID =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">NAME =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">FIPS =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">FIPSNO =</span> <span class="st">&quot;identity&quot;</span>,
+        <span class="dt">CRESS_ID =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">BIR74 =</span> <span class="st">&quot;aggregate&quot;</span>, <span class="dt">SID74 =</span> <span class="st">&quot;aggregate&quot;</span>, <span class="dt">NWBIR74 =</span> <span class="st">&quot;aggregate&quot;</span>,
+        <span class="dt">BIR79 =</span> <span class="st">&quot;aggregate&quot;</span>, <span class="dt">SID79 =</span> <span class="st">&quot;aggregate&quot;</span>, <span class="dt">NWBIR79 =</span> <span class="st">&quot;aggregate&quot;</span>))
+<span class="co">#&gt; Reading layer `nc&#39; from data source `D:\R\Projects\Tidyverse-Cookbook\packrat\lib\x86_64-w64-mingw32\3.3.3\sf\shape\nc.shp&#39; using driver `ESRI Shapefile&#39;</span>
+<span class="co">#&gt; converted into: POLYGON</span>
+<span class="co">#&gt; Simple feature collection with 100 features and 14 fields</span>
+<span class="co">#&gt; Attribute-geometry relationship: 0 constant, 8 aggregate, 6 identity</span>
+<span class="co">#&gt; geometry type:  MULTIPOLYGON</span>
+<span class="co">#&gt; dimension:      XY</span>
+<span class="co">#&gt; bbox:           xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965</span>
+<span class="co">#&gt; epsg (SRID):    4267</span>
+<span class="co">#&gt; proj4string:    +proj=longlat +datum=NAD27 +no_defs</span></code></pre></div>
+</div>
+<div id="arithmetics" class="section level2">
+<h2><span class="header-section-number">20.3</span> Arithmetics</h2>
+<ol start="10" style="list-style-type: decimal">
+<li><strong>How to calculate with simple features?</strong></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">st_polygon</span>(<span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>),<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>),<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)))) <span class="op">-</span><span class="st"> </span><span class="fl">0.5</span>
+<span class="co">#&gt; POLYGON((-0.5 -0.5, 0.5 -0.5, 0.5 0.5, -0.5 0.5, -0.5 -0.5))</span>
+<span class="kw">st_point</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+<span class="co">#&gt; POINT(1 1)</span></code></pre></div>
+<ol start="10" style="list-style-type: decimal">
+<li><strong>How to calculate distances?</strong></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x =<span class="st"> </span><span class="kw">st_transform</span>(nc, <span class="dv">32119</span>)
+<span class="kw">st_distance</span>(x[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">22</span>),], x[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">33</span>,<span class="dv">55</span>,<span class="dv">56</span>),], <span class="dt">dist_fun =</span> geosphere<span class="op">::</span>distGeo)
+<span class="co">#&gt; Units: m</span>
+<span class="co">#&gt;           [,1]     [,2]      [,3]     [,4]</span>
+<span class="co">#&gt; [1,]      0.00 312184.9 128341.85 475623.3</span>
+<span class="co">#&gt; [2,] 440561.15 114939.7 590434.80      0.0</span>
+<span class="co">#&gt; [3,]  18944.03 352719.1  78756.89 517527.8</span>
+line =<span class="st"> </span><span class="kw">st_sfc</span>(<span class="kw">st_linestring</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">30</span>,<span class="dv">30</span>), <span class="kw">c</span>(<span class="dv">40</span>,<span class="dv">40</span>))), <span class="dt">crs =</span> <span class="dv">4326</span>)
+<span class="kw">st_length</span>(line)
+<span class="co">#&gt; 1434649 m</span></code></pre></div>
+</div>
+<div id="plots" class="section level2">
+<h2><span class="header-section-number">20.4</span> Plots</h2>
+<ol start="10" style="list-style-type: decimal">
+<li><strong>How does the plot method and its <code>add</code> argument work?</strong></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(nc[<span class="dv">1</span>,<span class="dv">1</span>], <span class="dt">col =</span> <span class="st">&#39;grey&#39;</span>)</code></pre></div>
+<p><img src="20-Spatial_data_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(nc[<span class="dv">1</span>,<span class="dv">1</span>], <span class="dt">col =</span> <span class="st">&#39;grey&#39;</span>)
+<span class="kw">plot</span>(nc[<span class="dv">1</span>], <span class="dt">add =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p><img src="20-Spatial_data_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+<span class="kw">plot</span>(nc[<span class="dv">1</span>])
+<span class="kw">plot</span>(nc[<span class="dv">1</span>,<span class="dv">1</span>], <span class="dt">col =</span> <span class="st">&#39;grey&#39;</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p><img src="20-Spatial_data_files/figure-html/unnamed-chunk-21-2.png" width="672" /></p>
+<ol start="11" style="list-style-type: decimal">
+<li><strong>Some differenct plot options</strong></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(nc[<span class="dv">1</span>])</code></pre></div>
+<p><img src="20-Spatial_data_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">st_convex_hull</span>(nc[<span class="dv">1</span>]))</code></pre></div>
+<p><img src="20-Spatial_data_files/figure-html/unnamed-chunk-22-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(nc[<span class="dv">1</span>], <span class="dt">border =</span> <span class="kw">grey</span>(.<span class="dv">5</span>))</code></pre></div>
+<p><img src="20-Spatial_data_files/figure-html/unnamed-chunk-22-3.png" width="672" /></p>
+</div>
+<div id="resources-13" class="section level2">
+<h2><span class="header-section-number">20.5</span> Resources</h2>
+<ul>
+<li><a href="https://edzer.github.io/sfr/index.html">sf-page</a></li>
+<li><a href="http://strimas.com/r/tidy-sf/">tidy spatial data in R with … (blogpost)</a></li>
+<li><a href="https://github.com/edzer/sfr/issues/42">sf-issue: dplyr compatibility</a></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="labelled-data.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/Tazinho/Tidyverse-Cookbook/edit/master/20-Spatial_data.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"search": true
+});
+});
+</script>
+
+</body>
+
+</html>

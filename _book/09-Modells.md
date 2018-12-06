@@ -1,6 +1,0 @@
-
-# (PART) Applications {-} 
-
-# Modells
-
-## Resources

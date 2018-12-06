@@ -1,0 +1,48 @@
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  cache = TRUE
+)
+
+Sys.setenv(LANGUAGE = "en") 
+```
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  cache = TRUE
+)
+
+Sys.setenv(LANGUAGE = "en") 
+```
+# (PART) Applications {-} 
+
+# Models
+
+**Task:** Extract coefficients from a model.
+
+```{r}
+library(magrittr)
+lm(Sepal.Width ~ Species, data = iris) %>% 
+  broom::tidy(.)
+#   ____________________________________________________________________________
+```
+
+**Task:** Extract residuals from a model.
+
+```{r}
+lm(Sepal.Width ~ Species, data = iris) %>% 
+  broom::augment(.) %>% head()
+#   ____________________________________________________________________________
+```
+
+**Task:** Extract measures of fit from a model.
+
+```{r}
+lm(Sepal.Width ~ Species, data = iris) %>% 
+  broom::glance()
+#   ____________________________________________________________________________
+```
+
+## Resources

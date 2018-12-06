@@ -1,4 +1,0 @@
-
-# Time series
-
-## Resources

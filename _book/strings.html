@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Tidyverse Cookbook</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Simple cookbook for functions and idioms within the scope of the tidyverse.">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Tidyverse Cookbook" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Simple cookbook for functions and idioms within the scope of the tidyverse." />
+  <meta name="github-repo" content="Tazinho/Tidyverse-Cookbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Tidyverse Cookbook" />
+  
+  <meta name="twitter:description" content="Simple cookbook for functions and idioms within the scope of the tidyverse." />
+  
+
+<meta name="author" content="Malte Grosser">
+
+
+<meta name="date" content="2017-10-19">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="data-frames-and-tibbles.html">
+<link rel="next" href="factors.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-0.8/htmlwidgets.js"></script>
+<link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
+<script src="libs/str_view-binding-1.1.0/str_view.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prerequisites</a><ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#this-is-work-in-progress"><i class="fa fa-check"></i><b>0.1</b> This is work in progress</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#motivation"><i class="fa fa-check"></i><b>0.2</b> Motivation</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#motivation-for-base-r-solutions"><i class="fa fa-check"></i><b>0.3</b> Motivation for base R solutions</a></li>
+<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#structure-of-this-book"><i class="fa fa-check"></i><b>0.4</b> Structure of this book</a></li>
+<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#contribution"><i class="fa fa-check"></i><b>0.5</b> Contribution</a></li>
+<li class="chapter" data-level="0.6" data-path="index.html"><a href="index.html#conventions"><i class="fa fa-check"></i><b>0.6</b> Conventions</a><ul>
+<li class="chapter" data-level="0.6.1" data-path="index.html"><a href="index.html#tasks"><i class="fa fa-check"></i><b>0.6.1</b> Tasks</a></li>
+<li class="chapter" data-level="0.6.2" data-path="index.html"><a href="index.html#solutions"><i class="fa fa-check"></i><b>0.6.2</b> Solutions</a></li>
+<li class="chapter" data-level="0.6.3" data-path="index.html"><a href="index.html#example-task"><i class="fa fa-check"></i><b>0.6.3</b> Example task</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>I Idioms</b></span></li>
+<li class="chapter" data-level="1" data-path="idioms.html"><a href="idioms.html"><i class="fa fa-check"></i><b>1</b> Idioms</a><ul>
+<li class="chapter" data-level="1.1" data-path="idioms.html"><a href="idioms.html#the-four-basic-principles-to-a-tidy-api"><i class="fa fa-check"></i><b>1.1</b> The four basic principles to a tidy API</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="idioms.html"><a href="idioms.html#reuse-existing-data-structures."><i class="fa fa-check"></i><b>1.1.1</b> Reuse existing data structures.</a></li>
+<li class="chapter" data-level="1.1.2" data-path="idioms.html"><a href="idioms.html#compose-simple-functions-with-the-pipe."><i class="fa fa-check"></i><b>1.1.2</b> Compose simple functions with the pipe.</a></li>
+<li class="chapter" data-level="1.1.3" data-path="idioms.html"><a href="idioms.html#embrace-functional-programming."><i class="fa fa-check"></i><b>1.1.3</b> Embrace functional programming.</a></li>
+<li class="chapter" data-level="1.1.4" data-path="idioms.html"><a href="idioms.html#design-for-humans."><i class="fa fa-check"></i><b>1.1.4</b> Design for humans.</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="idioms.html"><a href="idioms.html#resources"><i class="fa fa-check"></i><b>1.2</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="non-standard-evaluation.html"><a href="non-standard-evaluation.html"><i class="fa fa-check"></i><b>2</b> Non-standard evaluation</a><ul>
+<li class="chapter" data-level="2.1" data-path="non-standard-evaluation.html"><a href="non-standard-evaluation.html#formulas"><i class="fa fa-check"></i><b>2.1</b> Formulas</a></li>
+<li class="chapter" data-level="2.2" data-path="non-standard-evaluation.html"><a href="non-standard-evaluation.html#resources-1"><i class="fa fa-check"></i><b>2.2</b> Resources</a></li>
+</ul></li>
+<li class="part"><span><b>II Data access</b></span></li>
+<li class="chapter" data-level="3" data-path="read-and-write-data.html"><a href="read-and-write-data.html"><i class="fa fa-check"></i><b>3</b> Read and write data</a><ul>
+<li class="chapter" data-level="3.1" data-path="read-and-write-data.html"><a href="read-and-write-data.html#flatfiles"><i class="fa fa-check"></i><b>3.1</b> Flatfiles</a></li>
+<li class="chapter" data-level="3.2" data-path="read-and-write-data.html"><a href="read-and-write-data.html#interneturls"><i class="fa fa-check"></i><b>3.2</b> Internet/Urls</a></li>
+<li class="chapter" data-level="3.3" data-path="read-and-write-data.html"><a href="read-and-write-data.html#database-connections"><i class="fa fa-check"></i><b>3.3</b> Database connections</a></li>
+<li class="chapter" data-level="3.4" data-path="read-and-write-data.html"><a href="read-and-write-data.html#cubes"><i class="fa fa-check"></i><b>3.4</b> Cubes</a></li>
+<li class="chapter" data-level="3.5" data-path="read-and-write-data.html"><a href="read-and-write-data.html#distributed-systems"><i class="fa fa-check"></i><b>3.5</b> Distributed Systems</a></li>
+<li class="chapter" data-level="3.6" data-path="read-and-write-data.html"><a href="read-and-write-data.html#resources-2"><i class="fa fa-check"></i><b>3.6</b> Resources</a></li>
+</ul></li>
+<li class="part"><span><b>III Acting on common data structures</b></span></li>
+<li class="chapter" data-level="4" data-path="data-frames-and-tibbles.html"><a href="data-frames-and-tibbles.html"><i class="fa fa-check"></i><b>4</b> Data frames and tibbles</a><ul>
+<li class="chapter" data-level="4.1" data-path="data-frames-and-tibbles.html"><a href="data-frames-and-tibbles.html#basic-operations-and-related-stuff"><i class="fa fa-check"></i><b>4.1</b> Basic operations and related stuff</a></li>
+<li class="chapter" data-level="4.2" data-path="data-frames-and-tibbles.html"><a href="data-frames-and-tibbles.html#reshaping-wide-and-long-data"><i class="fa fa-check"></i><b>4.2</b> Reshaping wide and long data</a></li>
+<li class="chapter" data-level="4.3" data-path="data-frames-and-tibbles.html"><a href="data-frames-and-tibbles.html#typical-mutate-statements"><i class="fa fa-check"></i><b>4.3</b> Typical mutate statements</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="data-frames-and-tibbles.html"><a href="data-frames-and-tibbles.html#split-and-paste"><i class="fa fa-check"></i><b>4.3.1</b> Split and paste</a></li>
+<li class="chapter" data-level="4.3.2" data-path="data-frames-and-tibbles.html"><a href="data-frames-and-tibbles.html#conditionals"><i class="fa fa-check"></i><b>4.3.2</b> Conditionals</a></li>
+<li class="chapter" data-level="4.3.3" data-path="data-frames-and-tibbles.html"><a href="data-frames-and-tibbles.html#ids"><i class="fa fa-check"></i><b>4.3.3</b> IDs</a></li>
+<li class="chapter" data-level="4.3.4" data-path="data-frames-and-tibbles.html"><a href="data-frames-and-tibbles.html#other-stuff"><i class="fa fa-check"></i><b>4.3.4</b> Other stuff</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="data-frames-and-tibbles.html"><a href="data-frames-and-tibbles.html#formatting"><i class="fa fa-check"></i><b>4.4</b> Formatting</a></li>
+<li class="chapter" data-level="4.5" data-path="data-frames-and-tibbles.html"><a href="data-frames-and-tibbles.html#joins"><i class="fa fa-check"></i><b>4.5</b> Joins</a></li>
+<li class="chapter" data-level="4.6" data-path="data-frames-and-tibbles.html"><a href="data-frames-and-tibbles.html#tibbles"><i class="fa fa-check"></i><b>4.6</b> Tibbles</a></li>
+<li class="chapter" data-level="4.7" data-path="data-frames-and-tibbles.html"><a href="data-frames-and-tibbles.html#resources-3"><i class="fa fa-check"></i><b>4.7</b> Resources</a></li>
+</ul></li>
+<li class="part"><span><b>IV Atomics</b></span></li>
+<li class="chapter" data-level="5" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>5</b> Strings</a><ul>
+<li class="chapter" data-level="5.1" data-path="strings.html"><a href="strings.html#basic-string-operations"><i class="fa fa-check"></i><b>5.1</b> Basic string operations</a></li>
+<li class="chapter" data-level="5.2" data-path="strings.html"><a href="strings.html#pattern-matching"><i class="fa fa-check"></i><b>5.2</b> Pattern matching</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="strings.html"><a href="strings.html#regular-expressions"><i class="fa fa-check"></i><b>5.2.1</b> Regular expressions</a></li>
+<li class="chapter" data-level="5.2.2" data-path="strings.html"><a href="strings.html#modifiers"><i class="fa fa-check"></i><b>5.2.2</b> Modifiers</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="strings.html"><a href="strings.html#list-output"><i class="fa fa-check"></i><b>5.3</b> List output</a></li>
+<li class="chapter" data-level="5.4" data-path="strings.html"><a href="strings.html#resources-4"><i class="fa fa-check"></i><b>5.4</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="factors.html"><a href="factors.html"><i class="fa fa-check"></i><b>6</b> Factors</a><ul>
+<li class="chapter" data-level="6.1" data-path="factors.html"><a href="factors.html#resources-5"><i class="fa fa-check"></i><b>6.1</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="dates-and-times.html"><a href="dates-and-times.html"><i class="fa fa-check"></i><b>7</b> Dates and times</a><ul>
+<li class="chapter" data-level="7.1" data-path="dates-and-times.html"><a href="dates-and-times.html#dates"><i class="fa fa-check"></i><b>7.1</b> Dates</a></li>
+<li class="chapter" data-level="7.2" data-path="dates-and-times.html"><a href="dates-and-times.html#dates-and-times-1"><i class="fa fa-check"></i><b>7.2</b> Dates and Times</a></li>
+<li class="chapter" data-level="7.3" data-path="dates-and-times.html"><a href="dates-and-times.html#intervals"><i class="fa fa-check"></i><b>7.3</b> Intervals</a></li>
+<li class="chapter" data-level="7.4" data-path="dates-and-times.html"><a href="dates-and-times.html#resources-6"><i class="fa fa-check"></i><b>7.4</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>8</b> Lists</a></li>
+<li class="chapter" data-level="9" data-path="list-columns-within-data-frames.html"><a href="list-columns-within-data-frames.html"><i class="fa fa-check"></i><b>9</b> List columns within data frames</a></li>
+<li class="chapter" data-level="10" data-path="tidy-data-structures.html"><a href="tidy-data-structures.html"><i class="fa fa-check"></i><b>10</b> Tidy data structures</a></li>
+<li class="part"><span><b>V Applications</b></span></li>
+<li class="chapter" data-level="11" data-path="models.html"><a href="models.html"><i class="fa fa-check"></i><b>11</b> Models</a><ul>
+<li class="chapter" data-level="11.1" data-path="models.html"><a href="models.html#resources-7"><i class="fa fa-check"></i><b>11.1</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="statistics.html"><a href="statistics.html"><i class="fa fa-check"></i><b>12</b> Statistics</a><ul>
+<li class="chapter" data-level="12.1" data-path="statistics.html"><a href="statistics.html#resources-8"><i class="fa fa-check"></i><b>12.1</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="text-mining.html"><a href="text-mining.html"><i class="fa fa-check"></i><b>13</b> Text mining</a><ul>
+<li class="chapter" data-level="13.1" data-path="text-mining.html"><a href="text-mining.html#resources-9"><i class="fa fa-check"></i><b>13.1</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>14</b> Time series</a><ul>
+<li class="chapter" data-level="14.1" data-path="time-series.html"><a href="time-series.html#resources-10"><i class="fa fa-check"></i><b>14.1</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="web-scraping.html"><a href="web-scraping.html"><i class="fa fa-check"></i><b>15</b> Web scraping</a><ul>
+<li class="chapter" data-level="15.1" data-path="web-scraping.html"><a href="web-scraping.html#resources-11"><i class="fa fa-check"></i><b>15.1</b> Resources</a></li>
+</ul></li>
+<li class="part"><span><b>VI Ohter stuff</b></span></li>
+<li class="chapter" data-level="16" data-path="utilities.html"><a href="utilities.html"><i class="fa fa-check"></i><b>16</b> Utilities</a><ul>
+<li class="chapter" data-level="16.1" data-path="utilities.html"><a href="utilities.html#control-structures"><i class="fa fa-check"></i><b>16.1</b> Control structures</a></li>
+<li class="chapter" data-level="16.2" data-path="utilities.html"><a href="utilities.html#pipes"><i class="fa fa-check"></i><b>16.2</b> Pipes</a></li>
+<li class="chapter" data-level="16.3" data-path="utilities.html"><a href="utilities.html#resources-12"><i class="fa fa-check"></i><b>16.3</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="testchapter.html"><a href="testchapter.html"><i class="fa fa-check"></i><b>17</b> Testchapter</a><ul>
+<li class="chapter" data-level="17.1" data-path="testchapter.html"><a href="testchapter.html#new-contributions"><i class="fa fa-check"></i><b>17.1</b> New contributions</a></li>
+<li class="chapter" data-level="17.2" data-path="testchapter.html"><a href="testchapter.html#proposal-for-description"><i class="fa fa-check"></i><b>17.2</b> Proposal for Description</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="rstudio-project-management.html"><a href="rstudio-project-management.html"><i class="fa fa-check"></i><b>18</b> RStudio project management</a><ul>
+<li class="chapter" data-level="18.1" data-path="rstudio-project-management.html"><a href="rstudio-project-management.html#project-types"><i class="fa fa-check"></i><b>18.1</b> Project types</a></li>
+<li class="chapter" data-level="18.2" data-path="rstudio-project-management.html"><a href="rstudio-project-management.html#project-options"><i class="fa fa-check"></i><b>18.2</b> Project options</a></li>
+<li class="chapter" data-level="18.3" data-path="rstudio-project-management.html"><a href="rstudio-project-management.html#version-control"><i class="fa fa-check"></i><b>18.3</b> Version control</a></li>
+<li class="chapter" data-level="18.4" data-path="rstudio-project-management.html"><a href="rstudio-project-management.html#packrat-and-package-dependencies"><i class="fa fa-check"></i><b>18.4</b> Packrat and package dependencies</a></li>
+<li class="chapter" data-level="18.5" data-path="rstudio-project-management.html"><a href="rstudio-project-management.html#addins"><i class="fa fa-check"></i><b>18.5</b> Addins</a></li>
+<li class="chapter" data-level="18.6" data-path="rstudio-project-management.html"><a href="rstudio-project-management.html#miscellaneous"><i class="fa fa-check"></i><b>18.6</b> Miscellaneous</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="labelled-data.html"><a href="labelled-data.html"><i class="fa fa-check"></i><b>19</b> Labelled data</a><ul>
+<li class="chapter" data-level="19.1" data-path="labelled-data.html"><a href="labelled-data.html#basic-operations"><i class="fa fa-check"></i><b>19.1</b> Basic operations</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="spatial-data.html"><a href="spatial-data.html"><i class="fa fa-check"></i><b>20</b> Spatial data</a><ul>
+<li class="chapter" data-level="20.1" data-path="spatial-data.html"><a href="spatial-data.html#io"><i class="fa fa-check"></i><b>20.1</b> IO</a></li>
+<li class="chapter" data-level="20.2" data-path="spatial-data.html"><a href="spatial-data.html#objects"><i class="fa fa-check"></i><b>20.2</b> Objects</a></li>
+<li class="chapter" data-level="20.3" data-path="spatial-data.html"><a href="spatial-data.html#arithmetics"><i class="fa fa-check"></i><b>20.3</b> Arithmetics</a></li>
+<li class="chapter" data-level="20.4" data-path="spatial-data.html"><a href="spatial-data.html#plots"><i class="fa fa-check"></i><b>20.4</b> Plots</a></li>
+<li class="chapter" data-level="20.5" data-path="spatial-data.html"><a href="spatial-data.html#resources-13"><i class="fa fa-check"></i><b>20.5</b> Resources</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Tidyverse Cookbook</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="strings" class="section level1">
+<h1><span class="header-section-number">5</span> Strings</h1>
+<div id="basic-string-operations" class="section level2">
+<h2><span class="header-section-number">5.1</span> Basic string operations</h2>
+<ol style="list-style-type: decimal">
+<li><strong>How to use regular expressions?</strong></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    stringr<span class="op">::</span><span class="kw">str_detect</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">d&quot;</span>)
+<span class="co">#&gt; [1] TRUE</span>
+    <span class="co"># is the same as</span>
+    stringr<span class="op">::</span><span class="kw">str_detect</span>(<span class="st">&quot;1&quot;</span>, stringr<span class="op">::</span><span class="kw">regex</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">d&quot;</span>))
+<span class="co">#&gt; [1] TRUE</span>
+    <span class="co">#   ____________________________________________________________________________</span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li><p><strong>Paste/concatenate strings.</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="ot">NA</span>, <span class="ot">NaN</span>, <span class="ot">NULL</span>, <span class="kw">factor</span>(<span class="st">&quot;lalala&quot;</span>), <span class="kw">character</span>(<span class="dv">0</span>))
+<span class="co">#&gt; [1] NA</span>
+<span class="co">#   ____________________________________________________________________________</span>
+<span class="kw">paste</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="ot">NA</span>, <span class="ot">NaN</span>, <span class="ot">NULL</span>, <span class="kw">factor</span>(<span class="st">&quot;lalala&quot;</span>), <span class="kw">character</span>(<span class="dv">0</span>), <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
+<span class="co">#&gt; [1] &quot;abNANaNlalala&quot;</span></code></pre></div></li>
+<li><p><strong>Treat <code>NA</code>’s as strings (<code>&quot;NA&quot;</code>).</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_replace_na</span>(<span class="kw">c</span>(<span class="ot">NA</span>, <span class="ot">NaN</span>, <span class="kw">factor</span>(<span class="st">&quot;lalala&quot;</span>), <span class="kw">character</span>(<span class="dv">0</span>)))
+<span class="co">#&gt; [1] &quot;NA&quot;  &quot;NaN&quot; &quot;1&quot;</span>
+<span class="co"># note that the `c` function coerces the factor to its integer representation</span>
+<span class="co">#   ____________________________________________________________________________</span>
+base_replace_na &lt;-<span class="st"> </span><span class="cf">function</span>(x) {<span class="kw">ifelse</span>(<span class="kw">is.na</span>(x), <span class="st">&quot;NA&quot;</span>, x)}
+<span class="kw">base_replace_na</span>(<span class="kw">c</span>(<span class="ot">NA</span>, <span class="ot">NaN</span>, <span class="kw">factor</span>(<span class="st">&quot;lalala&quot;</span>), <span class="kw">character</span>(<span class="dv">0</span>)))
+<span class="co">#&gt; [1] &quot;NA&quot;  &quot;NaN&quot; &quot;1&quot;</span></code></pre></div></li>
+<li><p><strong>Count the number of letters in a string.</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_length</span>(<span class="kw">c</span>(<span class="st">&quot;four&quot;</span>, <span class="ot">NA</span>, <span class="ot">NaN</span>, <span class="ot">NULL</span>, <span class="kw">factor</span>(<span class="st">&quot;lalala&quot;</span>)))
+<span class="co">#&gt; [1]  4 NA  3  1</span>
+<span class="co">#   ____________________________________________________________________________</span>
+<span class="kw">nchar</span>(<span class="kw">c</span>(<span class="st">&quot;four&quot;</span>, <span class="ot">NA</span>, <span class="ot">NaN</span>, <span class="ot">NULL</span>, <span class="kw">factor</span>(<span class="st">&quot;lalala&quot;</span>)))
+<span class="co">#&gt; [1]  4 NA  3  1</span></code></pre></div></li>
+<li><p><strong>Return the last letter of a string, subset a string.</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_sub</span>(<span class="kw">c</span>(<span class="st">&quot;five&quot;</span>, <span class="st">&quot;six&quot;</span>), <span class="op">-</span><span class="dv">1</span>)
+<span class="co">#&gt; [1] &quot;e&quot; &quot;x&quot;</span>
+<span class="co">#   ____________________________________________________________________________</span>
+<span class="kw">substr</span>(<span class="kw">c</span>(<span class="st">&quot;five&quot;</span>, <span class="st">&quot;six&quot;</span>), 
+       <span class="dt">start =</span> <span class="kw">nchar</span>(<span class="kw">c</span>(<span class="st">&quot;five&quot;</span>, <span class="st">&quot;six&quot;</span>)), 
+       <span class="dt">stop =</span> <span class="kw">nchar</span>(<span class="kw">c</span>(<span class="st">&quot;five&quot;</span>, <span class="st">&quot;six&quot;</span>)))
+<span class="co">#&gt; [1] &quot;e&quot; &quot;x&quot;</span></code></pre></div></li>
+<li><p><strong>Repeat/replicate/duplicate a string several times.</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_dup</span>(<span class="st">&quot;_a_&quot;</span>, <span class="dv">5</span>)
+<span class="co">#&gt; [1] &quot;_a__a__a__a__a_&quot;</span>
+<span class="co">#   ____________________________________________________________________________</span>
+<span class="kw">paste</span>(<span class="kw">rep</span>(<span class="st">&quot;_a_&quot;</span>, <span class="dv">5</span>), <span class="dt">collapse =</span> <span class="st">&quot;&quot;</span>)
+<span class="co">#&gt; [1] &quot;_a__a__a__a__a_&quot;</span></code></pre></div></li>
+<li><p><strong>Remove/trim spaces at the beginning (leading) and/or end (trailing) of a string.</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_trim</span>(<span class="kw">c</span>(<span class="st">&quot;  2left_1right &quot;</span>, <span class="st">&quot;   &quot;</span>), <span class="dt">side =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>))
+<span class="co">#&gt; [1] &quot;2left_1right &quot; &quot;&quot;</span>
+<span class="co">#   ____________________________________________________________________________</span>
+<span class="co"># ^\\s+|\\s+$ is the regex for one or more spaces in the beginning</span>
+<span class="co"># or one or more spaces at the end</span>
+<span class="kw">gsub</span>(<span class="st">&quot;^</span><span class="ch">\\</span><span class="st">s+&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;  2left_1right &quot;</span>, <span class="st">&quot;   &quot;</span>))
+<span class="co">#&gt; [1] &quot;2left_1right &quot; &quot;&quot;</span></code></pre></div></li>
+<li><p><strong>Fill/pad spaces (or other characters) before and/or after a string.</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_pad</span>(<span class="kw">c</span>(<span class="st">&quot;lalala&quot;</span>, <span class="st">&quot;&quot;</span>), <span class="dt">width =</span> <span class="dv">7</span>)
+<span class="co">#&gt; [1] &quot; lalala&quot; &quot;       &quot;</span>
+<span class="co">#   ____________________________________________________________________________</span>
+<span class="kw">unname</span>(
+  <span class="kw">vapply</span>(<span class="kw">c</span>(<span class="st">&quot;lalala&quot;</span>, <span class="st">&quot;&quot;</span>), 
+         <span class="cf">function</span>(x) <span class="cf">if</span>(<span class="kw">nchar</span>(x) <span class="op">&lt;</span><span class="st"> </span><span class="dv">7</span>) {
+           <span class="kw">paste0</span>(<span class="kw">rep</span>(<span class="st">&quot; &quot;</span>, <span class="dv">7</span> <span class="op">-</span><span class="st"> </span><span class="kw">nchar</span>(x)), x, <span class="dt">collapse =</span> <span class="st">&quot;&quot;</span>)
+           } <span class="cf">else</span> {x},
+         <span class="kw">character</span>(<span class="dv">1</span>)
+         )
+  )
+<span class="co">#&gt; [1] &quot; lalala&quot; &quot;       &quot;</span></code></pre></div></li>
+<li><p><strong>Sort strings for example, by a different local alphabetic order.</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># The vowels come before the consonants in Hawaiian</span>
+stringr<span class="op">::</span><span class="kw">str_sort</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>], <span class="dt">locale =</span> <span class="st">&quot;haw&quot;</span>)
+<span class="co">#&gt;  [1] &quot;a&quot; &quot;e&quot; &quot;i&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;j&quot;</span>
+<span class="co">#   ____________________________________________________________________________</span>
+<span class="co"># one can use `sort()`, but one has to know the specific locale</span></code></pre></div></li>
+<li><p><strong>Return the order of stringelements within a specific alphabet</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># The vowels come before the consonants in Hawaiian</span>
+stringr<span class="op">::</span><span class="kw">str_order</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>], <span class="dt">locale =</span> <span class="st">&quot;haw&quot;</span>)
+<span class="co">#&gt;  [1]  1  5  9  2  3  4  6  7  8 10</span>
+<span class="co">#   ____________________________________________________________________________</span>
+<span class="co"># one can use `sort()`, but one has to know the specific locale</span></code></pre></div></li>
+<li><p><strong>Change the encoding of a string</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Example from encoding?stringi::stringi</span>
+x &lt;-<span class="st"> </span><span class="kw">rawToChar</span>(<span class="kw">as.raw</span>(<span class="dv">177</span>))
+x
+<span class="co">#&gt; [1] &quot;±&quot;</span>
+stringr<span class="op">::</span><span class="kw">str_conv</span>(x, <span class="st">&quot;ISO-8859-2&quot;</span>) <span class="co"># Polish &quot;a with ogonek&quot;, (run this line in RStudio)</span>
+<span class="co">#&gt; [1] &quot;a&quot;</span>
+stringr<span class="op">::</span><span class="kw">str_conv</span>(x, <span class="st">&quot;ISO-8859-1&quot;</span>) <span class="co"># Plus-minus</span>
+<span class="co">#&gt; [1] &quot;±&quot;</span>
+<span class="co">#   ____________________________________________________________________________</span></code></pre></div></li>
+<li><p><strong>Return the first two words of a string</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">word</span>(<span class="st">&quot;Hello, how are you?&quot;</span>, <span class="dv">1</span>, <span class="dv">2</span>)
+<span class="co">#&gt; [1] &quot;Hello, how&quot;</span>
+<span class="co">#   ____________________________________________________________________________</span></code></pre></div></li>
+<li><p><strong>Format a string (change width, indentaion, …).</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(stringr<span class="op">::</span><span class="kw">str_wrap</span>(<span class="st">&quot;Hello, how are you?&quot;</span>, <span class="dt">width =</span> <span class="dv">10</span>, <span class="dt">indent =</span> <span class="dv">0</span>, <span class="dt">exdent =</span> <span class="dv">2</span>))
+<span class="co">#&gt; Hello, how</span>
+<span class="co">#&gt;   are you?</span>
+<span class="co">#   ____________________________________________________________________________</span></code></pre></div></li>
+</ol>
+</div>
+<div id="pattern-matching" class="section level2">
+<h2><span class="header-section-number">5.2</span> Pattern matching</h2>
+<ol style="list-style-type: decimal">
+<li><p><strong>How to disable case sensitivity in regex pattern?</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_detect</span>(<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>), stringr<span class="op">::</span><span class="kw">regex</span>(<span class="st">&quot;b|A|D&quot;</span>, <span class="dt">ignore_case =</span> <span class="ot">TRUE</span>))
+<span class="co">#&gt; [1]  TRUE  TRUE FALSE</span></code></pre></div></li>
+<li><p><strong>Does a string contain a specific sequence of characters?</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_detect</span>(<span class="kw">c</span>(<span class="st">&quot;my number is 110&quot;</span>, <span class="st">&quot;call 911&quot;</span>), <span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{3}&quot;</span>)
+<span class="co">#&gt; [1] TRUE TRUE</span>
+<span class="co">#   ____________________________________________________________________________</span>
+<span class="kw">grepl</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{3}&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;my number is 110&quot;</span>, <span class="st">&quot;call 911&quot;</span>))
+<span class="co">#&gt; [1] TRUE TRUE</span></code></pre></div></li>
+<li><p><strong>Return every string that contains a specific sequence of characters?</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_subset</span>(<span class="kw">c</span>(<span class="st">&quot;my number is 110&quot;</span>, <span class="st">&quot;call 911&quot;</span>), <span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{3}&quot;</span>)
+<span class="co">#&gt; [1] &quot;my number is 110&quot; &quot;call 911&quot;</span>
+<span class="co">#   ____________________________________________________________________________</span>
+<span class="kw">grep</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{3}&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;my number is 110&quot;</span>, <span class="st">&quot;call 911&quot;</span>), <span class="dt">value =</span> <span class="ot">TRUE</span>)
+<span class="co">#&gt; [1] &quot;my number is 110&quot; &quot;call 911&quot;</span></code></pre></div></li>
+<li><p><strong>Return the (first) start and end index of substrings within a string?</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># use stringr::str_locate_all to get a matrix of all start and end indexes</span>
+stringr<span class="op">::</span><span class="kw">str_locate</span>(<span class="kw">c</span>(<span class="st">&quot;my 112 number is 110&quot;</span>, <span class="st">&quot;call 911&quot;</span>), <span class="kw">c</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{3}&quot;</span>))
+<span class="co">#&gt;      start end</span>
+<span class="co">#&gt; [1,]     4   6</span>
+<span class="co">#&gt; [2,]     6   8</span>
+<span class="co">#   ____________________________________________________________________________</span>
+<span class="co"># Use gregexpr to construct something similar to str_locate_all</span>
+matches &lt;-<span class="st"> </span><span class="kw">regexpr</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{3}&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;my 112 number is 110&quot;</span>, <span class="st">&quot;call 911&quot;</span>))
+
+<span class="co"># formatting</span>
+match_lengths &lt;-<span class="st"> </span><span class="kw">attr</span>(matches, <span class="st">&quot;match.length&quot;</span>)
+<span class="kw">attributes</span>(matches) &lt;-<span class="st"> </span><span class="ot">NULL</span>
+match_indices &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(matches, matches <span class="op">+</span><span class="st"> </span>match_lengths <span class="op">-</span><span class="st"> </span><span class="dv">1</span>), <span class="dt">ncol =</span> <span class="dv">2</span>)
+<span class="kw">colnames</span>(match_indices) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;start&quot;</span>, <span class="st">&quot;end&quot;</span>)
+
+<span class="co"># output</span>
+match_indices
+<span class="co">#&gt;      start end</span>
+<span class="co">#&gt; [1,]     4   6</span>
+<span class="co">#&gt; [2,]     6   8</span></code></pre></div></li>
+<li><p><strong>Return the (first) matched substring within a string?</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># use stringr::str_extract_all to get a matrix of all matched substrings</span>
+stringr<span class="op">::</span><span class="kw">str_extract</span>(<span class="kw">c</span>(<span class="st">&quot;my 112 number is 110&quot;</span>, <span class="st">&quot;call 911&quot;</span>), <span class="kw">c</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{3}&quot;</span>))
+<span class="co">#&gt; [1] &quot;112&quot; &quot;911&quot;</span>
+<span class="co">#   ____________________________________________________________________________</span>
+<span class="co"># combine `substr()` with match_indices from above</span></code></pre></div></li>
+<li><p><strong>Return the matching strings and matched capture groups.</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># the example from the stringr vignette</span>
+strings &lt;-<span class="st"> </span><span class="kw">c</span>(
+  <span class="st">&quot;apple&quot;</span>,
+  <span class="st">&quot;219 733 8965&quot;</span>, 
+  <span class="st">&quot;329-293-8753&quot;</span>, 
+  <span class="st">&quot;Work: 579-499-7527; Home: 543.355.3679&quot;</span>
+  )
+phone &lt;-<span class="st"> &quot;([2-9][0-9]{2})[- .]([0-9]{3})[- .]([0-9]{4})&quot;</span>
+
+stringr<span class="op">::</span><span class="kw">str_match</span>(strings, phone)
+<span class="co">#&gt;      [,1]           [,2]  [,3]  [,4]  </span>
+<span class="co">#&gt; [1,] NA             NA    NA    NA    </span>
+<span class="co">#&gt; [2,] &quot;219 733 8965&quot; &quot;219&quot; &quot;733&quot; &quot;8965&quot;</span>
+<span class="co">#&gt; [3,] &quot;329-293-8753&quot; &quot;329&quot; &quot;293&quot; &quot;8753&quot;</span>
+<span class="co">#&gt; [4,] &quot;579-499-7527&quot; &quot;579&quot; &quot;499&quot; &quot;7527&quot;</span>
+<span class="co"># Use stringr::str_match_all for list return</span>
+<span class="co">#   ____________________________________________________________________________</span>
+<span class="co"># `regmatches()`</span></code></pre></div></li>
+<li><p><strong>Replace/substitute the first matching subtstring within a string.</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_replace</span>(<span class="kw">c</span>(<span class="st">&quot;my 112 number is 110&quot;</span>, <span class="st">&quot;call 911&quot;</span>),
+                     <span class="kw">c</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{1}(</span><span class="ch">\\</span><span class="st">d{2})&quot;</span>), <span class="st">&quot;</span><span class="ch">\\</span><span class="st">1</span><span class="ch">\\</span><span class="st">1&quot;</span>)
+<span class="co">#&gt; [1] &quot;my 1212 number is 110&quot; &quot;call 1111&quot;</span>
+<span class="co">#   ____________________________________________________________________________</span>
+<span class="kw">sub</span>(<span class="kw">c</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{1}(</span><span class="ch">\\</span><span class="st">d{2})&quot;</span>), <span class="st">&quot;</span><span class="ch">\\</span><span class="st">1</span><span class="ch">\\</span><span class="st">1&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;my 112 number is 110&quot;</span>, <span class="st">&quot;call 911&quot;</span>))
+<span class="co">#&gt; [1] &quot;my 1212 number is 110&quot; &quot;call 1111&quot;</span></code></pre></div></li>
+<li><p><strong>Replace/substitute all matching subtstrings within a string.</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_replace_all</span>(<span class="kw">c</span>(<span class="st">&quot;my 112 number is 110&quot;</span>, <span class="st">&quot;call 911&quot;</span>),
+                         <span class="kw">c</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{1}(</span><span class="ch">\\</span><span class="st">d{2})&quot;</span>), <span class="st">&quot;</span><span class="ch">\\</span><span class="st">1</span><span class="ch">\\</span><span class="st">1&quot;</span>)
+<span class="co">#&gt; [1] &quot;my 1212 number is 1010&quot; &quot;call 1111&quot;</span>
+<span class="co">#   ____________________________________________________________________________</span>
+<span class="kw">gsub</span>(<span class="kw">c</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{1}(</span><span class="ch">\\</span><span class="st">d{2})&quot;</span>), <span class="st">&quot;</span><span class="ch">\\</span><span class="st">1</span><span class="ch">\\</span><span class="st">1&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;my 112 number is 110&quot;</span>, <span class="st">&quot;call 911&quot;</span>))
+<span class="co">#&gt; [1] &quot;my 1212 number is 1010&quot; &quot;call 1111&quot;</span></code></pre></div></li>
+<li><p><strong>Split strings by any pattern into different (optionally n) pieces.</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># returns a matrix and padds with empty strings, when n is greater than the</span>
+<span class="co"># number of pieces</span>
+stringr<span class="op">::</span><span class="kw">str_split_fixed</span>(<span class="kw">c</span>(<span class="st">&quot;lalala lala la&quot;</span>,
+                           <span class="st">&quot;blabla lala la&quot;</span>),
+                         <span class="kw">c</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="dv">5</span>)
+<span class="co">#&gt;      [,1]     [,2]   [,3]         [,4] [,5]</span>
+<span class="co">#&gt; [1,] &quot;lalala&quot; &quot;lala&quot; &quot;la&quot;         &quot;&quot;   &quot;&quot;  </span>
+<span class="co">#&gt; [2,] &quot;&quot;       &quot;la&quot;   &quot;la lala la&quot; &quot;&quot;   &quot;&quot;</span>
+<span class="co"># returns a list</span>
+stringr<span class="op">::</span><span class="kw">str_split</span>(<span class="kw">c</span>(<span class="st">&quot;lalala lala la&quot;</span>,
+                     <span class="st">&quot;blabla lala la&quot;</span>),
+                   <span class="kw">c</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="dv">5</span>)
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] &quot;lalala&quot; &quot;lala&quot;   &quot;la&quot;    </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1] &quot;&quot;           &quot;la&quot;         &quot;la lala la&quot;</span>
+<span class="co">#   ____________________________________________________________________________</span>
+<span class="co"># returns a list, but does not have an n argument (however, it shouldn&#39;t be</span>
+<span class="co"># too hard to create one).</span>
+<span class="kw">strsplit</span>(<span class="kw">c</span>(<span class="st">&quot;lalala lala la&quot;</span>,
+           <span class="st">&quot;blabla lala la&quot;</span>),
+         <span class="kw">c</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;b&quot;</span>))
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] &quot;lalala&quot; &quot;lala&quot;   &quot;la&quot;    </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1] &quot;&quot;           &quot;la&quot;         &quot;la lala la&quot;</span></code></pre></div></li>
+<li><p><strong>Set all characters to lower/upper case.</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_to_lower</span>(<span class="st">&quot;aBcDe&quot;</span>)
+<span class="co">#&gt; [1] &quot;abcde&quot;</span>
+stringr<span class="op">::</span><span class="kw">str_to_upper</span>(<span class="st">&quot;aBcDe&quot;</span>)
+<span class="co">#&gt; [1] &quot;ABCDE&quot;</span>
+<span class="co">#   ____________________________________________________________________________</span>
+<span class="kw">tolower</span>(<span class="st">&quot;aBcDe&quot;</span>)
+<span class="co">#&gt; [1] &quot;abcde&quot;</span>
+<span class="kw">toupper</span>(<span class="st">&quot;aBcDe&quot;</span>)
+<span class="co">#&gt; [1] &quot;ABCDE&quot;</span></code></pre></div></li>
+<li><p><strong>Truncate a string.</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_trunc</span>(<span class="st">&quot;123456789&quot;</span>, <span class="dt">width =</span> <span class="dv">7</span>, <span class="dt">side =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">ellipsis =</span> <span class="st">&quot;&quot;</span>)
+<span class="co">#&gt; [1] &quot;1234567&quot;</span>
+<span class="co">#   ____________________________________________________________________________</span></code></pre></div></li>
+</ol>
+<div id="regular-expressions" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> Regular expressions</h3>
+<ol style="list-style-type: decimal">
+<li><strong>Where can I learn about regular expressions?</strong></li>
+</ol>
+<ul>
+<li><code>?stringr::modifiers</code> for special regular expression functionality of the stringr package.</li>
+<li><a href="http://www.regular-expressions.info/reference.html">reference sheet</a></li>
+<li><a href="http://regexr.com/">interactively test</a></li>
+<li><a href="http://www.txt2re.com/">Build a regular expressin</a></li>
+<li><p>Try the <code>str_view()</code> function to see, which substring a regex matches</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_view</span>(<span class="kw">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;a.c_blabla&quot;</span>, <span class="st">&quot;bef&quot;</span>), <span class="st">&quot;a</span><span class="ch">\\</span><span class="st">.c&quot;</span>)</code></pre></div>
+<div id="htmlwidget-ee3fa3e2f4cb7541729a" style="width:960px;height:auto;" class="str_view html-widget"></div>
+    <script type="application/json" data-for="htmlwidget-ee3fa3e2f4cb7541729a">{"x":{"html":"<ul>\n  <li>abc\u003c/li>\n  <li><span class='match'>a.c\u003c/span>_blabla\u003c/li>\n  <li>bef\u003c/li>\n\u003c/ul>"},"evals":[],"jsHooks":[]}</script></li>
+</ul>
+<ol style="list-style-type: decimal">
+<li><strong>How to test regular expressions?</strong></li>
+</ol>
+<blockquote>
+<p>When writing regular expressions, I strongly recommend generating a list of positive (pattern should match) and negative (pattern shouldn’t match) test cases to ensure that you are matching the correct components.</p>
+</blockquote>
+</div>
+<div id="modifiers" class="section level3">
+<h3><span class="header-section-number">5.2.2</span> Modifiers</h3>
+<ol style="list-style-type: decimal">
+<li><p><strong>Count the number of words within a string.</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">words &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;These are some words. </span>
+<span class="st">           Some more words.&quot;</span>)
+stringr<span class="op">::</span><span class="kw">str_count</span>(words, stringr<span class="op">::</span><span class="kw">boundary</span>(<span class="st">&quot;word&quot;</span>))
+<span class="co">#&gt; [1] 7</span>
+<span class="co">#   ____________________________________________________________________________</span></code></pre></div></li>
+<li><p><strong>Count the number of lines within a string.</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_count</span>(words, stringr<span class="op">::</span><span class="kw">boundary</span>(<span class="st">&quot;line_break&quot;</span>)) <span class="op">-</span>
+stringr<span class="op">::</span><span class="kw">str_count</span>(words, stringr<span class="op">::</span><span class="kw">boundary</span>(<span class="st">&quot;word&quot;</span>))
+<span class="co">#&gt; [1] 1</span>
+<span class="co">#   ____________________________________________________________________________</span></code></pre></div></li>
+<li><p><strong>Count the number of sentences within a string.</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_count</span>(words, stringr<span class="op">::</span><span class="kw">boundary</span>(<span class="st">&quot;sentence&quot;</span>))
+<span class="co">#&gt; [1] 2</span>
+<span class="co">#   ____________________________________________________________________________</span></code></pre></div></li>
+<li><p><strong>Split a string by characters.</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_split</span>(words, stringr<span class="op">::</span><span class="kw">boundary</span>(<span class="st">&quot;character&quot;</span>))
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt;  [1] &quot;T&quot;  &quot;h&quot;  &quot;e&quot;  &quot;s&quot;  &quot;e&quot;  &quot; &quot;  &quot;a&quot;  &quot;r&quot;  &quot;e&quot;  &quot; &quot;  &quot;s&quot;  &quot;o&quot;  &quot;m&quot;  &quot;e&quot; </span>
+<span class="co">#&gt; [15] &quot; &quot;  &quot;w&quot;  &quot;o&quot;  &quot;r&quot;  &quot;d&quot;  &quot;s&quot;  &quot;.&quot;  &quot; &quot;  &quot;\n&quot; &quot; &quot;  &quot; &quot;  &quot; &quot;  &quot; &quot;  &quot; &quot; </span>
+<span class="co">#&gt; [29] &quot; &quot;  &quot; &quot;  &quot; &quot;  &quot; &quot;  &quot; &quot;  &quot; &quot;  &quot;S&quot;  &quot;o&quot;  &quot;m&quot;  &quot;e&quot;  &quot; &quot;  &quot;m&quot;  &quot;o&quot;  &quot;r&quot; </span>
+<span class="co">#&gt; [43] &quot;e&quot;  &quot; &quot;  &quot;w&quot;  &quot;o&quot;  &quot;r&quot;  &quot;d&quot;  &quot;s&quot;  &quot;.&quot;</span>
+<span class="co">#   ____________________________________________________________________________</span>
+<span class="kw">strsplit</span>(words, <span class="st">&quot;&quot;</span>)
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt;  [1] &quot;T&quot;  &quot;h&quot;  &quot;e&quot;  &quot;s&quot;  &quot;e&quot;  &quot; &quot;  &quot;a&quot;  &quot;r&quot;  &quot;e&quot;  &quot; &quot;  &quot;s&quot;  &quot;o&quot;  &quot;m&quot;  &quot;e&quot; </span>
+<span class="co">#&gt; [15] &quot; &quot;  &quot;w&quot;  &quot;o&quot;  &quot;r&quot;  &quot;d&quot;  &quot;s&quot;  &quot;.&quot;  &quot; &quot;  &quot;\n&quot; &quot; &quot;  &quot; &quot;  &quot; &quot;  &quot; &quot;  &quot; &quot; </span>
+<span class="co">#&gt; [29] &quot; &quot;  &quot; &quot;  &quot; &quot;  &quot; &quot;  &quot; &quot;  &quot; &quot;  &quot;S&quot;  &quot;o&quot;  &quot;m&quot;  &quot;e&quot;  &quot; &quot;  &quot;m&quot;  &quot;o&quot;  &quot;r&quot; </span>
+<span class="co">#&gt; [43] &quot;e&quot;  &quot; &quot;  &quot;w&quot;  &quot;o&quot;  &quot;r&quot;  &quot;d&quot;  &quot;s&quot;  &quot;.&quot;</span></code></pre></div></li>
+</ol>
+</div>
+</div>
+<div id="list-output" class="section level2">
+<h2><span class="header-section-number">5.3</span> List output</h2>
+<ol style="list-style-type: decimal">
+<li><strong>How to work with string functions, that return lists?</strong></li>
+</ol>
+</div>
+<div id="resources-4" class="section level2">
+<h2><span class="header-section-number">5.4</span> Resources</h2>
+<ul>
+<li><a href="https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html">stringr vignette</a></li>
+<li>[Regular Expressions in R - Cheatsheet]<a href="https://www.rstudio.com/wp-content/uploads/2016/09/RegExCheatsheet.pdf" class="uri">https://www.rstudio.com/wp-content/uploads/2016/09/RegExCheatsheet.pdf</a></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-frames-and-tibbles.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="factors.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/Tazinho/Tidyverse-Cookbook/edit/master/05-Strings.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"search": true
+});
+});
+</script>
+
+</body>
+
+</html>

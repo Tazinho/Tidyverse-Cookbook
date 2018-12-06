@@ -1,0 +1,255 @@
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  cache = TRUE
+)
+
+Sys.setenv(LANGUAGE = "en") 
+```
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  cache = TRUE
+)
+
+Sys.setenv(LANGUAGE = "en") 
+```
+# Spatial data
+
+## IO
+
+1. **How to load/read and save/write spatial data?**
+
+```{r}
+library(sf)
+## Linking to GEOS 3.5.1, GDAL 2.1.3, proj.4 4.9.2, lwgeom 2.3.2 r15302
+nc <- st_read(system.file("shape/nc.shp", package="sf"), quiet = TRUE)
+# st_write(nc, "nc.shp")
+# see st_read_db() and st_write_db() for spatial databases
+# look carefully through all of the arguments (especially layers,
+# stringsAsFactors, geometry_column, type, quiet)
+# in case of specific problems see:
+# https://edzer.github.io/sfr/articles/sf2.html
+#   ____________________________________________________________________________
+```
+
+## Objects
+
+2. **What are the classes of sf-objects?**
+
+```{r}
+# the data.frame
+class(nc)
+
+# the geometry list-column
+class(st_geometry(nc))
+
+# the individual feature geometries
+lapply(st_geometry(dplyr::slice(nc, 1:2)), class)
+```
+
+3. **Which methods are avaliable for sf-objects**?
+
+```{r}
+methods(class = "sf")
+
+methods(class = 'sfc')
+
+methods(class = 'sfg')
+```
+
+4. **What sf-geometry types are available, how do you initialize them and what types are the internally?**
+
+```{r, eval = FALSE}
+# internal types:
+# - point (atomic)
+# - linestring (matrix)
+# - everything else (list)
+
+## common geometries
+# point
+st_point(c(1,2))
+# linestring
+st_linestring(rbind(c(0.2,3), c(0.2,4), c(1,4.8), c(2,4.8)))
+# polygon
+st_polygon(list(
+  rbind(c(0,0), c(1,0), c(3,2), c(2,4), c(1,4), c(0,0)),
+  rbind(c(1,1), c(1,2), c(2,2), c(1,1))))
+# multipoint
+st_multipoint(rbind(c(3.2,4), c(3,4.6), c(3.8,4.4), c(3.5,3.8), c(3.4,3.6)))
+# multilinestring
+st_multilinestring(list(rbind(c(0.2,3), c(0.2,4), c(1,4.8), c(2,4.8)),
+                        rbind(c(0,4.4), c(0.6,5))))
+# multipolygon
+st_multipolygon(list(
+  list(rbind(c(0,0), c(1,0), c(3,2), c(2,4), c(1,4), c(0,0)),
+       rbind(c(1,1), c(1,2), c(2,2), c(1,1))),
+  list(rbind(c(3,0), c(4,0), c(4,1), c(3,1), c(3,0)),
+       rbind(c(3.3,0.3), c(3.8,0.3), c(3.8,0.8), c(3.3,0.8), c(3.3,0.3))[5:1,]),
+  list(rbind(c(3,3), c(4,2), c(4,3), c(3,3)))))
+
+# geometrycollection
+st_sfc(st_geometrycollection(list(st_point(1:2))), 
+       st_geometrycollection(list(st_linestring(matrix(1:4,2)))))
+# geometry
+st_sfc(st_point(1:2), st_linestring(matrix(1:4,2))) # like the latter, but as a "superclass"
+
+## rare geometries
+# circularstring
+# compoundcurve
+# curvepolygon
+# multicurve
+# multisurface
+# curve
+# surface
+# polyhedral surface
+# tin
+# triangle
+```
+
+5. **What are the dimensions of those objects?**
+
+```{r}
+x = st_sfc(
+  st_point(0:1), 
+  st_linestring(rbind(c(0,0),c(1,1))), 
+  st_polygon(list(rbind(c(0,0),c(1,0),c(0,1),c(0,0)))),
+  st_multipoint(),
+  st_linestring(),
+  st_geometrycollection())
+st_dimension(x, NA_if_empty = FALSE)
+```
+
+5. **How to initialize these objects from well known text?**
+
+```{r}
+st_as_sfc("POINT(0 1)")
+```
+
+5. **How to initialize an sf-object and bring it into coordinate reference systems (crs)?**
+
+```{r}
+# attributes of sfc obejects to store a crs: epsg, proj4string
+# theses must be the same for all elements of an sfc-object, but can also be NA.
+# -proj4string is a generic, string-based description of crs
+# - epsg integer values refer to particular well known crs, that might also
+# improve over time
+
+st_sf(points = st_sfc(st_point(c(0, 0)),
+                      st_point(c(0, 1)),
+                      crs = 4326))
+# also use:
+# use st_crs() and st_transform()
+```
+
+6. **How to coerce data.frames to sf?**
+
+```{r}
+# use st_as_sf
+```
+
+6. **How to create and identify empty geometries?**
+
+```{r}
+st_geometrycollection()
+length(st_geometrycollection())
+```
+
+7. **How to identify unconnected parts of geometries?**
+
+```{r}
+which(sapply(st_geometry(nc), length) > 1)
+```
+
+8. **How to switch between well-known text and well-known binary encoding?**
+
+```{r}
+x <- st_linestring(matrix(10:1,5))
+st_as_text(x)
+st_as_binary(x)
+```
+
+9. **How to control geometries for simplicity and validity?**
+
+```{r}
+st_is_valid(st_as_sfc("POLYGON((0 0, 0 10, 10 0, 10 10, 0 0))"))
+st_is_simple(st_as_sfc("POLYGON((0 0, 0 10, 10 0, 10 10, 0 0))"))
+plot(st_as_sfc("POLYGON((0 0, 0 10, 10 0, 10 10, 0 0))"))
+```
+
+9. **How to create a grid manually?**
+
+```{r}
+library(dplyr)
+lat <- seq(from = 1, to = 50, length.out = 100)
+long <- seq(from = 1, to = 50, length.out = 100)
+grid <- tidyr::expand(tibble(lat = lat, long = long), lat, long)
+grid <- grid %>% 
+  mutate(points = purrr::map2(lat, long,
+                              ~st_geometrycollection(list(st_point(c(.x,.y))))))
+grid <- grid %>% mutate(points = st_sfc(points))
+grid <- st_sf(grid, stringsAsFactors = FALSE,
+              sf_column_name = "points")
+plot(grid %>% select(points))
+```
+
+**How to set aggregations?**
+
+```{r}
+# while initializing
+nc <- st_read(system.file("shape/nc.shp", package="sf"),
+    agr = c(AREA = "aggregate", PERIMETER = "aggregate", CNTY_ = "identity",
+        CNTY_ID = "identity", NAME = "identity", FIPS = "identity", FIPSNO = "identity",
+        CRESS_ID = "identity", BIR74 = "aggregate", SID74 = "aggregate", NWBIR74 = "aggregate",
+        BIR79 = "aggregate", SID79 = "aggregate", NWBIR79 = "aggregate"))
+```
+
+## Arithmetics
+
+10. **How to calculate with simple features?**
+
+```{r}
+st_polygon(list(rbind(c(0,0),c(1,0),c(1,1),c(0,1),c(0,0)))) - 0.5
+st_point(c(0,0)) + 1
+```
+
+10. **How to calculate distances?**
+
+```{r}
+x = st_transform(nc, 32119)
+st_distance(x[c(1,4,22),], x[c(1, 33,55,56),], dist_fun = geosphere::distGeo)
+line = st_sfc(st_linestring(rbind(c(30,30), c(40,40))), crs = 4326)
+st_length(line)
+```
+
+## Plots
+
+10. **How does the plot method and its `add` argument work?**
+
+```{r}
+plot(nc[1,1], col = 'grey')
+```
+
+```{r}
+plot(nc[1,1], col = 'grey')
+plot(nc[1], add = TRUE)
+
+plot(nc[1])
+plot(nc[1,1], col = 'grey', add = TRUE)
+```
+
+11. **Some differenct plot options**
+
+```{r}
+plot(nc[1])
+plot(st_convex_hull(nc[1]))
+plot(nc[1], border = grey(.5))
+```
+
+## Resources
+
+* [sf-page](https://edzer.github.io/sfr/index.html)
+* [tidy spatial data in R with ... (blogpost)](http://strimas.com/r/tidy-sf/)
+* [sf-issue: dplyr compatibility](https://github.com/edzer/sfr/issues/42)

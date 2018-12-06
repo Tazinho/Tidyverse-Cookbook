@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Tidyverse Cookbook</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Simple cookbook for functions and idioms within the scope of the tidyverse.">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Tidyverse Cookbook" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Simple cookbook for functions and idioms within the scope of the tidyverse." />
+  <meta name="github-repo" content="Tazinho/Tidyverse-Cookbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Tidyverse Cookbook" />
+  
+  <meta name="twitter:description" content="Simple cookbook for functions and idioms within the scope of the tidyverse." />
+  
+
+<meta name="author" content="Malte Grosser">
+
+
+<meta name="date" content="2017-10-19">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+<link rel="next" href="non-standard-evaluation.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-0.8/htmlwidgets.js"></script>
+<link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
+<script src="libs/str_view-binding-1.1.0/str_view.js"></script>
+
+
+
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="part"><span><b>I Idioms</b></span></li>
+<li class="chapter" data-level="1" data-path="idioms.html"><a href="idioms.html"><i class="fa fa-check"></i><b>1</b> Idioms</a><ul>
+<li class="chapter" data-level="1.1" data-path="idioms.html"><a href="idioms.html#the-four-basic-principles-to-a-tidy-api"><i class="fa fa-check"></i><b>1.1</b> The four basic principles to a tidy API</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="idioms.html"><a href="idioms.html#reuse-existing-data-structures."><i class="fa fa-check"></i><b>1.1.1</b> Reuse existing data structures.</a></li>
+<li class="chapter" data-level="1.1.2" data-path="idioms.html"><a href="idioms.html#compose-simple-functions-with-the-pipe."><i class="fa fa-check"></i><b>1.1.2</b> Compose simple functions with the pipe.</a></li>
+<li class="chapter" data-level="1.1.3" data-path="idioms.html"><a href="idioms.html#embrace-functional-programming."><i class="fa fa-check"></i><b>1.1.3</b> Embrace functional programming.</a></li>
+<li class="chapter" data-level="1.1.4" data-path="idioms.html"><a href="idioms.html#design-for-humans."><i class="fa fa-check"></i><b>1.1.4</b> Design for humans.</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="idioms.html"><a href="idioms.html#resources"><i class="fa fa-check"></i><b>1.2</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="non-standard-evaluation.html"><a href="non-standard-evaluation.html"><i class="fa fa-check"></i><b>2</b> Non-standard evaluation</a></li>
+<li class="part"><span><b>II Data access</b></span></li>
+<li class="part"><span><b>III Acting on common data structures</b></span></li>
+<li class="part"><span><b>IV Atomics</b></span></li>
+<li class="chapter" data-level="3" data-path="factors.html"><a href="factors.html"><i class="fa fa-check"></i><b>3</b> Factors</a></li>
+<li class="chapter" data-level="4" data-path="dates-and-times.html"><a href="dates-and-times.html"><i class="fa fa-check"></i><b>4</b> Dates and times</a></li>
+<li class="chapter" data-level="5" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>5</b> Lists</a></li>
+<li class="chapter" data-level="6" data-path="list-columns-within-data-frames.html"><a href="list-columns-within-data-frames.html"><i class="fa fa-check"></i><b>6</b> List columns within data frames</a></li>
+<li class="chapter" data-level="7" data-path="tidy-data-structures.html"><a href="tidy-data-structures.html"><i class="fa fa-check"></i><b>7</b> Tidy data structures</a></li>
+<li class="part"><span><b>V Applications</b></span></li>
+<li class="chapter" data-level="8" data-path="statistics.html"><a href="statistics.html"><i class="fa fa-check"></i><b>8</b> Statistics</a></li>
+<li class="chapter" data-level="9" data-path="text-mining.html"><a href="text-mining.html"><i class="fa fa-check"></i><b>9</b> Text mining</a></li>
+<li class="chapter" data-level="10" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>10</b> Time series</a></li>
+<li class="chapter" data-level="11" data-path="web-scraping.html"><a href="web-scraping.html"><i class="fa fa-check"></i><b>11</b> Web scraping</a></li>
+<li class="part"><span><b>VI Ohter stuff</b></span></li>
+<li class="chapter" data-level="12" data-path="testchapter.html"><a href="testchapter.html"><i class="fa fa-check"></i><b>12</b> Testchapter</a></li>
+<li class="chapter" data-level="13" data-path="rstudio-project-management.html"><a href="rstudio-project-management.html"><i class="fa fa-check"></i><b>13</b> RStudio project management</a></li>
+<li class="chapter" data-level="14" data-path="labelled-data.html"><a href="labelled-data.html"><i class="fa fa-check"></i><b>14</b> Labelled data</a></li>
+<li class="chapter" data-level="15" data-path="spatial-data.html"><a href="spatial-data.html"><i class="fa fa-check"></i><b>15</b> Spatial data</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Tidyverse Cookbook</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="idioms" class="section level1">
+<h1><span class="header-section-number">1</span> Idioms</h1>
+<div id="the-four-basic-principles-to-a-tidy-api" class="section level2">
+<h2><span class="header-section-number">1.1</span> The four basic principles to a tidy API</h2>
+<p>These principles are likely to change. This version is from January 1st 2016.</p>
+<div id="reuse-existing-data-structures." class="section level3">
+<h3><span class="header-section-number">1.1.1</span> Reuse existing data structures.</h3>
+<ul>
+<li>try to use existing common base R structures instead of new customized ones</li>
+<li>if the latter is not possible create S3 classes based on a base R atomic or list</li>
+<li>use data frames or tibbles for rectangular data made up of observations and variables in rows and columns (which is basically tidy data)</li>
+<li>for “non-standard scoping”, prefer formulas over non-standard evaluation and use the <a href="https://github.com/hadley/lazyeval">lazyeval</a> package.</li>
+</ul>
+</div>
+<div id="compose-simple-functions-with-the-pipe." class="section level3">
+<h3><span class="header-section-number">1.1.2</span> Compose simple functions with the pipe.</h3>
+</div>
+<div id="embrace-functional-programming." class="section level3">
+<h3><span class="header-section-number">1.1.3</span> Embrace functional programming.</h3>
+</div>
+<div id="design-for-humans." class="section level3">
+<h3><span class="header-section-number">1.1.4</span> Design for humans.</h3>
+</div>
+</div>
+<div id="resources" class="section level2">
+<h2><span class="header-section-number">1.2</span> Resources</h2>
+<ul>
+<li><a href="https://cran.r-project.org/web/packages/tidyverse/vignettes/manifesto.html">The tidy tools manifesto</a></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="non-standard-evaluation.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/Tazinho/Tidyverse-Cookbook/edit/master/01-Idioms.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"search": true
+});
+});
+</script>
+
+</body>
+
+</html>

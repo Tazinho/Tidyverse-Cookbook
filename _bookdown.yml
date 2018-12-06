@@ -12,7 +12,7 @@ rmd_files: [
   "08-Lists.Rmd",                          
   "09-List_columns_within_data_frames.Rmd",
   "10-Tidy_data_structures.Rmd",           
-  "11-Modells.Rmd",                        
+  "11-Models.Rmd",                        
   "12-Statistics.Rmd",                     
   "13-Text_mining.Rmd",                    
   "14-Timeseries.Rmd",                     

@@ -5,12 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Tidyverse Cookbook</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <title>20 Spatial data | Tidyverse Cookbook</title>
   <meta name="description" content="Simple cookbook for functions and idioms within the scope of the tidyverse.">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Tidyverse Cookbook" />
+  <meta property="og:title" content="20 Spatial data | Tidyverse Cookbook />
   <meta property="og:type" content="book" />
   
   
@@ -18,7 +17,7 @@
   <meta name="github-repo" content="Tazinho/Tidyverse-Cookbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Tidyverse Cookbook" />
+  <meta name="twitter:title" content="20 Spatial data | Tidyverse Cookbook />
   
   <meta name="twitter:description" content="Simple cookbook for functions and idioms within the scope of the tidyverse." />
   
@@ -26,7 +25,7 @@
 <meta name="author" content="Malte Grosser">
 
 
-<meta name="date" content="2017-10-19">
+<meta name="date" content="2018-12-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -35,9 +34,9 @@
   
 <link rel="prev" href="labelled-data.html">
 
-
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -55,46 +54,75 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 </head>
 
 <body>
+
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -243,7 +271,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ol style="list-style-type: decimal">
 <li><strong>How to load/read and save/write spatial data?</strong></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sf)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sf)
 ## Linking to GEOS 3.5.1, GDAL 2.1.3, proj.4 4.9.2, lwgeom 2.3.2 r15302
 nc &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="kw">system.file</span>(<span class="st">&quot;shape/nc.shp&quot;</span>, <span class="dt">package=</span><span class="st">&quot;sf&quot;</span>), <span class="dt">quiet =</span> <span class="ot">TRUE</span>)
 <span class="co"># st_write(nc, &quot;nc.shp&quot;)</span>
@@ -252,14 +280,14 @@ nc &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="kw
 <span class="co"># stringsAsFactors, geometry_column, type, quiet)</span>
 <span class="co"># in case of specific problems see:</span>
 <span class="co"># https://edzer.github.io/sfr/articles/sf2.html</span>
-<span class="co">#   ____________________________________________________________________________</span></code></pre></div>
+<span class="co">#   ____________________________________________________________________________</span></code></pre>
 </div>
 <div id="objects" class="section level2">
 <h2><span class="header-section-number">20.2</span> Objects</h2>
 <ol start="2" style="list-style-type: decimal">
 <li><strong>What are the classes of sf-objects?</strong></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># the data.frame</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># the data.frame</span>
 <span class="kw">class</span>(nc)
 <span class="co">#&gt; [1] &quot;sf&quot;         &quot;data.frame&quot;</span>
 
@@ -273,11 +301,11 @@ nc &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="kw
 <span class="co">#&gt; [1] &quot;XY&quot;           &quot;MULTIPOLYGON&quot; &quot;sfg&quot;         </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]</span>
-<span class="co">#&gt; [1] &quot;XY&quot;           &quot;MULTIPOLYGON&quot; &quot;sfg&quot;</span></code></pre></div>
+<span class="co">#&gt; [1] &quot;XY&quot;           &quot;MULTIPOLYGON&quot; &quot;sfg&quot;</span></code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li><strong>Which methods are avaliable for sf-objects</strong>?</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">methods</span>(<span class="dt">class =</span> <span class="st">&quot;sf&quot;</span>)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">methods</span>(<span class="dt">class =</span> <span class="st">&quot;sf&quot;</span>)
 <span class="co">#&gt;  [1] $&lt;-               [                 [[&lt;-             </span>
 <span class="co">#&gt;  [4] aggregate         anti_join         arrange_         </span>
 <span class="co">#&gt;  [7] cbind             distinct_         filter_          </span>
@@ -325,11 +353,11 @@ nc &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="kw
 <span class="co">#&gt; [22] st_simplify       st_sym_difference st_transform     </span>
 <span class="co">#&gt; [25] st_triangulate    st_union          st_voronoi       </span>
 <span class="co">#&gt; [28] st_zm            </span>
-<span class="co">#&gt; see &#39;?methods&#39; for accessing help and source code</span></code></pre></div>
+<span class="co">#&gt; see &#39;?methods&#39; for accessing help and source code</span></code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li><strong>What sf-geometry types are available, how do you initialize them and what types are the internally?</strong></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># internal types:</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># internal types:</span>
 <span class="co"># - point (atomic)</span>
 <span class="co"># - linestring (matrix)</span>
 <span class="co"># - everything else (list)</span>
@@ -372,11 +400,11 @@ nc &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="kw
 <span class="co"># surface</span>
 <span class="co"># polyhedral surface</span>
 <span class="co"># tin</span>
-<span class="co"># triangle</span></code></pre></div>
+<span class="co"># triangle</span></code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li><strong>What are the dimensions of those objects?</strong></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x =<span class="st"> </span><span class="kw">st_sfc</span>(
+<pre class="sourceCode r"><code class="sourceCode r">x =<span class="st"> </span><span class="kw">st_sfc</span>(
   <span class="kw">st_point</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">1</span>), 
   <span class="kw">st_linestring</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))), 
   <span class="kw">st_polygon</span>(<span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>),<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)))),
@@ -384,22 +412,22 @@ nc &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="kw
   <span class="kw">st_linestring</span>(),
   <span class="kw">st_geometrycollection</span>())
 <span class="kw">st_dimension</span>(x, <span class="dt">NA_if_empty =</span> <span class="ot">FALSE</span>)
-<span class="co">#&gt; [1] 0 1 2 0 1 0</span></code></pre></div>
+<span class="co">#&gt; [1] 0 1 2 0 1 0</span></code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li><strong>How to initialize these objects from well known text?</strong></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">st_as_sfc</span>(<span class="st">&quot;POINT(0 1)&quot;</span>)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">st_as_sfc</span>(<span class="st">&quot;POINT(0 1)&quot;</span>)
 <span class="co">#&gt; Geometry set for 1 feature </span>
 <span class="co">#&gt; geometry type:  POINT</span>
 <span class="co">#&gt; dimension:      XY</span>
 <span class="co">#&gt; bbox:           xmin: 0 ymin: 1 xmax: 0 ymax: 1</span>
 <span class="co">#&gt; epsg (SRID):    NA</span>
 <span class="co">#&gt; proj4string:    NA</span>
-<span class="co">#&gt; POINT(0 1)</span></code></pre></div>
+<span class="co">#&gt; POINT(0 1)</span></code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li><strong>How to initialize an sf-object and bring it into coordinate reference systems (crs)?</strong></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># attributes of sfc obejects to store a crs: epsg, proj4string</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># attributes of sfc obejects to store a crs: epsg, proj4string</span>
 <span class="co"># theses must be the same for all elements of an sfc-object, but can also be NA.</span>
 <span class="co"># -proj4string is a generic, string-based description of crs</span>
 <span class="co"># - epsg integer values refer to particular well known crs, that might also</span>
@@ -418,49 +446,49 @@ nc &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="kw
 <span class="co">#&gt; 1 POINT(0 0)</span>
 <span class="co">#&gt; 2 POINT(0 1)</span>
 <span class="co"># also use:</span>
-<span class="co"># use st_crs() and st_transform()</span></code></pre></div>
+<span class="co"># use st_crs() and st_transform()</span></code></pre>
 <ol start="6" style="list-style-type: decimal">
 <li><strong>How to coerce data.frames to sf?</strong></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># use st_as_sf</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># use st_as_sf</span></code></pre>
 <ol start="6" style="list-style-type: decimal">
 <li><strong>How to create and identify empty geometries?</strong></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">st_geometrycollection</span>()
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">st_geometrycollection</span>()
 <span class="co">#&gt; GEOMETRYCOLLECTION()</span>
 <span class="kw">length</span>(<span class="kw">st_geometrycollection</span>())
-<span class="co">#&gt; [1] 0</span></code></pre></div>
+<span class="co">#&gt; [1] 0</span></code></pre>
 <ol start="7" style="list-style-type: decimal">
 <li><strong>How to identify unconnected parts of geometries?</strong></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">which</span>(<span class="kw">sapply</span>(<span class="kw">st_geometry</span>(nc), length) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>)
-<span class="co">#&gt; [1]  4 56 57 87 91 95</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">which</span>(<span class="kw">sapply</span>(<span class="kw">st_geometry</span>(nc), length) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>)
+<span class="co">#&gt; [1]  4 56 57 87 91 95</span></code></pre>
 <ol start="8" style="list-style-type: decimal">
 <li><strong>How to switch between well-known text and well-known binary encoding?</strong></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">st_linestring</span>(<span class="kw">matrix</span>(<span class="dv">10</span><span class="op">:</span><span class="dv">1</span>,<span class="dv">5</span>))
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">st_linestring</span>(<span class="kw">matrix</span>(<span class="dv">10</span><span class="op">:</span><span class="dv">1</span>,<span class="dv">5</span>))
 <span class="kw">st_as_text</span>(x)
 <span class="co">#&gt; [1] &quot;LINESTRING(10 5, 9 4, 8 3, 7 2, 6 1)&quot;</span>
 <span class="kw">st_as_binary</span>(x)
 <span class="co">#&gt;  [1] 01 02 00 00 00 05 00 00 00 00 00 00 00 00 00 24 40 00 00 00 00 00 00</span>
 <span class="co">#&gt; [24] 14 40 00 00 00 00 00 00 22 40 00 00 00 00 00 00 10 40 00 00 00 00 00</span>
 <span class="co">#&gt; [47] 00 20 40 00 00 00 00 00 00 08 40 00 00 00 00 00 00 1c 40 00 00 00 00</span>
-<span class="co">#&gt; [70] 00 00 00 40 00 00 00 00 00 00 18 40 00 00 00 00 00 00 f0 3f</span></code></pre></div>
+<span class="co">#&gt; [70] 00 00 00 40 00 00 00 00 00 00 18 40 00 00 00 00 00 00 f0 3f</span></code></pre>
 <ol start="9" style="list-style-type: decimal">
 <li><strong>How to control geometries for simplicity and validity?</strong></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">st_is_valid</span>(<span class="kw">st_as_sfc</span>(<span class="st">&quot;POLYGON((0 0, 0 10, 10 0, 10 10, 0 0))&quot;</span>))
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">st_is_valid</span>(<span class="kw">st_as_sfc</span>(<span class="st">&quot;POLYGON((0 0, 0 10, 10 0, 10 10, 0 0))&quot;</span>))
 <span class="co">#&gt; Warning in eval(substitute(expr), envir, enclos): Self-intersection at or</span>
 <span class="co">#&gt; near point 5 5</span>
 <span class="co">#&gt; [1] FALSE</span>
 <span class="kw">st_is_simple</span>(<span class="kw">st_as_sfc</span>(<span class="st">&quot;POLYGON((0 0, 0 10, 10 0, 10 10, 0 0))&quot;</span>))
 <span class="co">#&gt; [1] TRUE</span>
-<span class="kw">plot</span>(<span class="kw">st_as_sfc</span>(<span class="st">&quot;POLYGON((0 0, 0 10, 10 0, 10 10, 0 0))&quot;</span>))</code></pre></div>
+<span class="kw">plot</span>(<span class="kw">st_as_sfc</span>(<span class="st">&quot;POLYGON((0 0, 0 10, 10 0, 10 10, 0 0))&quot;</span>))</code></pre>
 <p><img src="20-Spatial_data_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <ol start="9" style="list-style-type: decimal">
 <li><strong>How to create a grid manually?</strong></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
 lat &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>, <span class="dt">to =</span> <span class="dv">50</span>, <span class="dt">length.out =</span> <span class="dv">100</span>)
 long &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>, <span class="dt">to =</span> <span class="dv">50</span>, <span class="dt">length.out =</span> <span class="dv">100</span>)
 grid &lt;-<span class="st"> </span>tidyr<span class="op">::</span><span class="kw">expand</span>(<span class="kw">tibble</span>(<span class="dt">lat =</span> lat, <span class="dt">long =</span> long), lat, long)
@@ -470,10 +498,10 @@ grid &lt;-<span class="st"> </span>grid <span class="op">%&gt;%</span><span clas
 grid &lt;-<span class="st"> </span>grid <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">points =</span> <span class="kw">st_sfc</span>(points))
 grid &lt;-<span class="st"> </span><span class="kw">st_sf</span>(grid, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>,
               <span class="dt">sf_column_name =</span> <span class="st">&quot;points&quot;</span>)
-<span class="kw">plot</span>(grid <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(points))</code></pre></div>
+<span class="kw">plot</span>(grid <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(points))</code></pre>
 <p><img src="20-Spatial_data_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p><strong>How to set aggregations?</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># while initializing</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># while initializing</span>
 nc &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="kw">system.file</span>(<span class="st">&quot;shape/nc.shp&quot;</span>, <span class="dt">package=</span><span class="st">&quot;sf&quot;</span>),
     <span class="dt">agr =</span> <span class="kw">c</span>(<span class="dt">AREA =</span> <span class="st">&quot;aggregate&quot;</span>, <span class="dt">PERIMETER =</span> <span class="st">&quot;aggregate&quot;</span>, <span class="dt">CNTY_ =</span> <span class="st">&quot;identity&quot;</span>,
         <span class="dt">CNTY_ID =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">NAME =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">FIPS =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">FIPSNO =</span> <span class="st">&quot;identity&quot;</span>,
@@ -487,21 +515,21 @@ nc &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="kw
 <span class="co">#&gt; dimension:      XY</span>
 <span class="co">#&gt; bbox:           xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965</span>
 <span class="co">#&gt; epsg (SRID):    4267</span>
-<span class="co">#&gt; proj4string:    +proj=longlat +datum=NAD27 +no_defs</span></code></pre></div>
+<span class="co">#&gt; proj4string:    +proj=longlat +datum=NAD27 +no_defs</span></code></pre>
 </div>
 <div id="arithmetics" class="section level2">
 <h2><span class="header-section-number">20.3</span> Arithmetics</h2>
 <ol start="10" style="list-style-type: decimal">
 <li><strong>How to calculate with simple features?</strong></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">st_polygon</span>(<span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>),<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>),<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)))) <span class="op">-</span><span class="st"> </span><span class="fl">0.5</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">st_polygon</span>(<span class="kw">list</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>),<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>),<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)))) <span class="op">-</span><span class="st"> </span><span class="fl">0.5</span>
 <span class="co">#&gt; POLYGON((-0.5 -0.5, 0.5 -0.5, 0.5 0.5, -0.5 0.5, -0.5 -0.5))</span>
 <span class="kw">st_point</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
-<span class="co">#&gt; POINT(1 1)</span></code></pre></div>
+<span class="co">#&gt; POINT(1 1)</span></code></pre>
 <ol start="10" style="list-style-type: decimal">
 <li><strong>How to calculate distances?</strong></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x =<span class="st"> </span><span class="kw">st_transform</span>(nc, <span class="dv">32119</span>)
+<pre class="sourceCode r"><code class="sourceCode r">x =<span class="st"> </span><span class="kw">st_transform</span>(nc, <span class="dv">32119</span>)
 <span class="kw">st_distance</span>(x[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">22</span>),], x[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">33</span>,<span class="dv">55</span>,<span class="dv">56</span>),], <span class="dt">dist_fun =</span> geosphere<span class="op">::</span>distGeo)
 <span class="co">#&gt; Units: m</span>
 <span class="co">#&gt;           [,1]     [,2]      [,3]     [,4]</span>
@@ -510,30 +538,30 @@ nc &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="kw
 <span class="co">#&gt; [3,]  18944.03 352719.1  78756.89 517527.8</span>
 line =<span class="st"> </span><span class="kw">st_sfc</span>(<span class="kw">st_linestring</span>(<span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">30</span>,<span class="dv">30</span>), <span class="kw">c</span>(<span class="dv">40</span>,<span class="dv">40</span>))), <span class="dt">crs =</span> <span class="dv">4326</span>)
 <span class="kw">st_length</span>(line)
-<span class="co">#&gt; 1434649 m</span></code></pre></div>
+<span class="co">#&gt; 1434649 m</span></code></pre>
 </div>
 <div id="plots" class="section level2">
 <h2><span class="header-section-number">20.4</span> Plots</h2>
 <ol start="10" style="list-style-type: decimal">
 <li><strong>How does the plot method and its <code>add</code> argument work?</strong></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(nc[<span class="dv">1</span>,<span class="dv">1</span>], <span class="dt">col =</span> <span class="st">&#39;grey&#39;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(nc[<span class="dv">1</span>,<span class="dv">1</span>], <span class="dt">col =</span> <span class="st">&#39;grey&#39;</span>)</code></pre>
 <p><img src="20-Spatial_data_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(nc[<span class="dv">1</span>,<span class="dv">1</span>], <span class="dt">col =</span> <span class="st">&#39;grey&#39;</span>)
-<span class="kw">plot</span>(nc[<span class="dv">1</span>], <span class="dt">add =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(nc[<span class="dv">1</span>,<span class="dv">1</span>], <span class="dt">col =</span> <span class="st">&#39;grey&#39;</span>)
+<span class="kw">plot</span>(nc[<span class="dv">1</span>], <span class="dt">add =</span> <span class="ot">TRUE</span>)</code></pre>
 <p><img src="20-Spatial_data_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+<pre class="sourceCode r"><code class="sourceCode r">
 <span class="kw">plot</span>(nc[<span class="dv">1</span>])
-<span class="kw">plot</span>(nc[<span class="dv">1</span>,<span class="dv">1</span>], <span class="dt">col =</span> <span class="st">&#39;grey&#39;</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<span class="kw">plot</span>(nc[<span class="dv">1</span>,<span class="dv">1</span>], <span class="dt">col =</span> <span class="st">&#39;grey&#39;</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</code></pre>
 <p><img src="20-Spatial_data_files/figure-html/unnamed-chunk-21-2.png" width="672" /></p>
 <ol start="11" style="list-style-type: decimal">
 <li><strong>Some differenct plot options</strong></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(nc[<span class="dv">1</span>])</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(nc[<span class="dv">1</span>])</code></pre>
 <p><img src="20-Spatial_data_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">st_convex_hull</span>(nc[<span class="dv">1</span>]))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">st_convex_hull</span>(nc[<span class="dv">1</span>]))</code></pre>
 <p><img src="20-Spatial_data_files/figure-html/unnamed-chunk-22-2.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(nc[<span class="dv">1</span>], <span class="dt">border =</span> <span class="kw">grey</span>(.<span class="dv">5</span>))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(nc[<span class="dv">1</span>], <span class="dt">border =</span> <span class="kw">grey</span>(.<span class="dv">5</span>))</code></pre>
 <p><img src="20-Spatial_data_files/figure-html/unnamed-chunk-22-3.png" width="672" /></p>
 </div>
 <div id="resources-13" class="section level2">
@@ -553,7 +581,8 @@ line =<span class="st"> </span><span class="kw">st_sfc</span>(<span class="kw">s
       </div>
 <a href="labelled-data.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -562,17 +591,18 @@ line =<span class="st"> </span><span class="kw">st_sfc</span>(<span class="kw">s
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
-require(["gitbook"], function(gitbook) {
+gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
 "facebook": true,
 "twitter": true,
 "google": false,
+"linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -582,6 +612,10 @@ gitbook.start({
 "edit": {
 "link": "https://github.com/Tazinho/Tidyverse-Cookbook/edit/master/20-Spatial_data.Rmd",
 "text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
 },
 "download": null,
 "toc": {

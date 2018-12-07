@@ -5,12 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Tidyverse Cookbook</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <title>5 Strings | Tidyverse Cookbook</title>
   <meta name="description" content="Simple cookbook for functions and idioms within the scope of the tidyverse.">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Tidyverse Cookbook" />
+  <meta property="og:title" content="5 Strings | Tidyverse Cookbook />
   <meta property="og:type" content="book" />
   
   
@@ -18,7 +17,7 @@
   <meta name="github-repo" content="Tazinho/Tidyverse-Cookbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Tidyverse Cookbook" />
+  <meta name="twitter:title" content="5 Strings | Tidyverse Cookbook />
   
   <meta name="twitter:description" content="Simple cookbook for functions and idioms within the scope of the tidyverse." />
   
@@ -26,7 +25,7 @@
 <meta name="author" content="Malte Grosser">
 
 
-<meta name="date" content="2017-10-19">
+<meta name="date" content="2018-12-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -35,9 +34,9 @@
   
 <link rel="prev" href="data-frames-and-tibbles.html">
 <link rel="next" href="factors.html">
-
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -55,46 +54,75 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 </head>
 
 <body>
+
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -243,57 +271,57 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ol style="list-style-type: decimal">
 <li><strong>How to use regular expressions?</strong></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    stringr<span class="op">::</span><span class="kw">str_detect</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">d&quot;</span>)
+<pre class="sourceCode r"><code class="sourceCode r">    stringr<span class="op">::</span><span class="kw">str_detect</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">d&quot;</span>)
 <span class="co">#&gt; [1] TRUE</span>
     <span class="co"># is the same as</span>
     stringr<span class="op">::</span><span class="kw">str_detect</span>(<span class="st">&quot;1&quot;</span>, stringr<span class="op">::</span><span class="kw">regex</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">d&quot;</span>))
 <span class="co">#&gt; [1] TRUE</span>
-    <span class="co">#   ____________________________________________________________________________</span></code></pre></div>
+    <span class="co">#   ____________________________________________________________________________</span></code></pre>
 <ol style="list-style-type: decimal">
 <li><p><strong>Paste/concatenate strings.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="ot">NA</span>, <span class="ot">NaN</span>, <span class="ot">NULL</span>, <span class="kw">factor</span>(<span class="st">&quot;lalala&quot;</span>), <span class="kw">character</span>(<span class="dv">0</span>))
+<pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="ot">NA</span>, <span class="ot">NaN</span>, <span class="ot">NULL</span>, <span class="kw">factor</span>(<span class="st">&quot;lalala&quot;</span>), <span class="kw">character</span>(<span class="dv">0</span>))
 <span class="co">#&gt; [1] NA</span>
 <span class="co">#   ____________________________________________________________________________</span>
 <span class="kw">paste</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="ot">NA</span>, <span class="ot">NaN</span>, <span class="ot">NULL</span>, <span class="kw">factor</span>(<span class="st">&quot;lalala&quot;</span>), <span class="kw">character</span>(<span class="dv">0</span>), <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
-<span class="co">#&gt; [1] &quot;abNANaNlalala&quot;</span></code></pre></div></li>
+<span class="co">#&gt; [1] &quot;abNANaNlalala&quot;</span></code></pre></li>
 <li><p><strong>Treat <code>NA</code>’s as strings (<code>&quot;NA&quot;</code>).</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_replace_na</span>(<span class="kw">c</span>(<span class="ot">NA</span>, <span class="ot">NaN</span>, <span class="kw">factor</span>(<span class="st">&quot;lalala&quot;</span>), <span class="kw">character</span>(<span class="dv">0</span>)))
+<pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_replace_na</span>(<span class="kw">c</span>(<span class="ot">NA</span>, <span class="ot">NaN</span>, <span class="kw">factor</span>(<span class="st">&quot;lalala&quot;</span>), <span class="kw">character</span>(<span class="dv">0</span>)))
 <span class="co">#&gt; [1] &quot;NA&quot;  &quot;NaN&quot; &quot;1&quot;</span>
 <span class="co"># note that the `c` function coerces the factor to its integer representation</span>
 <span class="co">#   ____________________________________________________________________________</span>
 base_replace_na &lt;-<span class="st"> </span><span class="cf">function</span>(x) {<span class="kw">ifelse</span>(<span class="kw">is.na</span>(x), <span class="st">&quot;NA&quot;</span>, x)}
 <span class="kw">base_replace_na</span>(<span class="kw">c</span>(<span class="ot">NA</span>, <span class="ot">NaN</span>, <span class="kw">factor</span>(<span class="st">&quot;lalala&quot;</span>), <span class="kw">character</span>(<span class="dv">0</span>)))
-<span class="co">#&gt; [1] &quot;NA&quot;  &quot;NaN&quot; &quot;1&quot;</span></code></pre></div></li>
+<span class="co">#&gt; [1] &quot;NA&quot;  &quot;NaN&quot; &quot;1&quot;</span></code></pre></li>
 <li><p><strong>Count the number of letters in a string.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_length</span>(<span class="kw">c</span>(<span class="st">&quot;four&quot;</span>, <span class="ot">NA</span>, <span class="ot">NaN</span>, <span class="ot">NULL</span>, <span class="kw">factor</span>(<span class="st">&quot;lalala&quot;</span>)))
+<pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_length</span>(<span class="kw">c</span>(<span class="st">&quot;four&quot;</span>, <span class="ot">NA</span>, <span class="ot">NaN</span>, <span class="ot">NULL</span>, <span class="kw">factor</span>(<span class="st">&quot;lalala&quot;</span>)))
 <span class="co">#&gt; [1]  4 NA  3  1</span>
 <span class="co">#   ____________________________________________________________________________</span>
 <span class="kw">nchar</span>(<span class="kw">c</span>(<span class="st">&quot;four&quot;</span>, <span class="ot">NA</span>, <span class="ot">NaN</span>, <span class="ot">NULL</span>, <span class="kw">factor</span>(<span class="st">&quot;lalala&quot;</span>)))
-<span class="co">#&gt; [1]  4 NA  3  1</span></code></pre></div></li>
+<span class="co">#&gt; [1]  4 NA  3  1</span></code></pre></li>
 <li><p><strong>Return the last letter of a string, subset a string.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_sub</span>(<span class="kw">c</span>(<span class="st">&quot;five&quot;</span>, <span class="st">&quot;six&quot;</span>), <span class="op">-</span><span class="dv">1</span>)
+<pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_sub</span>(<span class="kw">c</span>(<span class="st">&quot;five&quot;</span>, <span class="st">&quot;six&quot;</span>), <span class="dv">-1</span>)
 <span class="co">#&gt; [1] &quot;e&quot; &quot;x&quot;</span>
 <span class="co">#   ____________________________________________________________________________</span>
 <span class="kw">substr</span>(<span class="kw">c</span>(<span class="st">&quot;five&quot;</span>, <span class="st">&quot;six&quot;</span>), 
        <span class="dt">start =</span> <span class="kw">nchar</span>(<span class="kw">c</span>(<span class="st">&quot;five&quot;</span>, <span class="st">&quot;six&quot;</span>)), 
        <span class="dt">stop =</span> <span class="kw">nchar</span>(<span class="kw">c</span>(<span class="st">&quot;five&quot;</span>, <span class="st">&quot;six&quot;</span>)))
-<span class="co">#&gt; [1] &quot;e&quot; &quot;x&quot;</span></code></pre></div></li>
+<span class="co">#&gt; [1] &quot;e&quot; &quot;x&quot;</span></code></pre></li>
 <li><p><strong>Repeat/replicate/duplicate a string several times.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_dup</span>(<span class="st">&quot;_a_&quot;</span>, <span class="dv">5</span>)
+<pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_dup</span>(<span class="st">&quot;_a_&quot;</span>, <span class="dv">5</span>)
 <span class="co">#&gt; [1] &quot;_a__a__a__a__a_&quot;</span>
 <span class="co">#   ____________________________________________________________________________</span>
 <span class="kw">paste</span>(<span class="kw">rep</span>(<span class="st">&quot;_a_&quot;</span>, <span class="dv">5</span>), <span class="dt">collapse =</span> <span class="st">&quot;&quot;</span>)
-<span class="co">#&gt; [1] &quot;_a__a__a__a__a_&quot;</span></code></pre></div></li>
+<span class="co">#&gt; [1] &quot;_a__a__a__a__a_&quot;</span></code></pre></li>
 <li><p><strong>Remove/trim spaces at the beginning (leading) and/or end (trailing) of a string.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_trim</span>(<span class="kw">c</span>(<span class="st">&quot;  2left_1right &quot;</span>, <span class="st">&quot;   &quot;</span>), <span class="dt">side =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>))
+<pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_trim</span>(<span class="kw">c</span>(<span class="st">&quot;  2left_1right &quot;</span>, <span class="st">&quot;   &quot;</span>), <span class="dt">side =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>))
 <span class="co">#&gt; [1] &quot;2left_1right &quot; &quot;&quot;</span>
 <span class="co">#   ____________________________________________________________________________</span>
 <span class="co"># ^\\s+|\\s+$ is the regex for one or more spaces in the beginning</span>
 <span class="co"># or one or more spaces at the end</span>
 <span class="kw">gsub</span>(<span class="st">&quot;^</span><span class="ch">\\</span><span class="st">s+&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;  2left_1right &quot;</span>, <span class="st">&quot;   &quot;</span>))
-<span class="co">#&gt; [1] &quot;2left_1right &quot; &quot;&quot;</span></code></pre></div></li>
+<span class="co">#&gt; [1] &quot;2left_1right &quot; &quot;&quot;</span></code></pre></li>
 <li><p><strong>Fill/pad spaces (or other characters) before and/or after a string.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_pad</span>(<span class="kw">c</span>(<span class="st">&quot;lalala&quot;</span>, <span class="st">&quot;&quot;</span>), <span class="dt">width =</span> <span class="dv">7</span>)
+<pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_pad</span>(<span class="kw">c</span>(<span class="st">&quot;lalala&quot;</span>, <span class="st">&quot;&quot;</span>), <span class="dt">width =</span> <span class="dv">7</span>)
 <span class="co">#&gt; [1] &quot; lalala&quot; &quot;       &quot;</span>
 <span class="co">#   ____________________________________________________________________________</span>
 <span class="kw">unname</span>(
@@ -304,21 +332,21 @@ base_replace_na &lt;-<span class="st"> </span><span class="cf">function</span>(x
          <span class="kw">character</span>(<span class="dv">1</span>)
          )
   )
-<span class="co">#&gt; [1] &quot; lalala&quot; &quot;       &quot;</span></code></pre></div></li>
+<span class="co">#&gt; [1] &quot; lalala&quot; &quot;       &quot;</span></code></pre></li>
 <li><p><strong>Sort strings for example, by a different local alphabetic order.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># The vowels come before the consonants in Hawaiian</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># The vowels come before the consonants in Hawaiian</span>
 stringr<span class="op">::</span><span class="kw">str_sort</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>], <span class="dt">locale =</span> <span class="st">&quot;haw&quot;</span>)
 <span class="co">#&gt;  [1] &quot;a&quot; &quot;e&quot; &quot;i&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;j&quot;</span>
 <span class="co">#   ____________________________________________________________________________</span>
-<span class="co"># one can use `sort()`, but one has to know the specific locale</span></code></pre></div></li>
+<span class="co"># one can use `sort()`, but one has to know the specific locale</span></code></pre></li>
 <li><p><strong>Return the order of stringelements within a specific alphabet</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># The vowels come before the consonants in Hawaiian</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># The vowels come before the consonants in Hawaiian</span>
 stringr<span class="op">::</span><span class="kw">str_order</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>], <span class="dt">locale =</span> <span class="st">&quot;haw&quot;</span>)
 <span class="co">#&gt;  [1]  1  5  9  2  3  4  6  7  8 10</span>
 <span class="co">#   ____________________________________________________________________________</span>
-<span class="co"># one can use `sort()`, but one has to know the specific locale</span></code></pre></div></li>
+<span class="co"># one can use `sort()`, but one has to know the specific locale</span></code></pre></li>
 <li><p><strong>Change the encoding of a string</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Example from encoding?stringi::stringi</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Example from encoding?stringi::stringi</span>
 x &lt;-<span class="st"> </span><span class="kw">rawToChar</span>(<span class="kw">as.raw</span>(<span class="dv">177</span>))
 x
 <span class="co">#&gt; [1] &quot;±&quot;</span>
@@ -326,38 +354,38 @@ stringr<span class="op">::</span><span class="kw">str_conv</span>(x, <span class
 <span class="co">#&gt; [1] &quot;a&quot;</span>
 stringr<span class="op">::</span><span class="kw">str_conv</span>(x, <span class="st">&quot;ISO-8859-1&quot;</span>) <span class="co"># Plus-minus</span>
 <span class="co">#&gt; [1] &quot;±&quot;</span>
-<span class="co">#   ____________________________________________________________________________</span></code></pre></div></li>
+<span class="co">#   ____________________________________________________________________________</span></code></pre></li>
 <li><p><strong>Return the first two words of a string</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">word</span>(<span class="st">&quot;Hello, how are you?&quot;</span>, <span class="dv">1</span>, <span class="dv">2</span>)
+<pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">word</span>(<span class="st">&quot;Hello, how are you?&quot;</span>, <span class="dv">1</span>, <span class="dv">2</span>)
 <span class="co">#&gt; [1] &quot;Hello, how&quot;</span>
-<span class="co">#   ____________________________________________________________________________</span></code></pre></div></li>
+<span class="co">#   ____________________________________________________________________________</span></code></pre></li>
 <li><p><strong>Format a string (change width, indentaion, …).</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(stringr<span class="op">::</span><span class="kw">str_wrap</span>(<span class="st">&quot;Hello, how are you?&quot;</span>, <span class="dt">width =</span> <span class="dv">10</span>, <span class="dt">indent =</span> <span class="dv">0</span>, <span class="dt">exdent =</span> <span class="dv">2</span>))
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(stringr<span class="op">::</span><span class="kw">str_wrap</span>(<span class="st">&quot;Hello, how are you?&quot;</span>, <span class="dt">width =</span> <span class="dv">10</span>, <span class="dt">indent =</span> <span class="dv">0</span>, <span class="dt">exdent =</span> <span class="dv">2</span>))
 <span class="co">#&gt; Hello, how</span>
 <span class="co">#&gt;   are you?</span>
-<span class="co">#   ____________________________________________________________________________</span></code></pre></div></li>
+<span class="co">#   ____________________________________________________________________________</span></code></pre></li>
 </ol>
 </div>
 <div id="pattern-matching" class="section level2">
 <h2><span class="header-section-number">5.2</span> Pattern matching</h2>
 <ol style="list-style-type: decimal">
 <li><p><strong>How to disable case sensitivity in regex pattern?</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_detect</span>(<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>), stringr<span class="op">::</span><span class="kw">regex</span>(<span class="st">&quot;b|A|D&quot;</span>, <span class="dt">ignore_case =</span> <span class="ot">TRUE</span>))
-<span class="co">#&gt; [1]  TRUE  TRUE FALSE</span></code></pre></div></li>
+<pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_detect</span>(<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>), stringr<span class="op">::</span><span class="kw">regex</span>(<span class="st">&quot;b|A|D&quot;</span>, <span class="dt">ignore_case =</span> <span class="ot">TRUE</span>))
+<span class="co">#&gt; [1]  TRUE  TRUE FALSE</span></code></pre></li>
 <li><p><strong>Does a string contain a specific sequence of characters?</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_detect</span>(<span class="kw">c</span>(<span class="st">&quot;my number is 110&quot;</span>, <span class="st">&quot;call 911&quot;</span>), <span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{3}&quot;</span>)
+<pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_detect</span>(<span class="kw">c</span>(<span class="st">&quot;my number is 110&quot;</span>, <span class="st">&quot;call 911&quot;</span>), <span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{3}&quot;</span>)
 <span class="co">#&gt; [1] TRUE TRUE</span>
 <span class="co">#   ____________________________________________________________________________</span>
 <span class="kw">grepl</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{3}&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;my number is 110&quot;</span>, <span class="st">&quot;call 911&quot;</span>))
-<span class="co">#&gt; [1] TRUE TRUE</span></code></pre></div></li>
+<span class="co">#&gt; [1] TRUE TRUE</span></code></pre></li>
 <li><p><strong>Return every string that contains a specific sequence of characters?</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_subset</span>(<span class="kw">c</span>(<span class="st">&quot;my number is 110&quot;</span>, <span class="st">&quot;call 911&quot;</span>), <span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{3}&quot;</span>)
+<pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_subset</span>(<span class="kw">c</span>(<span class="st">&quot;my number is 110&quot;</span>, <span class="st">&quot;call 911&quot;</span>), <span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{3}&quot;</span>)
 <span class="co">#&gt; [1] &quot;my number is 110&quot; &quot;call 911&quot;</span>
 <span class="co">#   ____________________________________________________________________________</span>
 <span class="kw">grep</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{3}&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;my number is 110&quot;</span>, <span class="st">&quot;call 911&quot;</span>), <span class="dt">value =</span> <span class="ot">TRUE</span>)
-<span class="co">#&gt; [1] &quot;my number is 110&quot; &quot;call 911&quot;</span></code></pre></div></li>
+<span class="co">#&gt; [1] &quot;my number is 110&quot; &quot;call 911&quot;</span></code></pre></li>
 <li><p><strong>Return the (first) start and end index of substrings within a string?</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># use stringr::str_locate_all to get a matrix of all start and end indexes</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># use stringr::str_locate_all to get a matrix of all start and end indexes</span>
 stringr<span class="op">::</span><span class="kw">str_locate</span>(<span class="kw">c</span>(<span class="st">&quot;my 112 number is 110&quot;</span>, <span class="st">&quot;call 911&quot;</span>), <span class="kw">c</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{3}&quot;</span>))
 <span class="co">#&gt;      start end</span>
 <span class="co">#&gt; [1,]     4   6</span>
@@ -376,15 +404,15 @@ match_indices &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span
 match_indices
 <span class="co">#&gt;      start end</span>
 <span class="co">#&gt; [1,]     4   6</span>
-<span class="co">#&gt; [2,]     6   8</span></code></pre></div></li>
+<span class="co">#&gt; [2,]     6   8</span></code></pre></li>
 <li><p><strong>Return the (first) matched substring within a string?</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># use stringr::str_extract_all to get a matrix of all matched substrings</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># use stringr::str_extract_all to get a matrix of all matched substrings</span>
 stringr<span class="op">::</span><span class="kw">str_extract</span>(<span class="kw">c</span>(<span class="st">&quot;my 112 number is 110&quot;</span>, <span class="st">&quot;call 911&quot;</span>), <span class="kw">c</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{3}&quot;</span>))
 <span class="co">#&gt; [1] &quot;112&quot; &quot;911&quot;</span>
 <span class="co">#   ____________________________________________________________________________</span>
-<span class="co"># combine `substr()` with match_indices from above</span></code></pre></div></li>
+<span class="co"># combine `substr()` with match_indices from above</span></code></pre></li>
 <li><p><strong>Return the matching strings and matched capture groups.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># the example from the stringr vignette</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># the example from the stringr vignette</span>
 strings &lt;-<span class="st"> </span><span class="kw">c</span>(
   <span class="st">&quot;apple&quot;</span>,
   <span class="st">&quot;219 733 8965&quot;</span>, 
@@ -401,23 +429,23 @@ stringr<span class="op">::</span><span class="kw">str_match</span>(strings, phon
 <span class="co">#&gt; [4,] &quot;579-499-7527&quot; &quot;579&quot; &quot;499&quot; &quot;7527&quot;</span>
 <span class="co"># Use stringr::str_match_all for list return</span>
 <span class="co">#   ____________________________________________________________________________</span>
-<span class="co"># `regmatches()`</span></code></pre></div></li>
+<span class="co"># `regmatches()`</span></code></pre></li>
 <li><p><strong>Replace/substitute the first matching subtstring within a string.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_replace</span>(<span class="kw">c</span>(<span class="st">&quot;my 112 number is 110&quot;</span>, <span class="st">&quot;call 911&quot;</span>),
+<pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_replace</span>(<span class="kw">c</span>(<span class="st">&quot;my 112 number is 110&quot;</span>, <span class="st">&quot;call 911&quot;</span>),
                      <span class="kw">c</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{1}(</span><span class="ch">\\</span><span class="st">d{2})&quot;</span>), <span class="st">&quot;</span><span class="ch">\\</span><span class="st">1</span><span class="ch">\\</span><span class="st">1&quot;</span>)
 <span class="co">#&gt; [1] &quot;my 1212 number is 110&quot; &quot;call 1111&quot;</span>
 <span class="co">#   ____________________________________________________________________________</span>
 <span class="kw">sub</span>(<span class="kw">c</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{1}(</span><span class="ch">\\</span><span class="st">d{2})&quot;</span>), <span class="st">&quot;</span><span class="ch">\\</span><span class="st">1</span><span class="ch">\\</span><span class="st">1&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;my 112 number is 110&quot;</span>, <span class="st">&quot;call 911&quot;</span>))
-<span class="co">#&gt; [1] &quot;my 1212 number is 110&quot; &quot;call 1111&quot;</span></code></pre></div></li>
+<span class="co">#&gt; [1] &quot;my 1212 number is 110&quot; &quot;call 1111&quot;</span></code></pre></li>
 <li><p><strong>Replace/substitute all matching subtstrings within a string.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_replace_all</span>(<span class="kw">c</span>(<span class="st">&quot;my 112 number is 110&quot;</span>, <span class="st">&quot;call 911&quot;</span>),
+<pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_replace_all</span>(<span class="kw">c</span>(<span class="st">&quot;my 112 number is 110&quot;</span>, <span class="st">&quot;call 911&quot;</span>),
                          <span class="kw">c</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{1}(</span><span class="ch">\\</span><span class="st">d{2})&quot;</span>), <span class="st">&quot;</span><span class="ch">\\</span><span class="st">1</span><span class="ch">\\</span><span class="st">1&quot;</span>)
 <span class="co">#&gt; [1] &quot;my 1212 number is 1010&quot; &quot;call 1111&quot;</span>
 <span class="co">#   ____________________________________________________________________________</span>
 <span class="kw">gsub</span>(<span class="kw">c</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{1}(</span><span class="ch">\\</span><span class="st">d{2})&quot;</span>), <span class="st">&quot;</span><span class="ch">\\</span><span class="st">1</span><span class="ch">\\</span><span class="st">1&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;my 112 number is 110&quot;</span>, <span class="st">&quot;call 911&quot;</span>))
-<span class="co">#&gt; [1] &quot;my 1212 number is 1010&quot; &quot;call 1111&quot;</span></code></pre></div></li>
+<span class="co">#&gt; [1] &quot;my 1212 number is 1010&quot; &quot;call 1111&quot;</span></code></pre></li>
 <li><p><strong>Split strings by any pattern into different (optionally n) pieces.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># returns a matrix and padds with empty strings, when n is greater than the</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># returns a matrix and padds with empty strings, when n is greater than the</span>
 <span class="co"># number of pieces</span>
 stringr<span class="op">::</span><span class="kw">str_split_fixed</span>(<span class="kw">c</span>(<span class="st">&quot;lalala lala la&quot;</span>,
                            <span class="st">&quot;blabla lala la&quot;</span>),
@@ -444,9 +472,9 @@ stringr<span class="op">::</span><span class="kw">str_split</span>(<span class="
 <span class="co">#&gt; [1] &quot;lalala&quot; &quot;lala&quot;   &quot;la&quot;    </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]</span>
-<span class="co">#&gt; [1] &quot;&quot;           &quot;la&quot;         &quot;la lala la&quot;</span></code></pre></div></li>
+<span class="co">#&gt; [1] &quot;&quot;           &quot;la&quot;         &quot;la lala la&quot;</span></code></pre></li>
 <li><p><strong>Set all characters to lower/upper case.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_to_lower</span>(<span class="st">&quot;aBcDe&quot;</span>)
+<pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_to_lower</span>(<span class="st">&quot;aBcDe&quot;</span>)
 <span class="co">#&gt; [1] &quot;abcde&quot;</span>
 stringr<span class="op">::</span><span class="kw">str_to_upper</span>(<span class="st">&quot;aBcDe&quot;</span>)
 <span class="co">#&gt; [1] &quot;ABCDE&quot;</span>
@@ -454,11 +482,11 @@ stringr<span class="op">::</span><span class="kw">str_to_upper</span>(<span clas
 <span class="kw">tolower</span>(<span class="st">&quot;aBcDe&quot;</span>)
 <span class="co">#&gt; [1] &quot;abcde&quot;</span>
 <span class="kw">toupper</span>(<span class="st">&quot;aBcDe&quot;</span>)
-<span class="co">#&gt; [1] &quot;ABCDE&quot;</span></code></pre></div></li>
+<span class="co">#&gt; [1] &quot;ABCDE&quot;</span></code></pre></li>
 <li><p><strong>Truncate a string.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_trunc</span>(<span class="st">&quot;123456789&quot;</span>, <span class="dt">width =</span> <span class="dv">7</span>, <span class="dt">side =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">ellipsis =</span> <span class="st">&quot;&quot;</span>)
+<pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_trunc</span>(<span class="st">&quot;123456789&quot;</span>, <span class="dt">width =</span> <span class="dv">7</span>, <span class="dt">side =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">ellipsis =</span> <span class="st">&quot;&quot;</span>)
 <span class="co">#&gt; [1] &quot;1234567&quot;</span>
-<span class="co">#   ____________________________________________________________________________</span></code></pre></div></li>
+<span class="co">#   ____________________________________________________________________________</span></code></pre></li>
 </ol>
 <div id="regular-expressions" class="section level3">
 <h3><span class="header-section-number">5.2.1</span> Regular expressions</h3>
@@ -470,11 +498,14 @@ stringr<span class="op">::</span><span class="kw">str_to_upper</span>(<span clas
 <li><a href="http://www.regular-expressions.info/reference.html">reference sheet</a></li>
 <li><a href="http://regexr.com/">interactively test</a></li>
 <li><a href="http://www.txt2re.com/">Build a regular expressin</a></li>
-<li><p>Try the <code>str_view()</code> function to see, which substring a regex matches</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_view</span>(<span class="kw">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;a.c_blabla&quot;</span>, <span class="st">&quot;bef&quot;</span>), <span class="st">&quot;a</span><span class="ch">\\</span><span class="st">.c&quot;</span>)</code></pre></div>
-<div id="htmlwidget-ee3fa3e2f4cb7541729a" style="width:960px;height:auto;" class="str_view html-widget"></div>
-    <script type="application/json" data-for="htmlwidget-ee3fa3e2f4cb7541729a">{"x":{"html":"<ul>\n  <li>abc\u003c/li>\n  <li><span class='match'>a.c\u003c/span>_blabla\u003c/li>\n  <li>bef\u003c/li>\n\u003c/ul>"},"evals":[],"jsHooks":[]}</script></li>
+<li>Try the <code>str_view()</code> function to see, which substring a regex matches</li>
 </ul>
+<pre><code>```r
+stringr::str_view(c(&quot;abc&quot;, &quot;a.c_blabla&quot;, &quot;bef&quot;), &quot;a\\.c&quot;)
+```
+
+<div id="htmlwidget-ee3fa3e2f4cb7541729a" style="width:960px;height:auto;" class="str_view html-widget"></div>
+    <script type="application/json" data-for="htmlwidget-ee3fa3e2f4cb7541729a">{"x":{"html":"<ul>\n  <li>abc\u003c/li>\n  <li><span class='match'>a.c\u003c/span>_blabla\u003c/li>\n  <li>bef\u003c/li>\n\u003c/ul>"},"evals":[],"jsHooks":[]}</script></code></pre>
 <ol style="list-style-type: decimal">
 <li><strong>How to test regular expressions?</strong></li>
 </ol>
@@ -486,22 +517,22 @@ stringr<span class="op">::</span><span class="kw">str_to_upper</span>(<span clas
 <h3><span class="header-section-number">5.2.2</span> Modifiers</h3>
 <ol style="list-style-type: decimal">
 <li><p><strong>Count the number of words within a string.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">words &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;These are some words. </span>
+<pre class="sourceCode r"><code class="sourceCode r">words &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;These are some words. </span>
 <span class="st">           Some more words.&quot;</span>)
 stringr<span class="op">::</span><span class="kw">str_count</span>(words, stringr<span class="op">::</span><span class="kw">boundary</span>(<span class="st">&quot;word&quot;</span>))
 <span class="co">#&gt; [1] 7</span>
-<span class="co">#   ____________________________________________________________________________</span></code></pre></div></li>
+<span class="co">#   ____________________________________________________________________________</span></code></pre></li>
 <li><p><strong>Count the number of lines within a string.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_count</span>(words, stringr<span class="op">::</span><span class="kw">boundary</span>(<span class="st">&quot;line_break&quot;</span>)) <span class="op">-</span>
+<pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_count</span>(words, stringr<span class="op">::</span><span class="kw">boundary</span>(<span class="st">&quot;line_break&quot;</span>)) <span class="op">-</span>
 stringr<span class="op">::</span><span class="kw">str_count</span>(words, stringr<span class="op">::</span><span class="kw">boundary</span>(<span class="st">&quot;word&quot;</span>))
 <span class="co">#&gt; [1] 1</span>
-<span class="co">#   ____________________________________________________________________________</span></code></pre></div></li>
+<span class="co">#   ____________________________________________________________________________</span></code></pre></li>
 <li><p><strong>Count the number of sentences within a string.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_count</span>(words, stringr<span class="op">::</span><span class="kw">boundary</span>(<span class="st">&quot;sentence&quot;</span>))
+<pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_count</span>(words, stringr<span class="op">::</span><span class="kw">boundary</span>(<span class="st">&quot;sentence&quot;</span>))
 <span class="co">#&gt; [1] 2</span>
-<span class="co">#   ____________________________________________________________________________</span></code></pre></div></li>
+<span class="co">#   ____________________________________________________________________________</span></code></pre></li>
 <li><p><strong>Split a string by characters.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_split</span>(words, stringr<span class="op">::</span><span class="kw">boundary</span>(<span class="st">&quot;character&quot;</span>))
+<pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_split</span>(words, stringr<span class="op">::</span><span class="kw">boundary</span>(<span class="st">&quot;character&quot;</span>))
 <span class="co">#&gt; [[1]]</span>
 <span class="co">#&gt;  [1] &quot;T&quot;  &quot;h&quot;  &quot;e&quot;  &quot;s&quot;  &quot;e&quot;  &quot; &quot;  &quot;a&quot;  &quot;r&quot;  &quot;e&quot;  &quot; &quot;  &quot;s&quot;  &quot;o&quot;  &quot;m&quot;  &quot;e&quot; </span>
 <span class="co">#&gt; [15] &quot; &quot;  &quot;w&quot;  &quot;o&quot;  &quot;r&quot;  &quot;d&quot;  &quot;s&quot;  &quot;.&quot;  &quot; &quot;  &quot;\n&quot; &quot; &quot;  &quot; &quot;  &quot; &quot;  &quot; &quot;  &quot; &quot; </span>
@@ -513,7 +544,7 @@ stringr<span class="op">::</span><span class="kw">str_count</span>(words, string
 <span class="co">#&gt;  [1] &quot;T&quot;  &quot;h&quot;  &quot;e&quot;  &quot;s&quot;  &quot;e&quot;  &quot; &quot;  &quot;a&quot;  &quot;r&quot;  &quot;e&quot;  &quot; &quot;  &quot;s&quot;  &quot;o&quot;  &quot;m&quot;  &quot;e&quot; </span>
 <span class="co">#&gt; [15] &quot; &quot;  &quot;w&quot;  &quot;o&quot;  &quot;r&quot;  &quot;d&quot;  &quot;s&quot;  &quot;.&quot;  &quot; &quot;  &quot;\n&quot; &quot; &quot;  &quot; &quot;  &quot; &quot;  &quot; &quot;  &quot; &quot; </span>
 <span class="co">#&gt; [29] &quot; &quot;  &quot; &quot;  &quot; &quot;  &quot; &quot;  &quot; &quot;  &quot; &quot;  &quot;S&quot;  &quot;o&quot;  &quot;m&quot;  &quot;e&quot;  &quot; &quot;  &quot;m&quot;  &quot;o&quot;  &quot;r&quot; </span>
-<span class="co">#&gt; [43] &quot;e&quot;  &quot; &quot;  &quot;w&quot;  &quot;o&quot;  &quot;r&quot;  &quot;d&quot;  &quot;s&quot;  &quot;.&quot;</span></code></pre></div></li>
+<span class="co">#&gt; [43] &quot;e&quot;  &quot; &quot;  &quot;w&quot;  &quot;o&quot;  &quot;r&quot;  &quot;d&quot;  &quot;s&quot;  &quot;.&quot;</span></code></pre></li>
 </ol>
 </div>
 </div>
@@ -538,8 +569,9 @@ stringr<span class="op">::</span><span class="kw">str_count</span>(words, string
         </div>
       </div>
 <a href="data-frames-and-tibbles.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="factors.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="factors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -548,17 +580,18 @@ stringr<span class="op">::</span><span class="kw">str_count</span>(words, string
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
-require(["gitbook"], function(gitbook) {
+gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
 "facebook": true,
 "twitter": true,
 "google": false,
+"linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -568,6 +601,10 @@ gitbook.start({
 "edit": {
 "link": "https://github.com/Tazinho/Tidyverse-Cookbook/edit/master/05-Strings.Rmd",
 "text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
 },
 "download": null,
 "toc": {

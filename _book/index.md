@@ -2,7 +2,7 @@
 ---
 title: "Tidyverse Cookbook"
 author: "Malte Grosser"
-date: "2017-10-19"
+date: "2018-12-07"
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook:

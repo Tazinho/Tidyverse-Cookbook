@@ -5,12 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Tidyverse Cookbook</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <title>7 Dates and times | Tidyverse Cookbook</title>
   <meta name="description" content="Simple cookbook for functions and idioms within the scope of the tidyverse.">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Tidyverse Cookbook" />
+  <meta property="og:title" content="7 Dates and times | Tidyverse Cookbook />
   <meta property="og:type" content="book" />
   
   
@@ -18,7 +17,7 @@
   <meta name="github-repo" content="Tazinho/Tidyverse-Cookbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Tidyverse Cookbook" />
+  <meta name="twitter:title" content="7 Dates and times | Tidyverse Cookbook />
   
   <meta name="twitter:description" content="Simple cookbook for functions and idioms within the scope of the tidyverse." />
   
@@ -26,7 +25,7 @@
 <meta name="author" content="Malte Grosser">
 
 
-<meta name="date" content="2017-10-19">
+<meta name="date" content="2018-12-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -35,9 +34,9 @@
   
 <link rel="prev" href="factors.html">
 <link rel="next" href="lists.html">
-
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -55,46 +54,75 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 </head>
 
 <body>
+
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -241,19 +269,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="dates" class="section level2">
 <h2><span class="header-section-number">7.1</span> Dates</h2>
 <p><strong>Task:</strong> Convert a string into a date.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">ymd</span>(<span class="st">&quot;2016-01-01&quot;</span>) <span class="co"># also &quot;2016/01/01&quot;, &quot;20160101&quot; and &quot;2016:01:01&quot; will work</span>
+<pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">ymd</span>(<span class="st">&quot;2016-01-01&quot;</span>) <span class="co"># also &quot;2016/01/01&quot;, &quot;20160101&quot; and &quot;2016:01:01&quot; will work</span>
 <span class="co">#&gt; [1] &quot;2016-01-01&quot;</span>
 <span class="co">#   ____________________________________________________________________________</span>
 <span class="kw">as.Date.character</span>(<span class="st">&quot;2016-01-01&quot;</span>) <span class="co"># also &quot;2016/01/01&quot; will work</span>
-<span class="co">#&gt; [1] &quot;2016-01-01&quot;</span></code></pre></div>
+<span class="co">#&gt; [1] &quot;2016-01-01&quot;</span></code></pre>
 <p><strong>Task:</strong> Add days (as an integer) to a date.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">ymd</span>(<span class="st">&quot;2016-01-01&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="dv">5</span>
+<pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">ymd</span>(<span class="st">&quot;2016-01-01&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="dv">5</span>
 <span class="co">#&gt; [1] &quot;2016-01-06&quot;</span>
 <span class="co">#   ____________________________________________________________________________</span>
 <span class="kw">as.Date.character</span>(<span class="st">&quot;2016-01-01&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="dv">5</span>
-<span class="co">#&gt; [1] &quot;2016-01-06&quot;</span></code></pre></div>
+<span class="co">#&gt; [1] &quot;2016-01-06&quot;</span></code></pre>
 <p><strong>Task:</strong> Generate a (dense) sequence of days/weeks/months/years.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">ymd</span>(<span class="st">&quot;2016-01-01&quot;</span>) <span class="op">+</span><span class="st"> </span>lubridate<span class="op">::</span><span class="kw">days</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">3</span>)
+<pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">ymd</span>(<span class="st">&quot;2016-01-01&quot;</span>) <span class="op">+</span><span class="st"> </span>lubridate<span class="op">::</span><span class="kw">days</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">3</span>)
 <span class="co">#&gt; [1] &quot;2016-01-01&quot; &quot;2016-01-02&quot; &quot;2016-01-03&quot; &quot;2016-01-04&quot;</span>
 lubridate<span class="op">::</span><span class="kw">ymd</span>(<span class="st">&quot;2016-01-01&quot;</span>) <span class="op">+</span><span class="st"> </span>lubridate<span class="op">::</span><span class="kw">weeks</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">3</span>)
 <span class="co">#&gt; [1] &quot;2016-01-01&quot; &quot;2016-01-08&quot; &quot;2016-01-15&quot; &quot;2016-01-22&quot;</span>
@@ -262,22 +290,22 @@ lubridate<span class="op">::</span><span class="kw">ymd</span>(<span class="st">
 lubridate<span class="op">::</span><span class="kw">ymd</span>(<span class="st">&quot;2016-01-01&quot;</span>) <span class="op">+</span><span class="st"> </span>lubridate<span class="op">::</span><span class="kw">years</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">3</span>)
 <span class="co">#&gt; [1] &quot;2016-01-01&quot; &quot;2017-01-01&quot; &quot;2018-01-01&quot; &quot;2019-01-01&quot;</span>
 lubridate<span class="op">::</span><span class="kw">ymd</span>(<span class="st">&quot;2012-01-01&quot;</span>) <span class="op">+</span><span class="st"> </span>lubridate<span class="op">::</span><span class="kw">dyears</span>(<span class="dv">1</span>) <span class="co"># adds 365 days also for leap years</span>
-<span class="co">#&gt; [1] &quot;2012-12-31&quot;</span></code></pre></div>
+<span class="co">#&gt; [1] &quot;2012-12-31&quot;</span></code></pre>
 <p><strong>TASK:</strong> Get the exact difference between two dates in days or other units:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.double</span>(<span class="kw">difftime</span>(lubridate<span class="op">::</span><span class="kw">ymd_hms</span>(<span class="st">&quot;2016-01-01 08:04:20&quot;</span>),
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.double</span>(<span class="kw">difftime</span>(lubridate<span class="op">::</span><span class="kw">ymd_hms</span>(<span class="st">&quot;2016-01-01 08:04:20&quot;</span>),
                    lubridate<span class="op">::</span><span class="kw">ymd_hms</span>(<span class="st">&quot;2016-04-01 12:03:00&quot;</span>),
                    <span class="dt">units =</span> <span class="st">&quot;days&quot;</span>))
 <span class="co">#&gt; [1] -91.16574</span>
-<span class="co">#   ____________________________________________________________________________</span></code></pre></div>
+<span class="co">#   ____________________________________________________________________________</span></code></pre>
 <p><strong>Task:</strong> Get the day of a week as an integer or as its name.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">wday</span>(<span class="st">&quot;2016-01-01&quot;</span>)
+<pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">wday</span>(<span class="st">&quot;2016-01-01&quot;</span>)
 <span class="co">#&gt; [1] 6</span>
 lubridate<span class="op">::</span><span class="kw">wday</span>(<span class="st">&quot;2016-01-01&quot;</span>, <span class="dt">label =</span> <span class="ot">TRUE</span>)
 <span class="co">#&gt; [1] Fri</span>
 <span class="co">#&gt; Levels: Sun &lt; Mon &lt; Tues &lt; Wed &lt; Thurs &lt; Fri &lt; Sat</span>
-<span class="co">#   ____________________________________________________________________________</span></code></pre></div>
+<span class="co">#   ____________________________________________________________________________</span></code></pre>
 <p><strong>Task:</strong> Get the day/month/year from a date.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">day</span>(<span class="st">&quot;2016-01-01&quot;</span>)
+<pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">day</span>(<span class="st">&quot;2016-01-01&quot;</span>)
 <span class="co">#&gt; [1] 1</span>
 lubridate<span class="op">::</span><span class="kw">week</span>(<span class="st">&quot;2016-01-01&quot;</span>)
 <span class="co">#&gt; [1] 1</span>
@@ -288,9 +316,9 @@ lubridate<span class="op">::</span><span class="kw">month</span>(<span class="st
 <span class="co">#&gt; 12 Levels: Jan &lt; Feb &lt; Mar &lt; Apr &lt; May &lt; Jun &lt; Jul &lt; Aug &lt; Sep &lt; ... &lt; Dec</span>
 lubridate<span class="op">::</span><span class="kw">year</span>(<span class="st">&quot;2016-01-01&quot;</span>)
 <span class="co">#&gt; [1] 2016</span>
-<span class="co">#   ____________________________________________________________________________</span></code></pre></div>
+<span class="co">#   ____________________________________________________________________________</span></code></pre>
 <p><strong>Task:</strong> What happens if dates are not valid?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">ymd</span>(<span class="st">&quot;20160142&quot;</span>)
+<pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">ymd</span>(<span class="st">&quot;20160142&quot;</span>)
 <span class="co">#&gt; Warning: All formats failed to parse. No formats found.</span>
 <span class="co">#&gt; [1] NA</span>
 jan31 &lt;-<span class="st"> </span><span class="kw">ymd</span>(<span class="st">&quot;2013-01-31&quot;</span>)
@@ -305,87 +333,87 @@ jan31 <span class="op">+</span><span class="st"> </span><span class="kw">months<
 lubridate<span class="op">::</span><span class="st">`</span><span class="dt">%m+%</span><span class="st">`</span>(jan31, <span class="kw">months</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">11</span>))
 <span class="co">#&gt;  [1] &quot;2013-01-31&quot; &quot;2013-02-28&quot; &quot;2013-03-31&quot; &quot;2013-04-30&quot; &quot;2013-05-31&quot;</span>
 <span class="co">#&gt;  [6] &quot;2013-06-30&quot; &quot;2013-07-31&quot; &quot;2013-08-31&quot; &quot;2013-09-30&quot; &quot;2013-10-31&quot;</span>
-<span class="co">#&gt; [11] &quot;2013-11-30&quot; &quot;2013-12-31&quot;</span></code></pre></div>
+<span class="co">#&gt; [11] &quot;2013-11-30&quot; &quot;2013-12-31&quot;</span></code></pre>
 <p><strong>Task:</strong> Get the last day of a month</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">last_day &lt;-<span class="st"> </span><span class="cf">function</span>(date) {
+<pre class="sourceCode r"><code class="sourceCode r">last_day &lt;-<span class="st"> </span><span class="cf">function</span>(date) {
   lubridate<span class="op">::</span><span class="kw">ceiling_date</span>(date, <span class="st">&quot;month&quot;</span>) <span class="op">-</span><span class="st"> </span>lubridate<span class="op">::</span><span class="kw">days</span>(<span class="dv">1</span>)
   }
 <span class="kw">last_day</span>(lubridate<span class="op">::</span><span class="kw">ymd</span>(<span class="st">&quot;2016-01-01&quot;</span>))
-<span class="co">#&gt; [1] &quot;2016-01-31&quot;</span></code></pre></div>
+<span class="co">#&gt; [1] &quot;2016-01-31&quot;</span></code></pre>
 <p><strong>Task:</strong> Check if a year is a leap/non regular year:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">leap_year</span>(<span class="dv">2011</span>)
+<pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">leap_year</span>(<span class="dv">2011</span>)
 <span class="co">#&gt; [1] FALSE</span>
-<span class="co">#   ____________________________________________________________________________</span></code></pre></div>
+<span class="co">#   ____________________________________________________________________________</span></code></pre>
 </div>
 <div id="dates-and-times-1" class="section level2">
 <h2><span class="header-section-number">7.2</span> Dates and Times</h2>
 <p><strong>Task:</strong> Subtract dates/date-times.</p>
 <p><strong>Task:</strong> Convert to date-time (and set a specific timezone).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">ymd_hms</span>(<span class="st">&quot;2011-06-04 12:00:00&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;Pacific/Auckland&quot;</span>)
-<span class="co">#&gt; [1] &quot;2011-06-04 12:00:00 NZST&quot;</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">ymd_hms</span>(<span class="st">&quot;2011-06-04 12:00:00&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;Pacific/Auckland&quot;</span>)
+<span class="co">#&gt; [1] &quot;2011-06-04 12:00:00 NZST&quot;</span></code></pre>
 <p><strong>Task:</strong> Get the second/minute/hour from a date.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">second</span>(lubridate<span class="op">::</span><span class="kw">ymd_hms</span>(<span class="st">&quot;2011-06-04 12:00:00&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;Pacific/Auckland&quot;</span>))
+<pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">second</span>(lubridate<span class="op">::</span><span class="kw">ymd_hms</span>(<span class="st">&quot;2011-06-04 12:00:00&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;Pacific/Auckland&quot;</span>))
 <span class="co">#&gt; [1] 0</span>
 lubridate<span class="op">::</span><span class="kw">minute</span>(lubridate<span class="op">::</span><span class="kw">ymd_hms</span>(<span class="st">&quot;2011-06-04 12:00:00&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;Pacific/Auckland&quot;</span>))
 <span class="co">#&gt; [1] 0</span>
 lubridate<span class="op">::</span><span class="kw">hour</span>(lubridate<span class="op">::</span><span class="kw">ymd_hms</span>(<span class="st">&quot;2011-06-04 12:00:00&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;Pacific/Auckland&quot;</span>))
 <span class="co">#&gt; [1] 12</span>
-<span class="co">#   ____________________________________________________________________________</span></code></pre></div>
+<span class="co">#   ____________________________________________________________________________</span></code></pre>
 <p><strong>Task:</strong> Change the time depending on a timezone.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meeting &lt;-<span class="st"> </span>lubridate<span class="op">::</span><span class="kw">ymd_hms</span>(<span class="st">&quot;2011-07-01 09:00:00&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;Pacific/Auckland&quot;</span>)
+<pre class="sourceCode r"><code class="sourceCode r">meeting &lt;-<span class="st"> </span>lubridate<span class="op">::</span><span class="kw">ymd_hms</span>(<span class="st">&quot;2011-07-01 09:00:00&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;Pacific/Auckland&quot;</span>)
 lubridate<span class="op">::</span><span class="kw">with_tz</span>(meeting, <span class="st">&quot;America/Chicago&quot;</span>)
 <span class="co">#&gt; [1] &quot;2011-06-30 16:00:00 CDT&quot;</span>
-<span class="co">#   ____________________________________________________________________________</span></code></pre></div>
+<span class="co">#   ____________________________________________________________________________</span></code></pre>
 </div>
 <div id="intervals" class="section level2">
 <h2><span class="header-section-number">7.3</span> Intervals</h2>
 <p><strong>Task:</strong> Create an interval.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">int1 &lt;-<span class="st"> </span>lubridate<span class="op">::</span><span class="kw">interval</span>(lubridate<span class="op">::</span><span class="kw">ymd_hms</span>(<span class="st">&quot;2011-06-04 12:00:00&quot;</span>),
+<pre class="sourceCode r"><code class="sourceCode r">int1 &lt;-<span class="st"> </span>lubridate<span class="op">::</span><span class="kw">interval</span>(lubridate<span class="op">::</span><span class="kw">ymd_hms</span>(<span class="st">&quot;2011-06-04 12:00:00&quot;</span>),
                             lubridate<span class="op">::</span><span class="kw">ymd_hms</span>(<span class="st">&quot;2011-08-10 14:00:00&quot;</span>)) 
 <span class="co"># or</span>
 int2 &lt;-<span class="st"> </span>lubridate<span class="op">::</span><span class="st">`</span><span class="dt">%--%</span><span class="st">`</span>(lubridate<span class="op">::</span><span class="kw">ymd</span>(<span class="st">&quot;2011-07-20&quot;</span>),
                           lubridate<span class="op">::</span><span class="kw">ymd</span>(<span class="st">&quot;2011-08-31&quot;</span>))
-<span class="co">#   ____________________________________________________________________________</span></code></pre></div>
+<span class="co">#   ____________________________________________________________________________</span></code></pre>
 <p><strong>Task:</strong> Check if two intervals overlap.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">int_overlaps</span>(int1, int2)
+<pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">int_overlaps</span>(int1, int2)
 <span class="co">#&gt; [1] TRUE</span>
-<span class="co">#   ____________________________________________________________________________</span></code></pre></div>
+<span class="co">#   ____________________________________________________________________________</span></code></pre>
 <p><strong>Task:</strong> What is the intersection of two intervals?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">intersect</span>(int1, int2)
+<pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">intersect</span>(int1, int2)
 <span class="co">#&gt; [1] 2011-07-20 UTC--2011-08-10 14:00:00 UTC</span>
-<span class="co">#   ____________________________________________________________________________</span></code></pre></div>
+<span class="co">#   ____________________________________________________________________________</span></code></pre>
 <p><strong>Task:</strong> What is the setdiff of two intervals (one interval without the other)?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setdiff</span>(int1, int2)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setdiff</span>(int1, int2)
 <span class="co">#&gt; [1] 2011-06-04 12:00:00 UTC--2011-07-20 UTC</span>
-<span class="co">#   ____________________________________________________________________________</span></code></pre></div>
+<span class="co">#   ____________________________________________________________________________</span></code></pre>
 <p><strong>Task:</strong> What is the begin/end of the interval?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">int_start</span>(int1)
+<pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">int_start</span>(int1)
 <span class="co">#&gt; [1] &quot;2011-06-04 12:00:00 UTC&quot;</span>
 lubridate<span class="op">::</span><span class="kw">int_end</span>(int1)
 <span class="co">#&gt; [1] &quot;2011-08-10 14:00:00 UTC&quot;</span>
-<span class="co">#   ____________________________________________________________________________</span></code></pre></div>
+<span class="co">#   ____________________________________________________________________________</span></code></pre>
 <p><strong>Task:</strong> How to reverse the start and end of an interval?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">int_flip</span>(int1)
+<pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">int_flip</span>(int1)
 <span class="co">#&gt; [1] 2011-08-10 14:00:00 UTC--2011-06-04 12:00:00 UTC</span>
-<span class="co">#   ____________________________________________________________________________</span></code></pre></div>
+<span class="co">#   ____________________________________________________________________________</span></code></pre>
 <p><strong>Task:</strong> Add/substract an amount of time to an interval.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">int_shift</span>(int1, <span class="dt">by =</span> <span class="kw">seconds</span>(<span class="dv">102</span>))
+<pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">int_shift</span>(int1, <span class="dt">by =</span> <span class="kw">seconds</span>(<span class="dv">102</span>))
 <span class="co">#&gt; [1] 2011-06-04 12:01:42 UTC--2011-08-10 14:01:42 UTC</span>
-<span class="co">#   ____________________________________________________________________________</span></code></pre></div>
+<span class="co">#   ____________________________________________________________________________</span></code></pre>
 <p><strong>Task:</strong> Check if two intervals are starting or ending at the same time.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">int_aligns</span>(int1, int2)
+<pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">int_aligns</span>(int1, int2)
 <span class="co">#&gt; [1] FALSE</span>
-<span class="co">#   ____________________________________________________________________________</span></code></pre></div>
+<span class="co">#   ____________________________________________________________________________</span></code></pre>
 <p><strong>Task:</strong> Unite two intevals into one.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">union</span>(int1, int2)
+<pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="kw">union</span>(int1, int2)
 <span class="co">#&gt; [1] 2011-06-04 12:00:00 UTC--2011-08-31 UTC</span>
-<span class="co">#   ____________________________________________________________________________</span></code></pre></div>
+<span class="co">#   ____________________________________________________________________________</span></code></pre>
 <p><strong>Task</strong> Check if a date-time lies within an interval.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="st">`</span><span class="dt">%within%</span><span class="st">`</span>(lubridate<span class="op">::</span><span class="kw">ymd_hms</span>(<span class="st">&quot;2011-06-06 12:12:12&quot;</span>), int1)
+<pre class="sourceCode r"><code class="sourceCode r">lubridate<span class="op">::</span><span class="st">`</span><span class="dt">%within%</span><span class="st">`</span>(lubridate<span class="op">::</span><span class="kw">ymd_hms</span>(<span class="st">&quot;2011-06-06 12:12:12&quot;</span>), int1)
 <span class="co">#&gt; [1] TRUE</span>
-<span class="co">#   ____________________________________________________________________________</span></code></pre></div>
+<span class="co">#   ____________________________________________________________________________</span></code></pre>
 <p><strong>Task:</strong> What are general time intervals available and what are their differences?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Intervals are specific time spans (because they are tied to specific dates)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Intervals are specific time spans (because they are tied to specific dates)</span>
 
 <span class="co"># Durations will always supply mathematically precise results, for example</span>
 <span class="co"># duration year will always equal 365 days.</span>
@@ -396,9 +424,9 @@ lubridate<span class="op">::</span><span class="kw">int_end</span>(int1)
 lubridate<span class="op">::</span><span class="kw">minutes</span>(<span class="dv">2</span>) ## period
 <span class="co">#&gt; [1] &quot;2M 0S&quot;</span>
 lubridate<span class="op">::</span><span class="kw">dminutes</span>(<span class="dv">2</span>) ## duration
-<span class="co">#&gt; [1] &quot;120s (~2 minutes)&quot;</span></code></pre></div>
+<span class="co">#&gt; [1] &quot;120s (~2 minutes)&quot;</span></code></pre>
 <p><strong>Task:</strong> Perform calculations with intervals:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">int1 <span class="op">/</span><span class="st"> </span>lubridate<span class="op">::</span><span class="kw">ddays</span>(<span class="dv">2</span>)
+<pre class="sourceCode r"><code class="sourceCode r">int1 <span class="op">/</span><span class="st"> </span>lubridate<span class="op">::</span><span class="kw">ddays</span>(<span class="dv">2</span>)
 <span class="co">#&gt; [1] 33.54167</span>
 int1 <span class="op">/</span><span class="st"> </span>lubridate<span class="op">::</span><span class="kw">dminutes</span>(<span class="dv">1</span>)
 <span class="co">#&gt; [1] 96600</span>
@@ -411,7 +439,7 @@ lubridate<span class="op">::</span><span class="kw">as.period</span>(int1)
 <span class="co">#&gt; [1] &quot;2m 6d 2H 0M 0S&quot;</span>
 lubridate<span class="op">::</span><span class="kw">as.period</span>(int1 <span class="op">%%</span><span class="st"> </span><span class="kw">months</span>(<span class="dv">1</span>))
 <span class="co">#&gt; [1] &quot;6d 2H 0M 0S&quot;</span>
-<span class="co">#   ____________________________________________________________________________</span></code></pre></div>
+<span class="co">#   ____________________________________________________________________________</span></code></pre>
 </div>
 <div id="resources-6" class="section level2">
 <h2><span class="header-section-number">7.4</span> Resources</h2>
@@ -430,8 +458,9 @@ lubridate<span class="op">::</span><span class="kw">as.period</span>(int1 <span 
         </div>
       </div>
 <a href="factors.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="lists.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="lists.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -440,17 +469,18 @@ lubridate<span class="op">::</span><span class="kw">as.period</span>(int1 <span 
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
-require(["gitbook"], function(gitbook) {
+gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
 "facebook": true,
 "twitter": true,
 "google": false,
+"linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -460,6 +490,10 @@ gitbook.start({
 "edit": {
 "link": "https://github.com/Tazinho/Tidyverse-Cookbook/edit/master/07-Dates_and_times.Rmd",
 "text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
 },
 "download": null,
 "toc": {
